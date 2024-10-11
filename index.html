@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento Actual</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="event-title">Clic en el botón de autorización y luego en el botón para ver el evento</h1>
+        <button id="authorize-button">Autorizar</button>
+        <button id="event-button" disabled>Consultar Evento</button> <!-- Deshabilitado hasta que se autorice -->
+    </div>
+
+    <!-- Cargar API de Google -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <!-- Cargar tu script -->
+    <script src="script.js"></script>
+</body>
+</html>

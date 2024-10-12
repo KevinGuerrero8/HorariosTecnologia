@@ -1,23 +1,61 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.chewy-regular {
+    font-family: "Chewy", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
 
-body, html {
-    height: 100%;
+body {
+    font-family: "Chewy", system-ui;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    height: 100vh;
+    background-color: #E4E2E3;
 }
 
-.container {
+h1{
+    color: #6A6767;
+}
+
+
+.status {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.contenedor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+}
+
+.seccion1 {
     text-align: center;
+    font-size: 50px;
+    
 }
 
-#event-title {
-    font-size: 2rem;
-    color: #333;
+.seccion1 h1{
+    margin: 0;    
 }
+
+.seccion1 img{
+
+    height: auto;  
+}
+
+
+.info {
+    display: flex; 
+    align-items: center; 
+    margin-top: 10px; 
+    padding-left: 30px;
+}
+
+.icono {
+    width: 90px;
+    height: auto;
+    margin-right: 20px; 
+}
+

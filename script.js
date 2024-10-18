@@ -111,23 +111,6 @@ function getCurrentEvent() {
 }
 */
 
-const datePicker = document.getElementById('date-picker');
-const timePicker = document.getElementById('time-picker');
-const checkEventButton = document.getElementById('check-event-button');
-
-datePicker.addEventListener('change', toggleCheckEventButton);
-timePicker.addEventListener('change', toggleCheckEventButton);
-
-function toggleCheckEventButton() {
-    checkEventButton.disabled = !(datePicker.value && timePicker.value);
-}
-
-
-checkEventButton.addEventListener('click', () => {
-    const selectedDateTime = new Date(`${datePicker.value}T${timePicker.value}`);
-    getEvents(selectedDateTime);
-});
-
 // Función para obtener el evento actual
 function getCurrentEvent() {
     const now = new Date().toISOString();  // Convierte a formato ISO

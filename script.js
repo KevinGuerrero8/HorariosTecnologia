@@ -1,4 +1,5 @@
 // Declara tu Client ID de OAuth 2.0 obtenido en la consola de Google Cloud
+//cambio6
 const CLIENT_ID = '766595118524-qvmr87csv5megphl7bssa4goa7l4nvva.apps.googleusercontent.com';
 let tokenClient;
 let isAuthorized = false;
@@ -148,19 +149,20 @@ function getCurrentEvent() {
                         document.getElementById('submit-event').addEventListener('click', () => {
                             const selectedDate = document.getElementById('event-date').value;
                             const selectedTime = document.getElementById('event-time').value;
-                            const eventResult = document.getElementById('event-result'); // Agregué esta línea para referenciar el párrafo de resultados.
+                            const eventResult = document.getElementById('event-result'); // Asegura que haces referencia a la etiqueta correcta
 
                             if (selectedDate && selectedTime) {
-                                // Crear una fecha y hora combinadas
-                                const selectedDateTime = new Date(\`\${selectedDate}T\${selectedTime}\`);
+                                // Crear una fecha y hora combinadas correctamente
+                                const selectedDateTime = new Date(${selectedDate}T${selectedTime});
                                 console.log("Fecha y hora seleccionadas:", selectedDateTime);
 
-                                // Aquí puedes llamar a la API para obtener el evento en la fecha y hora seleccionadas
+                                // Muestra la fecha y hora seleccionadas
                                 eventResult.textContent = 'Has seleccionado: ' + selectedDateTime;
                             } else {
                                 eventResult.textContent = 'Por favor, selecciona una fecha y hora válidas.';
                             }
                         });
+
                     </script>
                 </body>
                 </html>

@@ -7,9 +7,6 @@ let gapiInitialized = false;
 // Botones
 const authorizeButton = document.getElementById('authorize-button');
 const eventButton = document.getElementById('event-button');
-const calendarContainer = document.getElementById('calendar-container');
-const submitEventButton = document.getElementById('submit-event');
-const eventResult = document.getElementById('event-result');
 
 // Evento del botón de autorización
 authorizeButton.addEventListener('click', () => {

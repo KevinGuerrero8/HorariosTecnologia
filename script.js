@@ -73,6 +73,7 @@ eventButton.addEventListener('click', () => {
 });
 
 // Función para obtener el evento actual
+// Función para obtener el evento actual
 function getCurrentEvent() {
     const now = new Date().toISOString();  // Convierte a formato ISO
     console.log("Obteniendo eventos a partir de:", now);
@@ -114,7 +115,7 @@ function getCurrentEvent() {
                 <body>
                     <div class="contenedor">
                         <div class="seccion1">
-                            <h1>Horarios Tecnologia</h1>
+                            <h1>Horarios Tecnología</h1>
                             <p id="fecha"></p>
                             <p id="hora"></p>
                         </div>
@@ -147,13 +148,15 @@ function getCurrentEvent() {
                         document.getElementById('submit-event').addEventListener('click', () => {
                             const selectedDate = document.getElementById('event-date').value;
                             const selectedTime = document.getElementById('event-time').value;
+                            const eventResult = document.getElementById('event-result'); // Agregué esta línea para referenciar el párrafo de resultados.
 
                             if (selectedDate && selectedTime) {
-                                const selectedDateTime = new Date(${selectedDate}T${selectedTime});
+                                // Crear una fecha y hora combinadas
+                                const selectedDateTime = new Date(\`\${selectedDate}T\${selectedTime}\`);
                                 console.log("Fecha y hora seleccionadas:", selectedDateTime);
 
                                 // Aquí puedes llamar a la API para obtener el evento en la fecha y hora seleccionadas
-                                eventResult.textContent = Has seleccionado: ${selectedDateTime};
+                                eventResult.textContent = 'Has seleccionado: ' + selectedDateTime;
                             } else {
                                 eventResult.textContent = 'Por favor, selecciona una fecha y hora válidas.';
                             }
@@ -170,3 +173,4 @@ function getCurrentEvent() {
         console.error("Error al obtener los eventos:", error);
     });
 }
+

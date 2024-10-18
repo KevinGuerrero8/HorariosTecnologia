@@ -111,6 +111,22 @@ function getCurrentEvent() {
 }
 */
 
+const datePicker = document.getElementById('date-picker');
+const timePicker = document.getElementById('time-picker');
+const checkEventButton = document.getElementById('check-event-button');
+
+datePicker.addEventListener('change', toggleCheckEventButton);
+timePicker.addEventListener('change', toggleCheckEventButton);
+
+function toggleCheckEventButton() {
+    checkEventButton.disabled = !(datePicker.value && timePicker.value);
+}
+
+
+checkEventButton.addEventListener('click', () => {
+    const selectedDateTime = new Date(`${datePicker.value}T${timePicker.value}`);
+    getEvents(selectedDateTime);
+});
 
 // Función para obtener el evento actual
 function getCurrentEvent() {
@@ -154,9 +170,18 @@ function getCurrentEvent() {
                 <body>
                     <div class="contenedor">
                         <div class="seccion1">
-                            <h1>Horarios Tecnologia</h1>
-                            <p id="fecha"></p>
-                            <p id="hora"></p>
+                            <div class="titulo">
+                                <h1>Horarios Tecnologia</h1>
+                                <p id="fecha"></p>
+                                <p id="hora"></p>
+                            </div>
+                            <div class="buscador">
+                                <label for="date-picker"></label>
+                                <input type="date" id="date-picker">
+                                <label for="time-picker"></label>
+                                <input type="time" id="time-picker">
+                                <button id="check-event-button" disabled>Consultar Evento</button>
+                            </div>
                         </div>
                         <div class="seccion2">
                             <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">

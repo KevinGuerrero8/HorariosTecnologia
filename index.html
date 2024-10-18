@@ -11,6 +11,13 @@
         <h1 id="event-title">Clic en el botón de autorización y luego en el botón para ver el evento</h1>
         <button id="authorize-button">Autorizar</button>
         <button id="event-button" disabled>Consultar Evento</button> <!-- Deshabilitado hasta que se autorice -->
+        <div id="calendar-container" style="display: none;">
+            <h2>Selecciona una fecha y hora</h2>
+            <input type="date" id="event-date" />
+            <input type="time" id="event-time" />
+            <button id="submit-event">Enviar</button>
+            <p id="event-result"></p>
+        </div>
     </div>
 
     <!-- Cargar API de Google -->

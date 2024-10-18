@@ -86,4 +86,12 @@ p{
 }
 
 
+#calendar-container {
+    margin-top: 20px;
+    text-align: center;
+}
 
+#event-date,
+#event-time {
+    margin: 10px;
+}

@@ -7,6 +7,9 @@ let gapiInitialized = false;
 // Botones
 const authorizeButton = document.getElementById('authorize-button');
 const eventButton = document.getElementById('event-button');
+const calendarContainer = document.getElementById('calendar-container');
+const submitEventButton = document.getElementById('submit-event');
+const eventResult = document.getElementById('event-result');
 
 // Evento del botón de autorización
 authorizeButton.addEventListener('click', () => {
@@ -72,45 +75,6 @@ eventButton.addEventListener('click', () => {
     }
 });
 
-
-/*
-// Función para obtener el evento actual
-function getCurrentEvent() {
-    // Arreglar la obtención de la hora actual
-    const now = new Date().toISOString();  // Convierte a formato ISO
-    console.log("Obteniendo eventos a partir de:", now);
-
-    // Verifica que la API esté cargada antes de usar `gapi.client.calendar`
-    if (!gapi.client || !gapi.client.calendar) {
-        console.error("API de Google Calendar no cargada. No se puede obtener el evento.");
-        return;
-    }
-
-    // Obtén el evento del calendario
-    gapi.client.calendar.events.list({
-        'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',  // O reemplaza con tu ID de calendario si no es el principal
-        'timeMin': now,
-        'maxResults': 1,
-        'singleEvents': true,
-        'orderBy': 'startTime'
-    }).then(function (response) {
-        console.log("Respuesta de eventos:", response);  // Log completo de la respuesta
-
-        const event = response.result.items[0];
-        if (event) {
-            console.log("Evento encontrado:", event);
-            const eventTitle = event.summary;
-            document.getElementById('event-title').innerText = eventTitle;
-        } else {
-            console.log("No hay eventos disponibles en este momento.");
-            document.getElementById('event-title').innerText = "No hay eventos en este momento.";
-        }
-    }).catch(function (error) {
-        console.error("Error al obtener el evento:", error);
-    });
-}
-*/
-
 // Función para obtener el evento actual
 function getCurrentEvent() {
     const now = new Date().toISOString();  // Convierte a formato ISO
@@ -153,18 +117,9 @@ function getCurrentEvent() {
                 <body>
                     <div class="contenedor">
                         <div class="seccion1">
-                            <div class="titulo">
-                                <h1>Horarios Tecnologia</h1>
-                                <p id="fecha"></p>
-                                <p id="hora"></p>
-                            </div>
-                            <div class="buscador">
-                                <label for="date-picker"></label>
-                                <input type="date" id="date-picker">
-                                <label for="time-picker"></label>
-                                <input type="time" id="time-picker">
-                                <button id="check-event-button" disabled>Consultar Evento</button>
-                            </div>
+                            <h1>Horarios Tecnologia</h1>
+                            <p id="fecha"></p>
+                            <p id="hora"></p>
                         </div>
                         <div class="seccion2">
                             <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
@@ -176,6 +131,13 @@ function getCurrentEvent() {
                             </div>
                         </div>
                     </div>
+                    <div id="calendar-container">
+                        <h2>Selecciona una fecha y hora</h2>
+                        <input type="date" id="event-date" />
+                        <input type="time" id="event-time" />
+                        <button id="submit-event">Enviar</button>
+                        <p id="event-result"></p>
+                    </div>
                     <script>
                         const fechaActual = new Date();
                         const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -183,23 +145,31 @@ function getCurrentEvent() {
                         const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
                         document.getElementById('fecha').textContent = fechaFormateada;
                         document.getElementById('hora').textContent = horaFormateada;
+
+                        // Evento para enviar la fecha y hora seleccionadas
+                        document.getElementById('submit-event').addEventListener('click', () => {
+                            const selectedDate = document.getElementById('event-date').value;
+                            const selectedTime = document.getElementById('event-time').value;
+
+                            if (selectedDate && selectedTime) {
+                                const selectedDateTime = new Date(${selectedDate}T${selectedTime});
+                                console.log("Fecha y hora seleccionadas:", selectedDateTime);
+
+                                // Aquí puedes llamar a la API para obtener el evento en la fecha y hora seleccionadas
+                                eventResult.textContent = Has seleccionado: ${selectedDateTime};
+                            } else {
+                                eventResult.textContent = 'Por favor, selecciona una fecha y hora válidas.';
+                            }
+                        });
                     </script>
                 </body>
                 </html>
-                <script src="script.js"></script>
-                </body>
-                </html>
                 `;
-            } else {
-                // Si no contiene "Kevin", simplemente actualiza el título
-                document.getElementById('event-title').innerText = eventTitle;
             }
         } else {
-            console.log("No hay eventos disponibles en este momento.");
-            document.getElementById('event-title').innerText = "No hay eventos en este momento.";
+            console.log("No se encontró ningún evento.");
         }
     }).catch(function (error) {
-        console.error("Error al obtener el evento:", error);
+        console.error("Error al obtener los eventos:", error);
     });
 }
-

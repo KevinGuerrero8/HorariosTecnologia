@@ -1,8 +1,9 @@
-.chewy-regular {
-    font-family: "Chewy", system-ui;
+.montserrat {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-}
+  }
 
 body {
     font-family: "Chewy", system-ui;
@@ -14,9 +15,25 @@ body {
 }
 
 h1{
-    color: #6A6767;
+    color: black;
+    font-size: 50px;
+    margin: 0;
 }
 
+p{
+    font-size: 24px;
+    margin: 5px;
+    color: #6A6767;
+
+}
+
+#fecha {
+    text-decoration: underline;
+}
+
+#hora {
+    margin: -10px;
+}
 
 .status {
     margin-top: 20px;
@@ -28,34 +45,45 @@ h1{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 100px;
+    width: 85%;
 }
 
 .seccion1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    justify-content: center;
     font-size: 50px;
-    
 }
 
-.seccion1 h1{
-    margin: 0;    
+.seccion2 {
+    background-color: white;
+    border-radius: 35px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
 }
 
-.seccion1 img{
-
-    height: auto;  
+.seccion2 img {
+    width: 50%;
+    height: auto;
 }
 
 
 .info {
-    display: flex; 
-    align-items: center; 
-    margin-top: 10px; 
-    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
 }
 
-.icono {
-    width: 90px;
-    height: auto;
-    margin-right: 20px; 
+.info img{
+    width: 5%;
 }
+
+
 

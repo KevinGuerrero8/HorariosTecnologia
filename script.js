@@ -148,27 +148,37 @@ function getCurrentEvent() {
                     <title>Consulta de Horario</title>
                     <link rel="preconnect" href="https://fonts.googleapis.com">
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
                     <link rel="stylesheet" href="styles.css">
                 </head>
                 <body>
                     <div class="contenedor">
                         <div class="seccion1">
-                            <img src="Avatar2.png" alt="Avatar Kevin">
-                            <h1>Kevin Guerrero</h1>
+                            <h1>Horarios Tecnologia</h1>
+                            <p id="fecha"></p>
+                            <p id="hora"></p>
                         </div>
                         <div class="seccion2">
-                            <img src="Titleone.png" alt="Titulo">
-                            <div class="info">
-                                <img src="Icono_Mail.png" alt="Icono mail" class="icono">
-                                <h1>Tecnologia2@domicity.com.co</h1>
-                            </div>
+                            <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
+                            <h1>Kevin Guerrero</h1>
+                            <p>Tecnologia2@domicity.com.co</p>
                             <div class="info">
                                 <img src="Icono_Phone.png" alt="Icono phone" class="icono">
-                                <h1>3103325067</h1>
+                                <p>3103325067</p>
                             </div>
                         </div>
                     </div>
+                    <script>
+                        const fechaActual = new Date();
+                        const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+                        const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
+                        const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                        document.getElementById('fecha').textContent = fechaFormateada;
+                        document.getElementById('hora').textContent = horaFormateada;
+                    </script>
+                </body>
+                </html>
+                <script src="script.js"></script>
                 </body>
                 </html>
                 `;

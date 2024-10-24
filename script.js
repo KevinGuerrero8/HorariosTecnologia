@@ -154,7 +154,7 @@ function getCurrentEvent() {
 
 // Función para obtener eventos basados en la fecha seleccionada
 function getEventForSelectedDate(fechaSeleccionada) {
-    console.log("Obteniendo eventos para la fecha seleccionada:", fechaSeleccionada);
+    console.log("Obteniendo eventos para la fecha seleccionada2:", fechaSeleccionada);
 
     gapi.client.calendar.events.list({
         'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',

@@ -163,14 +163,64 @@ function getEventForSelectedDate(fechaSeleccionada) {
         'singleEvents': true,
         'orderBy': 'startTime'
     }).then(function (response) {
-        const events = response.result.items;
-        if (events.length > 0) {
-            const event = events[0];
-            document.getElementById('evento-seleccionado').textContent = `Evento: ${event.summary} a las ${new Date(event.start.dateTime).toLocaleTimeString()}`;
+        console.log("Respuesta de eventos2:", response);
+        const event = response.result.items[0];
+        if (event) {
+            console.log("Evento encontrado:", event);
+            const eventTitle = event.summary;
+
+            // Verificar si el evento contiene la palabra "Kevin"
+            if (eventTitle.includes("Kevin")) {
+                document.body.innerHTML = `
+                    <div class="contenedor">
+                        <div class="seccion1">
+                            <h1>Horarios Tecnología</h1>
+                            <p id="fecha"></p>
+                            <p id="hora"></p>
+                        </div>
+                        <div class="seccion2">
+                            <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
+                            <h1>Kevin Guerrerou</h1>
+                            <p>Tecnologia2@domicity.com.co</p>
+                            <div class="info">
+                                <img src="Icono_Phone.png" alt="Icono phone" class="icono">
+                                <p>3103325067</p>
+                            </div>
+                        </div>
+                        <div class="calendario">
+                            <label for="calendario">Selecciona una fecha y hora:</label>
+                            <input type="datetime-local" id="calendario" name="calendario">
+                            <button id="ver-evento">Ver evento</button>
+                            <p id="evento-seleccionado"></p>
+                        </div>
+                    </div>
+                `;
+
+                // Actualiza la fecha y hora actual
+                const fechaActual = new Date();
+                const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+                const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
+                const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                document.getElementById('fecha').textContent = fechaFormateada;
+                document.getElementById('hora').textContent = horaFormateada;
+
+                // Captura el evento del calendario cuando se selecciona una fecha
+                document.getElementById('ver-evento').addEventListener('click', function() {
+                    const fechaSeleccionada = document.getElementById('calendario').value;
+                    if (fechaSeleccionada) {
+                        getEventForSelectedDate(fechaSeleccionada);
+                    } else {
+                        document.getElementById('evento-seleccionado').textContent = "Por favor selecciona una fecha y hora.";
+                    }
+                });
+            } else {
+                document.getElementById('event-title').innerText = eventTitle;
+            }
         } else {
-            document.getElementById('evento-seleccionado').textContent = "No hay eventos en la fecha y hora seleccionadas.";
+            console.log("No hay eventos disponibles en este momento.");
+            document.getElementById('event-title').innerText = "No hay eventos en este momento.";
         }
     }).catch(function (error) {
-        console.error("Error al obtener los eventos:", error);
+        console.error("Error al obtener el evento:", error);
     });
 }

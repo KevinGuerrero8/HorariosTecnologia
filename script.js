@@ -213,13 +213,21 @@ function getCurrentEvent() {
                 document.getElementById('hora').textContent = horaFormateada;
 
                 // Captura el evento del calendario cuando se selecciona una fecha
-                document.getElementById('ver-evento').addEventListener('click', function() {
-                    const fechaSeleccionada = document.getElementById('calendario').value;
-                    if (fechaSeleccionada) {
-                        getEventForSelectedDate(fechaSeleccionada);
-                    } else {
-                        document.getElementById('evento-seleccionado').textContent = "Por favor selecciona una fecha y hora.";
+                document.getElementById('btnVerEvento').addEventListener('click', function () {
+                    const fechaHoraSeleccionada = document.getElementById('fechaHora').value;
+                    console.log("Fecha y hora seleccionada:", fechaHoraSeleccionada); // Debug
+                
+                    if (!fechaHoraSeleccionada) {
+                        alert("Por favor selecciona una fecha y hora.");
+                        return;
                     }
+                
+                    // Convertir la fecha seleccionada en formato ISO
+                    const fechaSeleccionada = new Date(fechaHoraSeleccionada).toISOString();
+                    console.log("Fecha seleccionada en formato ISO:", fechaSeleccionada); // Debug
+                
+                    // Llamada a la función que obtiene el evento para la fecha seleccionada
+                    getEventForSelectedDate(fechaSeleccionada);
                 });
             } else {
                 document.getElementById('event-title').innerText = eventTitle;
@@ -236,16 +244,18 @@ function getCurrentEvent() {
 // Función para obtener eventos basados en la fecha seleccionada
 // Función para obtener eventos basados en la fecha seleccionada
 function getEventForSelectedDate(fechaSeleccionada) {
-    console.log("Obteniendo eventos para la fecha seleccionada:", fechaSeleccionada);
+    console.log("Obteniendo eventos para la fecha seleccionada:", fechaSeleccionada); // Debug
 
     gapi.client.calendar.events.list({
         'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
-        'timeMin': new Date(fechaSeleccionada).toISOString(),
+        'timeMin': fechaSeleccionada,
         'timeMax': new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString(), // Añade 1 hora
         'singleEvents': true,
         'orderBy': 'startTime'
     }).then(function (response) {
         const events = response.result.items;
+        console.log("Respuesta de eventos:", events); // Debug para ver la respuesta
+
         if (events.length > 0) {
             const event = events[0];
             const eventTitle = event.summary;
@@ -270,7 +280,6 @@ function getEventForSelectedDate(fechaSeleccionada) {
         document.getElementById('evento-seleccionado').textContent = "Error al obtener los eventos.";
     });
 }
-
 // Función para mostrar el evento de Kevin
 function mostrarEventoKevin() {
     document.body.innerHTML = `

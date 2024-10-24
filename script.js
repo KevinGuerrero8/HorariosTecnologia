@@ -98,7 +98,6 @@ function getCurrentEvent() {
 
             // Verificar si el evento contiene la palabra "Kevin"
             if (eventTitle.includes("Kevin")) {
-                // En lugar de reemplazar el body, solo actualiza un div específico
                 document.body.innerHTML = `
                     <div class="contenedor">
                         <div class="seccion1">
@@ -115,21 +114,33 @@ function getCurrentEvent() {
                                 <p>3103325067</p>
                             </div>
                         </div>
+                        <div class="calendario">
+                            <label for="calendario">Selecciona una fecha y hora:</label>
+                            <input type="datetime-local" id="calendario" name="calendario">
+                            <button id="ver-evento">Ver evento</button>
+                            <p id="evento-seleccionado"></p>
+                        </div>
                     </div>
                 `;
 
-                // Ejecuta el código para actualizar la fecha y hora después de actualizar el contenido
+                // Actualiza la fecha y hora actual
                 const fechaActual = new Date();
                 const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
                 const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
                 const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-
-                // Asigna la fecha y hora al DOM
                 document.getElementById('fecha').textContent = fechaFormateada;
                 document.getElementById('hora').textContent = horaFormateada;
 
+                // Captura el evento del calendario cuando se selecciona una fecha
+                document.getElementById('ver-evento').addEventListener('click', function() {
+                    const fechaSeleccionada = document.getElementById('calendario').value;
+                    if (fechaSeleccionada) {
+                        getEventForSelectedDate(fechaSeleccionada);
+                    } else {
+                        document.getElementById('evento-seleccionado').textContent = "Por favor selecciona una fecha y hora.";
+                    }
+                });
             } else {
-                // Si no contiene "Kevin", simplemente actualiza el título
                 document.getElementById('event-title').innerText = eventTitle;
             }
         } else {
@@ -138,5 +149,28 @@ function getCurrentEvent() {
         }
     }).catch(function (error) {
         console.error("Error al obtener el evento:", error);
+    });
+}
+
+// Función para obtener eventos basados en la fecha seleccionada
+function getEventForSelectedDate(fechaSeleccionada) {
+    console.log("Obteniendo eventos para la fecha seleccionada:", fechaSeleccionada);
+
+    gapi.client.calendar.events.list({
+        'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+        'timeMin': new Date(fechaSeleccionada).toISOString(),
+        'timeMax': new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString(), // Añade 1 hora
+        'singleEvents': true,
+        'orderBy': 'startTime'
+    }).then(function (response) {
+        const events = response.result.items;
+        if (events.length > 0) {
+            const event = events[0];
+            document.getElementById('evento-seleccionado').textContent = `Evento: ${event.summary} a las ${new Date(event.start.dateTime).toLocaleTimeString()}`;
+        } else {
+            document.getElementById('evento-seleccionado').textContent = "No hay eventos en la fecha y hora seleccionadas.";
+        }
+    }).catch(function (error) {
+        console.error("Error al obtener los eventos:", error);
     });
 }

@@ -153,17 +153,25 @@ function getCurrentEvent() {
 }
 
 // Función para obtener eventos basados en la fecha seleccionada
-function getEventForSelectedDate(fechaSeleccionada) {
-    console.log("Obteniendo eventos para la fecha seleccionada2:", fechaSeleccionada);
+// Dentro de tu función getCurrentEvent
+function getCurrentEvent() {
+    const now = new Date().toISOString();  // Convierte a formato ISO
+    console.log("Obteniendo eventos a partir de:", now);
+
+    if (!gapi.client || !gapi.client.calendar) {
+        console.error("API de Google Calendar no cargada. No se puede obtener el evento.");
+        return;
+    }
 
     gapi.client.calendar.events.list({
         'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
-        'timeMin': new Date(fechaSeleccionada).toISOString(),
-        'timeMax': new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString(), // Añade 1 hora
+        'timeMin': now,
+        'maxResults': 1,
         'singleEvents': true,
         'orderBy': 'startTime'
     }).then(function (response) {
-        console.log("Respuesta de eventos2:", response);
+        console.log("Respuesta de eventos:", response);
+
         const event = response.result.items[0];
         if (event) {
             console.log("Evento encontrado:", event);
@@ -180,7 +188,7 @@ function getEventForSelectedDate(fechaSeleccionada) {
                         </div>
                         <div class="seccion2">
                             <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
-                            <h1>Kevin Guerrerou</h1>
+                            <h1>Kevin Guerrero</h1>
                             <p>Tecnologia2@domicity.com.co</p>
                             <div class="info">
                                 <img src="Icono_Phone.png" alt="Icono phone" class="icono">
@@ -223,4 +231,90 @@ function getEventForSelectedDate(fechaSeleccionada) {
     }).catch(function (error) {
         console.error("Error al obtener el evento:", error);
     });
+}
+
+// Función para obtener eventos basados en la fecha seleccionada
+// Función para obtener eventos basados en la fecha seleccionada
+function getEventForSelectedDate(fechaSeleccionada) {
+    console.log("Obteniendo eventos para la fecha seleccionada:", fechaSeleccionada);
+
+    gapi.client.calendar.events.list({
+        'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+        'timeMin': new Date(fechaSeleccionada).toISOString(),
+        'timeMax': new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString(), // Añade 1 hora
+        'singleEvents': true,
+        'orderBy': 'startTime'
+    }).then(function (response) {
+        const events = response.result.items;
+        if (events.length > 0) {
+            const event = events[0];
+            const eventTitle = event.summary;
+
+            // Verificar si el evento contiene la palabra "Kevin"
+            if (eventTitle.includes("Kevin")) {
+                mostrarEventoKevin();
+            } 
+            // Verificar si el evento contiene la palabra "Lizeth"
+            else if (eventTitle.includes("Lizeth")) {
+                mostrarEventoLizeth();
+            } 
+            // Si hay eventos, pero no son "Kevin" ni "Lizeth"
+            else {
+                mostrarEventoGenerico(eventTitle);
+            }
+        } else {
+            mostrarNoHayEventos();
+        }
+    }).catch(function (error) {
+        console.error("Error al obtener los eventos:", error);
+        document.getElementById('evento-seleccionado').textContent = "Error al obtener los eventos.";
+    });
+}
+
+// Función para mostrar el evento de Kevin
+function mostrarEventoKevin() {
+    document.body.innerHTML = `
+        <div class="contenedor">
+            <div class="seccion1">
+                <h1>Horarios Tecnología</h1>
+                <p id="fecha"></p>
+                <p id="hora"></p>
+            </div>
+            <div class="seccion2">
+                <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
+                <h1>Kevin Guerrero</h1>
+                <p>Tecnologia2@domicity.com.co</p>
+                <div class="info">
+                    <img src="Icono_Phone.png" alt="Icono phone" class="icono">
+                    <p>3103325067</p>
+                </div>
+            </div>
+        </div>
+        <script>
+            const fechaActual = new Date();
+            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+            const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
+            const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('fecha').textContent = fechaFormateada;
+            document.getElementById('hora').textContent = horaFormateada;
+        </script>
+    `;
+}
+
+// Función para mostrar un saludo si el evento es de Lizeth
+function mostrarEventoLizeth() {
+    document.body.innerHTML = `
+        <h1>Hola</h1>
+        <p>Este evento es para Lizeth.</p>
+    `;
+}
+
+// Función para mostrar un evento genérico
+function mostrarEventoGenerico(eventTitle) {
+    document.getElementById('evento-seleccionado').textContent = `Evento: ${eventTitle}`;
+}
+
+// Función para mostrar cuando no hay eventos
+function mostrarNoHayEventos() {
+    document.getElementById('evento-seleccionado').textContent = "No hay eventos en la fecha y hora seleccionadas.";
 }

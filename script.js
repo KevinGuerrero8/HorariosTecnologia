@@ -72,46 +72,6 @@ eventButton.addEventListener('click', () => {
     }
 });
 
-
-/*
-// Función para obtener el evento actual
-function getCurrentEvent() {
-    // Arreglar la obtención de la hora actual
-    const now = new Date().toISOString();  // Convierte a formato ISO
-    console.log("Obteniendo eventos a partir de:", now);
-
-    // Verifica que la API esté cargada antes de usar gapi.client.calendar
-    if (!gapi.client || !gapi.client.calendar) {
-        console.error("API de Google Calendar no cargada. No se puede obtener el evento.");
-        return;
-    }
-
-    // Obtén el evento del calendario
-    gapi.client.calendar.events.list({
-        'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',  // O reemplaza con tu ID de calendario si no es el principal
-        'timeMin': now,
-        'maxResults': 1,
-        'singleEvents': true,
-        'orderBy': 'startTime'
-    }).then(function (response) {
-        console.log("Respuesta de eventos:", response);  // Log completo de la respuesta
-
-        const event = response.result.items[0];
-        if (event) {
-            console.log("Evento encontrado:", event);
-            const eventTitle = event.summary;
-            document.getElementById('event-title').innerText = eventTitle;
-        } else {
-            console.log("No hay eventos disponibles en este momento.");
-            document.getElementById('event-title').innerText = "No hay eventos en este momento.";
-        }
-    }).catch(function (error) {
-        console.error("Error al obtener el evento:", error);
-    });
-}
-*/
-
-
 // Función para obtener el evento actual
 function getCurrentEvent() {
     const now = new Date().toISOString();  // Convierte a formato ISO
@@ -138,23 +98,11 @@ function getCurrentEvent() {
 
             // Verificar si el evento contiene la palabra "Kevin"
             if (eventTitle.includes("Kevin")) {
-                // Reemplazar el contenido del body con el HTML proporcionado
+                // En lugar de reemplazar el body, solo actualiza un div específico
                 document.body.innerHTML = `
-                <!DOCTYPE html>
-                <html lang="es">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Consulta de Horario</title>
-                    <link rel="preconnect" href="https://fonts.googleapis.com">
-                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-                    <link rel="stylesheet" href="styles.css">
-                </head>
-                <body>
                     <div class="contenedor">
                         <div class="seccion1">
-                            <h1>Horarios Tecnologia</h1>
+                            <h1>Horarios Tecnología</h1>
                             <p id="fecha"></p>
                             <p id="hora"></p>
                         </div>
@@ -168,20 +116,18 @@ function getCurrentEvent() {
                             </div>
                         </div>
                     </div>
-                    <script>
-                        const fechaActual = new Date();
-                        const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-                        const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
-                        const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                        document.getElementById('fecha').textContent = fechaFormateada;
-                        document.getElementById('hora').textContent = horaFormateada;
-                    </script>
-                </body>
-                </html>
-                <script src="script.js"></script>
-                </body>
-                </html>
                 `;
+
+                // Ejecuta el código para actualizar la fecha y hora después de actualizar el contenido
+                const fechaActual = new Date();
+                const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+                const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
+                const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+                // Asigna la fecha y hora al DOM
+                document.getElementById('fecha').textContent = fechaFormateada;
+                document.getElementById('hora').textContent = horaFormateada;
+
             } else {
                 // Si no contiene "Kevin", simplemente actualiza el título
                 document.getElementById('event-title').innerText = eventTitle;

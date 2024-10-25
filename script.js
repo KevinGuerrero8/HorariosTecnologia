@@ -163,147 +163,149 @@ function getCurrentEvent() {
 // Función para obtener eventos basados en la fecha seleccionada
 
 function getEventForSelectedDate(fechaSeleccionada) {
-    console.log("Obteniendo eventos para la fecha seleccionada:", fechaSeleccionada);
-
-    // Clear any existing event content first
+    // Mostramos el estado de carga
     const eventoSeleccionado = document.getElementById('evento-seleccionado');
     if (eventoSeleccionado) {
         eventoSeleccionado.textContent = 'Cargando eventos...';
     }
 
-    return gapi.client.calendar.events.list({
+    // Verificamos que gapi.client esté disponible
+    if (!gapi.client || !gapi.client.calendar) {
+        console.error('API de Google Calendar no está inicializada');
+        if (eventoSeleccionado) {
+            eventoSeleccionado.textContent = 'Error: API no inicializada. Por favor, actualiza la página.';
+        }
+        return;
+    }
+
+    console.log('Fecha seleccionada:', fechaSeleccionada);
+    const timeMax = new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString();
+    console.log('Rango de búsqueda:', { timeMin: fechaSeleccionada, timeMax });
+
+    // Realizamos la petición a la API
+    gapi.client.calendar.events.list({
         'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
         'timeMin': fechaSeleccionada,
-        'timeMax': new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString(),
+        'timeMax': timeMax,
         'singleEvents': true,
-        'orderBy': 'startTime'
-    }).then(function (response) {
+        'orderBy': 'startTime',
+        'maxResults': 1
+    }).then(function(response) {
+        console.log('Respuesta completa de la API:', response);
         const events = response.result.items;
-        console.log("Respuesta de eventos:", events);
+        console.log('Eventos encontrados:', events);
 
         if (events && events.length > 0) {
             const event = events[0];
-            const eventTitle = event.summary;
-
-            // Remove any existing event listeners before updating UI
-            const oldVerEventoBtn = document.getElementById('ver-evento');
-            if (oldVerEventoBtn) {
-                oldVerEventoBtn.removeEventListener('click', handleVerEventoClick);
-            }
-
-            if (eventTitle.includes("Kevin")) {
-                document.body.innerHTML = `
-                    <div class="contenedor">
-                        <div class="seccion1">
-                            <h1>Horarios Tecnología</h1>
-                            <p id="fecha"></p>
-                            <p id="hora"></p>
-                        </div>
-                        <div class="seccion2">
-                            <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
-                            <h1>Kevin Guerrero</h1>
-                            <p>Tecnologia2@domicity.com.co</p>
-                            <div class="info">
-                                <img src="Icono_Phone.png" alt="Icono phone" class="icono">
-                                <p>3103325067</p>
-                            </div>
-                        </div>
-                        <div class="calendario">
-                            <label for="calendario">Selecciona una fecha y hora:</label>
-                            <input type="datetime-local" id="calendario" name="calendario">
-                            <button id="ver-evento">Ver evento</button>
-                            <p id="evento-seleccionado"></p>
-                        </div>
-                    </div>
-                `;
-
-                // Update date and time
-                updateDateTime();
-                
-                // Re-attach event listener to new button
-                const newVerEventoBtn = document.getElementById('ver-evento');
-                if (newVerEventoBtn) {
-                    newVerEventoBtn.addEventListener('click', handleVerEventoClick);
-                }
-                
-                // Set the calendar input to the previously selected date/time
-                const calendarioInput = document.getElementById('calendario');
-                if (calendarioInput) {
-                    calendarioInput.value = new Date(fechaSeleccionada).toISOString().slice(0, 16);
-                }
-            } else if (eventTitle.includes("Lizeth")) {
-                document.body.innerHTML = `
-                    <div class="event-container">
-                        <h1>Hola</h1>
-                        <p>Este evento es para Lizeth.</p>
-                        <button onclick="volverASeleccion()">Volver a selección</button>
-                    </div>
-                `;
-            } else {
-                const eventoSeleccionado = document.getElementById('evento-seleccionado');
-                if (eventoSeleccionado) {
-                    eventoSeleccionado.textContent = `Evento: ${eventTitle}`;
-                }
-            }
+            console.log('Evento a mostrar:', event);
+            mostrarEvento(event);
         } else {
-            const eventoSeleccionado = document.getElementById('evento-seleccionado');
+            console.log('No se encontraron eventos');
             if (eventoSeleccionado) {
-                eventoSeleccionado.textContent = "No hay eventos en la fecha y hora seleccionadas.";
+                eventoSeleccionado.textContent = 'No hay eventos programados para esta fecha y hora.';
             }
         }
-    }).catch(function (error) {
-        console.error("Error al obtener los eventos:", error);
-        const eventoSeleccionado = document.getElementById('evento-seleccionado');
+    }).catch(function(error) {
+        console.error('Error al obtener eventos:', error);
         if (eventoSeleccionado) {
-            eventoSeleccionado.textContent = "Error al obtener los eventos.";
+            eventoSeleccionado.textContent = `Error: ${error.message || 'No se pudieron cargar los eventos'}`;
         }
     });
 }
 
-// Helper function to update date and time
-function updateDateTime() {
+// Función separada para mostrar el evento
+function mostrarEvento(event) {
+    const eventTitle = event.summary;
+    console.log('Título del evento:', eventTitle);
+
+    if (eventTitle.includes("Kevin")) {
+        document.body.innerHTML = `
+            <div class="contenedor">
+                <div class="seccion1">
+                    <h1>Horarios Tecnología</h1>
+                    <p id="fecha"></p>
+                    <p id="hora"></p>
+                </div>
+                <div class="seccion2">
+                    <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
+                    <h1>Kevin Guerrero</h1>
+                    <p>Tecnologia2@domicity.com.co</p>
+                    <div class="info">
+                        <img src="Icono_Phone.png" alt="Icono phone" class="icono">
+                        <p>3103325067</p>
+                    </div>
+                </div>
+                <div class="calendario">
+                    <label for="calendario">Selecciona una fecha y hora:</label>
+                    <input type="datetime-local" id="calendario" name="calendario">
+                    <button id="ver-evento">Ver evento</button>
+                    <p id="evento-seleccionado"></p>
+                </div>
+            </div>
+        `;
+        actualizarFechaHora();
+        reiniciarEventListeners();
+    } else if (eventTitle.includes("Lizeth")) {
+        document.body.innerHTML = `
+            <div class="event-container">
+                <h1>Hola</h1>
+                <p>Este evento es para Lizeth.</p>
+                <button onclick="volverAInicio()">Volver</button>
+            </div>
+        `;
+    } else {
+        const eventoSeleccionado = document.getElementById('evento-seleccionado');
+        if (eventoSeleccionado) {
+            eventoSeleccionado.textContent = `Evento encontrado: ${eventTitle}`;
+        }
+    }
+}
+
+// Función para actualizar fecha y hora
+function actualizarFechaHora() {
     const fechaActual = new Date();
     const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-    const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
-    const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit' 
-    });
     
     const fechaElement = document.getElementById('fecha');
     const horaElement = document.getElementById('hora');
     
-    if (fechaElement) fechaElement.textContent = fechaFormateada;
-    if (horaElement) horaElement.textContent = horaFormateada;
-}
-
-// Event handler for the "Ver evento" button
-function handleVerEventoClick() {
-    const fechaHoraSeleccionada = document.getElementById('calendario').value;
-    
-    if (!fechaHoraSeleccionada) {
-        alert("Por favor selecciona una fecha y hora.");
-        return;
+    if (fechaElement) {
+        fechaElement.textContent = fechaActual.toLocaleDateString('es-ES', opciones);
     }
-
-    const fechaSeleccionada = new Date(fechaHoraSeleccionada).toISOString();
-    getEventForSelectedDate(fechaSeleccionada);
+    
+    if (horaElement) {
+        horaElement.textContent = fechaActual.toLocaleTimeString('es-ES', { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+        });
+    }
 }
 
-// Function to return to selection screen
-function volverASeleccion() {
+// Función para reiniciar los event listeners
+function reiniciarEventListeners() {
+    const verEventoBtn = document.getElementById('ver-evento');
+    const calendarioInput = document.getElementById('calendario');
+    
+    if (verEventoBtn) {
+        verEventoBtn.addEventListener('click', function() {
+            const fechaSeleccionada = calendarioInput.value;
+            if (!fechaSeleccionada) {
+                alert('Por favor, selecciona una fecha y hora');
+                return;
+            }
+            getEventForSelectedDate(new Date(fechaSeleccionada).toISOString());
+        });
+    }
+}
+
+// Función para volver al inicio
+function volverAInicio() {
     location.reload();
 }
 
-// Initialize the page
-function initializePage() {
-    const verEventoBtn = document.getElementById('ver-evento');
-    if (verEventoBtn) {
-        verEventoBtn.addEventListener('click', handleVerEventoClick);
-    }
-    updateDateTime();
-}
-
-// Call initialize when the page loads
-document.addEventListener('DOMContentLoaded', initializePage);
+// Inicialización de la página
+document.addEventListener('DOMContentLoaded', function() {
+    reiniciarEventListeners();
+    actualizarFechaHora();
+});

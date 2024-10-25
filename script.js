@@ -182,6 +182,11 @@ function getEventForSelectedDate(fechaSeleccionada) {
     const timeMax = new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString();
     console.log('Rango de búsqueda:', { timeMin: fechaSeleccionada, timeMax });
 
+    if (!gapi.client || !gapi.client.calendar) {
+        console.error("API de Google Calendar no cargada. No se puede obtener el evento.2");
+        return;
+    }
+
     // Realizamos la petición a la API
     gapi.client.calendar.events.list({
         'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',

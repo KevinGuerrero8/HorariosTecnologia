@@ -161,88 +161,149 @@ function getCurrentEvent() {
 }
 
 // Función para obtener eventos basados en la fecha seleccionada
-// Función para obtener eventos basados en la fecha seleccionada
-function getEventForSelectedDate(fechaSeleccionada) {
-    console.log("Obteniendo eventos para la fecha seleccionada:", fechaSeleccionada); // Debug
 
-    gapi.client.calendar.events.list({
+function getEventForSelectedDate(fechaSeleccionada) {
+    console.log("Obteniendo eventos para la fecha seleccionada:", fechaSeleccionada);
+
+    // Clear any existing event content first
+    const eventoSeleccionado = document.getElementById('evento-seleccionado');
+    if (eventoSeleccionado) {
+        eventoSeleccionado.textContent = 'Cargando eventos...';
+    }
+
+    return gapi.client.calendar.events.list({
         'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
         'timeMin': fechaSeleccionada,
-        'timeMax': new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString(), // Añade 1 hora
+        'timeMax': new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString(),
         'singleEvents': true,
         'orderBy': 'startTime'
     }).then(function (response) {
         const events = response.result.items;
-        console.log("Respuesta de eventos:", events); // Debug para ver la respuesta
+        console.log("Respuesta de eventos:", events);
 
-        if (events.length > 0) {
+        if (events && events.length > 0) {
             const event = events[0];
             const eventTitle = event.summary;
 
-            // Verificar si el evento contiene la palabra "Kevin"
+            // Remove any existing event listeners before updating UI
+            const oldVerEventoBtn = document.getElementById('ver-evento');
+            if (oldVerEventoBtn) {
+                oldVerEventoBtn.removeEventListener('click', handleVerEventoClick);
+            }
+
             if (eventTitle.includes("Kevin")) {
-                mostrarEventoKevin();
-            } 
-            // Verificar si el evento contiene la palabra "Lizeth"
-            else if (eventTitle.includes("Lizeth")) {
-                mostrarEventoLizeth();
-            } 
-            // Si hay eventos, pero no son "Kevin" ni "Lizeth"
-            else {
-                mostrarEventoGenerico(eventTitle);
+                document.body.innerHTML = `
+                    <div class="contenedor">
+                        <div class="seccion1">
+                            <h1>Horarios Tecnología</h1>
+                            <p id="fecha"></p>
+                            <p id="hora"></p>
+                        </div>
+                        <div class="seccion2">
+                            <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
+                            <h1>Kevin Guerrero</h1>
+                            <p>Tecnologia2@domicity.com.co</p>
+                            <div class="info">
+                                <img src="Icono_Phone.png" alt="Icono phone" class="icono">
+                                <p>3103325067</p>
+                            </div>
+                        </div>
+                        <div class="calendario">
+                            <label for="calendario">Selecciona una fecha y hora:</label>
+                            <input type="datetime-local" id="calendario" name="calendario">
+                            <button id="ver-evento">Ver evento</button>
+                            <p id="evento-seleccionado"></p>
+                        </div>
+                    </div>
+                `;
+
+                // Update date and time
+                updateDateTime();
+                
+                // Re-attach event listener to new button
+                const newVerEventoBtn = document.getElementById('ver-evento');
+                if (newVerEventoBtn) {
+                    newVerEventoBtn.addEventListener('click', handleVerEventoClick);
+                }
+                
+                // Set the calendar input to the previously selected date/time
+                const calendarioInput = document.getElementById('calendario');
+                if (calendarioInput) {
+                    calendarioInput.value = new Date(fechaSeleccionada).toISOString().slice(0, 16);
+                }
+            } else if (eventTitle.includes("Lizeth")) {
+                document.body.innerHTML = `
+                    <div class="event-container">
+                        <h1>Hola</h1>
+                        <p>Este evento es para Lizeth.</p>
+                        <button onclick="volverASeleccion()">Volver a selección</button>
+                    </div>
+                `;
+            } else {
+                const eventoSeleccionado = document.getElementById('evento-seleccionado');
+                if (eventoSeleccionado) {
+                    eventoSeleccionado.textContent = `Evento: ${eventTitle}`;
+                }
             }
         } else {
-            mostrarNoHayEventos();
+            const eventoSeleccionado = document.getElementById('evento-seleccionado');
+            if (eventoSeleccionado) {
+                eventoSeleccionado.textContent = "No hay eventos en la fecha y hora seleccionadas.";
+            }
         }
     }).catch(function (error) {
         console.error("Error al obtener los eventos:", error);
-        document.getElementById('evento-seleccionado').textContent = "Error al obtener los eventos.";
+        const eventoSeleccionado = document.getElementById('evento-seleccionado');
+        if (eventoSeleccionado) {
+            eventoSeleccionado.textContent = "Error al obtener los eventos.";
+        }
     });
 }
-// Función para mostrar el evento de Kevin
-function mostrarEventoKevin() {
-    document.body.innerHTML = `
-        <div class="contenedor">
-            <div class="seccion1">
-                <h1>Horarios Tecnología</h1>
-                <p id="fecha"></p>
-                <p id="hora"></p>
-            </div>
-            <div class="seccion2">
-                <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
-                <h1>Kevin Guerrero</h1>
-                <p>Tecnologia2@domicity.com.co</p>
-                <div class="info">
-                    <img src="Icono_Phone.png" alt="Icono phone" class="icono">
-                    <p>3103325067</p>
-                </div>
-            </div>
-        </div>
-        <script>
-            const fechaActual = new Date();
-            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-            const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
-            const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            document.getElementById('fecha').textContent = fechaFormateada;
-            document.getElementById('hora').textContent = horaFormateada;
-        </script>
-    `;
+
+// Helper function to update date and time
+function updateDateTime() {
+    const fechaActual = new Date();
+    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+    const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
+    const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit' 
+    });
+    
+    const fechaElement = document.getElementById('fecha');
+    const horaElement = document.getElementById('hora');
+    
+    if (fechaElement) fechaElement.textContent = fechaFormateada;
+    if (horaElement) horaElement.textContent = horaFormateada;
 }
 
-// Función para mostrar un saludo si el evento es de Lizeth
-function mostrarEventoLizeth() {
-    document.body.innerHTML = `
-        <h1>Hola</h1>
-        <p>Este evento es para Lizeth.</p>
-    `;
+// Event handler for the "Ver evento" button
+function handleVerEventoClick() {
+    const fechaHoraSeleccionada = document.getElementById('calendario').value;
+    
+    if (!fechaHoraSeleccionada) {
+        alert("Por favor selecciona una fecha y hora.");
+        return;
+    }
+
+    const fechaSeleccionada = new Date(fechaHoraSeleccionada).toISOString();
+    getEventForSelectedDate(fechaSeleccionada);
 }
 
-// Función para mostrar un evento genérico
-function mostrarEventoGenerico(eventTitle) {
-    document.getElementById('evento-seleccionado').textContent = `Evento: ${eventTitle}`;
+// Function to return to selection screen
+function volverASeleccion() {
+    location.reload();
 }
 
-// Función para mostrar cuando no hay eventos
-function mostrarNoHayEventos() {
-    document.getElementById('evento-seleccionado').textContent = "No hay eventos en la fecha y hora seleccionadas.";
+// Initialize the page
+function initializePage() {
+    const verEventoBtn = document.getElementById('ver-evento');
+    if (verEventoBtn) {
+        verEventoBtn.addEventListener('click', handleVerEventoClick);
+    }
+    updateDateTime();
 }
+
+// Call initialize when the page loads
+document.addEventListener('DOMContentLoaded', initializePage);

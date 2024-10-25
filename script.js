@@ -161,7 +161,7 @@ function getCurrentEvent() {
 }
 
 // Función para obtener eventos basados en la fecha seleccionada
-
+/*
 function getEventForSelectedDate(fechaSeleccionada) {
     // Mostramos el estado de carga
     const eventoSeleccionado = document.getElementById('evento-seleccionado');
@@ -180,7 +180,7 @@ function getEventForSelectedDate(fechaSeleccionada) {
 
     console.log('Fecha seleccionada:', fechaSeleccionada);
     const timeMax = new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString();
-    console.log('Rango de búsqueda:', { timeMin: fechaSeleccionada, timeMax });
+    console.log('Rango de búsqueda22:', { timeMin: fechaSeleccionada, timeMax });
 
     if (!gapi.client || !gapi.client.calendar) {
         console.error("API de Google Calendar no cargada. No se puede obtener el evento.2");
@@ -210,6 +210,48 @@ function getEventForSelectedDate(fechaSeleccionada) {
                 eventoSeleccionado.textContent = 'No hay eventos programados para esta fecha y hora.';
             }
         }
+    }).catch(function(error) {
+        console.error('Error al obtener eventos:', error);
+        if (eventoSeleccionado) {
+            eventoSeleccionado.textContent = `Error: ${error.message || 'No se pudieron cargar los eventos'}`;
+        }
+    });
+}
+    */
+
+function getEventForSelectedDate(fechaSeleccionada) {
+    console.log('Fecha seleccionada para buscar eventos:', fechaSeleccionada);
+
+    const eventoSeleccionado = document.getElementById('evento-seleccionado');
+    if (eventoSeleccionado) {
+        eventoSeleccionado.textContent = 'Cargando eventos...';
+    }
+
+    if (!gapi.client || !gapi.client.calendar) {
+        console.error('API de Google Calendar no está inicializada');
+        if (eventoSeleccionado) {
+            eventoSeleccionado.textContent = 'Error: API no inicializada. Por favor, actualiza la página.';
+        }
+        return;
+    }
+
+    console.log('Fecha seleccionada:', fechaSeleccionada);
+    const timeMax = new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString();
+    console.log('Rango de búsqueda:', { timeMin: fechaSeleccionada, timeMax });
+
+    gapi.client.calendar.events.list({
+        'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+        'timeMin': fechaSeleccionada,
+        'timeMax': timeMax,
+        'singleEvents': true,
+        'orderBy': 'startTime',
+        'maxResults': 1
+    }).then(function(response) {
+        console.log('Respuesta completa de la API:', response);
+        const events = response.result.items;
+        console.log('Eventos encontrados:', events);
+        
+        // Manejo de eventos encontrados...
     }).catch(function(error) {
         console.error('Error al obtener eventos:', error);
         if (eventoSeleccionado) {

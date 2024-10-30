@@ -198,9 +198,16 @@ function getCurrentEvent() {
             if (eventTitle.includes("Kevin")) {
                 // Redirige a Kevin.html
                 window.location.href = "kevin.html";
-            } else {
+            } else if (eventTitle.includes("Lizeth")) {
+                // Redirige a Kevin.html
+                window.location.href = "lizeth.html";       
+            } else if (eventTitle.includes("Benyy")) {
+                // Redirige a Kevin.html
+                window.location.href = "benyy.html";       
+            }
+            else {
                 // Si no contiene "Kevin", simplemente actualiza el título
-                document.getElementById('event-title').innerText = eventTitle;
+                window.location.href = "Zzz.html";
             }
         } else {
             console.log("No hay eventos disponibles en este momento.");

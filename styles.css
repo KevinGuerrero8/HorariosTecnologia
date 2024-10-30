@@ -54,44 +54,44 @@ button {
 }
 
 #future-event-form {
-    display: none; /* Asegúrate de que esté oculto inicialmente */
-    background-color: #f9f9f9; /* Color de fondo claro */
-    border: 1px solid #ccc; /* Borde gris */
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 20px; /* Espaciado interno */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    max-width: 400px; /* Ancho máximo */
-    margin: 20px auto; /* Centrando el formulario */
+    display: none; 
+    background-color: #f9f9f9; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    padding: 20px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    max-width: 400px; 
+    margin: 20px auto; 
 }
 
 label {
-    display: block; /* Hacer que las etiquetas sean bloques para que se muestren en líneas separadas */
-    margin-bottom: 10px; /* Espaciado inferior */
-    font-weight: bold; /* Negrita */
-    color: #333; /* Color del texto */
+    display: block; 
+    margin-bottom: 10px; 
+    font-weight: bold; 
+    color: #333; 
 }
 
 input[type="date"], input[type="time"] {
-    width: calc(100% - 12px); /* Ancho completo menos el padding */
-    padding: 8px; /* Espaciado interno */
-    border: 1px solid #ccc; /* Borde gris */
-    border-radius: 4px; /* Bordes redondeados */
-    margin-bottom: 15px; /* Espaciado inferior */
-    font-size: 16px; /* Tamaño de fuente */
+    width: calc(100% - 12px); 
+    padding: 8px; 
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+    margin-bottom: 15px; 
+    font-size: 16px; 
 }
 
 button {
-    background-color: #007bff; /* Color de fondo azul */
-    color: white; /* Color del texto */
-    padding: 10px 15px; /* Espaciado interno */
-    border: none; /* Sin borde */
-    border-radius: 4px; /* Bordes redondeados */
-    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
-    font-size: 16px; /* Tamaño de fuente */
+    background-color: #28a745; 
+    color: white; 
+    padding: 10px 15px;
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 16px; 
 }
 
 button:hover {
-    background-color: #0056b3; /* Color de fondo azul más oscuro al pasar el mouse */
+    background-color: #53ca6f;
 }
 
 

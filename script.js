@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = "Zzz.html";
                 }
             } else {
+                window.location.href = "Zzz.html";
                 console.log("No hay eventos disponibles en este momento.");
             }
         }).catch(function (error) {
@@ -168,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
                      window.location.href = "Zzz.html";
                  }
              } else {
+                window.location.href = "Zzz.html";
                  console.log("No hay eventos disponibles en este momento.");
              }
          }).catch(function (error) {

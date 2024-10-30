@@ -212,11 +212,10 @@ a{
 /* Media Query para pantallas pequeñas (celulares) */
 @media only screen and (max-width: 600px) {
     body {
-        overflow: hidden; 
         display: flex; /* Usa flexbox para centrar */
         justify-content: center; /* Centra horizontalmente */
         align-items: center; /* Centra verticalmente */
-        height: 100vh; /* Asegura que el body ocupe el 100% de la altura de la ventana */
+        height: 80vh; /* Asegura que el body ocupe el 100% de la altura de la ventana */
         padding: 10px; /* Padding opcional */
         background-color: #f0f0f0; /* Fondo opcional para visibilidad */
     }

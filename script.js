@@ -1,3 +1,33 @@
+// Botón para evento futuro
+const eventFutureButton = document.getElementById('eventFuture-button');
+const futureEventForm = document.getElementById('future-event-form');
+const futureDateInput = document.getElementById('future-date');
+const futureTimeInput = document.getElementById('future-time');
+const confirmFutureEventButton = document.getElementById('confirm-future-event');
+
+// Muestra el selector de fecha y hora al hacer clic en "Consultar Evento Futuro"
+eventFutureButton.addEventListener('click', () => {
+    futureEventForm.style.display = 'block';
+});
+
+// Almacena la fecha y hora seleccionadas al hacer clic en "Confirmar Fecha y Hora"
+confirmFutureEventButton.addEventListener('click', () => {
+    const selectedDate = futureDateInput.value;
+    const selectedTime = futureTimeInput.value;
+
+    if (selectedDate && selectedTime) {
+        console.log("Fecha seleccionada:", selectedDate);
+        console.log("Hora seleccionada:", selectedTime);
+
+        // Puedes usar las variables selectedDate y selectedTime para realizar consultas o guardarlas
+        futureEventForm.style.display = 'none'; // Oculta el formulario después de confirmar
+    } else {
+        alert("Por favor selecciona una fecha y hora.");
+    }
+});
+
+
+
 // Declara tu Client ID de OAuth 2.0 obtenido en la consola de Google Cloud
 const CLIENT_ID = '766595118524-qvmr87csv5megphl7bssa4goa7l4nvva.apps.googleusercontent.com';
 let tokenClient;

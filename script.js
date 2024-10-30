@@ -101,34 +101,57 @@ function getCurrentEvent() {
                 // Reemplazar el contenido del body con el HTML proporcionado
                 document.body.innerHTML = `
                 <!DOCTYPE html>
-                <html lang="es">
+                <html lang="en">
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Consulta de Horario</title>
+                    <title>Kevin Guerrero</title>
                     <link rel="preconnect" href="https://fonts.googleapis.com">
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=refresh" />
                     <link rel="stylesheet" href="styles.css">
                 </head>
                 <body>
-                    <div class="contenedor">
-                        <div class="seccion1">
-                            <img src="Avatar2.png" alt="Avatar Kevin">
-                            <h1>Kevin Guerrero</h1>
-                        </div>
-                        <div class="seccion2">
-                            <img src="Titleone.png" alt="Titulo">
-                            <div class="info">
-                                <img src="Icono_Mail.png" alt="Icono mail" class="icono">
-                                <h1>Tecnologia2@domicity.com.co</h1>
+                    <body>
+                        <div class="contenedor2">
+                            <div class="seccion1">
+                                <div class="titulo">
+                                    <h1>Horarios Tecnologia</h1>
+                                    <p id="fecha"></p>
+                                    <p id="hora"></p>
+                                </div>
+                                <!-- <div class="buscador">
+                                    <label for="date-picker"></label>
+                                    <input type="date" id="date-picker">
+                                    <label for="time-picker"></label>
+                                    <input type="time" id="time-picker">
+                                    <button id="check-event-button" disabled>Consultar Evento</button>
+                                </div> -->
                             </div>
-                            <div class="info">
-                                <img src="Icono_Phone.png" alt="Icono phone" class="icono">
-                                <h1>3103325067</h1>
+                            <div class="seccion2">
+                                <img src="/imag/Avatar_Kevin.png" alt="Avatar Kevin">
+                                <h1>Kevin Guerrero</h1>
+                                <p>Tecnologia2@domicity.com.co</p>
+                                <div class="info">
+                                    <img src="imag/Icono_Phone.png" alt="Icono phone" class="icono">
+                                    <p>310 3325067</p>
+                                </div>
                             </div>
+                            <button id="actualizar-button">
+                                <span class="material-symbols-outlined">refresh</span> Actualiar
+                            </button>
                         </div>
-                    </div>
+                        <script>
+                            const fechaActual = new Date();
+                            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+                            const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
+                            const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                            document.getElementById('fecha').textContent = fechaFormateada;
+                            document.getElementById('hora').textContent = horaFormateada;
+                        </script>
+                    </body>
+
                 </body>
                 </html>
                 `;

@@ -231,8 +231,12 @@ a{
     }
 
     h1 {
-        font-size: 24px; /* Reduce el tamaño de la fuente del título */
+        font-size: 40px; /* Reduce el tamaño de la fuente del título */
         text-align: center; /* Centra el texto */
+    }
+
+    .seccion2 h1{
+        margin: 0;
     }
 
     .botones {
@@ -270,11 +274,20 @@ a{
     }
 
     .seccion1, .seccion2 {
-        width: 100%; /* Asegúrate de que las secciones ocupen todo el ancho */
+        width: 80%; /* Asegúrate de que las secciones ocupen todo el ancho */
         padding: 10px; /* Añade un poco de padding */
     }
 
     .seccion2 img {
-        width: 80%; /* Ajusta el tamaño de la imagen */
+        width: 70%; /* Ajusta el tamaño de la imagen */
     }
+
+    .info img{
+        width: 8%;
+    }
+
+    p{
+        font-size: 16px;
+    }
+
 }

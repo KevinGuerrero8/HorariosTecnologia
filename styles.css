@@ -212,6 +212,7 @@ a{
 /* Media Query para pantallas pequeñas (celulares) */
 @media only screen and (max-width: 600px) {
     body {
+        overflow: hidden; 
         display: flex; /* Usa flexbox para centrar */
         justify-content: center; /* Centra horizontalmente */
         align-items: center; /* Centra verticalmente */

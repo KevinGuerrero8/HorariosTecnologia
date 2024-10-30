@@ -19,14 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
     authorizeButton.addEventListener('click', () => {
         console.log("Botón de autorización presionado.");
 
-        // Inicializa el cliente de token cuando el usuario hace clic en "Autorizar"
         tokenClient = google.accounts.oauth2.initTokenClient({
             client_id: CLIENT_ID,
             scope: 'https://www.googleapis.com/auth/calendar.readonly',
             callback: handleAuthResult
         });
 
-        // Solicita el token de acceso OAuth
         console.log("Solicitando acceso OAuth...");
         tokenClient.requestAccessToken();
     });
@@ -41,13 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log("Autenticación exitosa.");
         isAuthorized = true;
-
-        // Habilitar los botones de consultar eventos
         eventButton.disabled = false;
         eventFutureButton.disabled = false;
         console.log("Botones de consultar eventos habilitados.");
-
-        // Inicializa el cliente de la API de Google Calendar
         initClient();
     }
 
@@ -68,25 +62,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Evento del botón para consultar el evento actual
+    // Evento para consultar el evento actual
     eventButton.addEventListener('click', () => {
         console.log("Botón de consultar evento presionado.");
-
         if (isAuthorized && gapiInitialized) {
-            // Si ya está autorizado y la API está inicializada, consulta el evento actual
             getCurrentEvent();
         } else {
-            console.log("Usuario no autorizado o API de Google Calendar no inicializada. No se puede consultar el evento.");
+            console.log("Usuario no autorizado o API no inicializada.");
         }
     });
 
-    // Evento del botón para evento futuro
+    // Evento para consultar evento futuro
     eventFutureButton.addEventListener('click', () => {
         console.log("Botón de consultar evento futuro presionado.");
         futureEventForm.style.display = 'block';
     });
 
-    // Almacena la fecha y hora seleccionadas al hacer clic en "Confirmar Fecha y Hora"
     confirmFutureEventButton.addEventListener('click', () => {
         const selectedDate = futureDateInput.value;
         const selectedTime = futureTimeInput.value;
@@ -95,8 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("Fecha seleccionada:", selectedDate);
             console.log("Hora seleccionada:", selectedTime);
 
-            // Puedes usar las variables selectedDate y selectedTime para realizar consultas o guardarlas
-            futureEventForm.style.display = 'none'; // Oculta el formulario después de confirmar
+            futureEventForm.style.display = 'none';
+            getFutureEvent(selectedDate, selectedTime);
         } else {
             alert("Por favor selecciona una fecha y hora.");
         }
@@ -108,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Obteniendo eventos a partir de:", now);
 
         if (!gapi.client || !gapi.client.calendar) {
-            console.error("API de Google Calendar no cargada. No se puede obtener el evento.");
+            console.error("API de Google Calendar no cargada.");
             return;
         }
 
@@ -119,20 +110,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'singleEvents': true,
             'orderBy': 'startTime'
         }).then(function (response) {
-            console.log("Respuesta de eventos:", response);
-
             const event = response.result.items[0];
             if (event) {
                 console.log("Evento encontrado:", event);
                 const eventTitle = event.summary;
-
-                // Redirige según el título del evento
                 if (eventTitle.includes("Kevin")) {
                     window.location.href = "kevin.html";
-                } else if (eventTitle.includes("Lizeth")) {
-                    window.location.href = "lizeth.html";
-                } else if (eventTitle.includes("Benyy")) {
-                    window.location.href = "benyy.html";
                 } else {
                     window.location.href = "Zzz.html";
                 }
@@ -141,6 +124,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }).catch(function (error) {
             console.error("Error al obtener el evento:", error);
+        });
+    }
+
+    // Función para consultar eventos futuros
+    function getFutureEvent(date, time) {
+        const selectedDateTime = new Date(`${date}T${time}:00`).toISOString();
+        const endDateTime = new Date(new Date(selectedDateTime).getTime() + (60 * 60 * 1000)).toISOString();
+
+        console.log("Obteniendo eventos entre:", selectedDateTime, "y", endDateTime);
+
+        gapi.client.calendar.events.list({
+            'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+            'timeMin': selectedDateTime,
+            'timeMax': endDateTime,
+            'singleEvents': true,
+            'orderBy': 'startTime'
+        }).then(function (response) {
+            const event = response.result.items[0];
+            if (event) {
+                console.log("Evento futuro encontrado:", event);
+                alert(`Evento: ${event.summary}\nFecha: ${event.start.dateTime}`);
+            } else {
+                alert("No hay eventos programados para esta fecha y hora.");
+            }
+        }).catch(function (error) {
+            console.error("Error al obtener el evento futuro:", error);
         });
     }
 });

@@ -69,6 +69,7 @@ label {
     margin-bottom: 10px; 
     font-weight: bold; 
     color: #333; 
+    text-align: center;
 }
 
 input[type="date"], input[type="time"] {
@@ -206,6 +207,12 @@ a{
     flex-direction: column;
     align-items: center;
     gap: 10px;
+}
+
+#confirm-future-event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 

@@ -72,6 +72,8 @@ eventButton.addEventListener('click', () => {
     }
 });
 
+
+/*
 // Función para obtener el evento actual
 function getCurrentEvent() {
     const now = new Date().toISOString();  // Convierte a formato ISO
@@ -167,4 +169,44 @@ function getCurrentEvent() {
         console.error("Error al obtener el evento:", error);
     });
 }
+*/
 
+function getCurrentEvent() {
+    const now = new Date().toISOString();  // Convierte a formato ISO
+    console.log("Obteniendo eventos a partir de:", now);
+
+    if (!gapi.client || !gapi.client.calendar) {
+        console.error("API de Google Calendar no cargada. No se puede obtener el evento.");
+        return;
+    }
+
+    gapi.client.calendar.events.list({
+        'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+        'timeMin': now,
+        'maxResults': 1,
+        'singleEvents': true,
+        'orderBy': 'startTime'
+    }).then(function (response) {
+        console.log("Respuesta de eventos:", response);
+
+        const event = response.result.items[0];
+        if (event) {
+            console.log("Evento encontrado:", event);
+            const eventTitle = event.summary;
+
+            // Verificar si el evento contiene la palabra "Kevin"
+            if (eventTitle.includes("Kevin")) {
+                // Redirige a Kevin.html
+                window.location.href = "kevin.html";
+            } else {
+                // Si no contiene "Kevin", simplemente actualiza el título
+                document.getElementById('event-title').innerText = eventTitle;
+            }
+        } else {
+            console.log("No hay eventos disponibles en este momento.");
+            document.getElementById('event-title').innerText = "No hay eventos en este momento.";
+        }
+    }).catch(function (error) {
+        console.error("Error al obtener el evento:", error);
+    });
+}

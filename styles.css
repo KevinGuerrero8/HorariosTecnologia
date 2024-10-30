@@ -134,21 +134,22 @@ p{
     width: 8%;
 }
 
+
+a{
+    grid-column: 2; /* Mover a la segunda columna */
+    grid-row: 2;    /* Mover a la segunda fila */
+    width: auto;
+    margin: 0 auto;
+}
+
 #actualizar-button{
     background-color: #28a745; 
     cursor: pointer;
-    grid-column: 2; /* Mover a la segunda columna */
-    grid-row: 2;    /* Mover a la segunda fila */
-    width: 40%;
-    margin: 0 auto;
-
-
 }
 
 #actualizar-button:hover {
     background-color: #53ca6f; 
 }
-
 
 .material-symbols-outlined {
     font-size: 20px; /* Ajusta el tamaño del icono según sea necesario */

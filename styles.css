@@ -225,9 +225,6 @@ a{
         width: 100%; /* Asegúrate de que ocupe todo el ancho */
         max-width: 400px; /* Limita el ancho máximo del contenedor */
         padding: 20px; /* Añade padding alrededor del contenido */
-        background-color: white; /* Fondo blanco para el contenedor */
-        border-radius: 8px; /* Bordes redondeados */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de profundidad */
     }
 
     h1 {

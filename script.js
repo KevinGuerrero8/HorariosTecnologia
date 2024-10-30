@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const futureTimeInput = document.getElementById('future-time');
     const confirmFutureEventButton = document.getElementById('confirm-future-event');
 
+    eventButton.style.display = 'none'; // Oculta el botón de consultar evento actual
+    eventFutureButton.style.display = 'none'; // Oculta el botón de consultar evento futuro
+
+
     // Evento del botón de autorización
     authorizeButton.addEventListener('click', () => {
         console.log("Botón de autorización presionado.");
@@ -36,12 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error en la autenticación:', response);
             return;
         }
-
         console.log("Autenticación exitosa.");
         isAuthorized = true;
-        eventButton.disabled = false;
-        eventFutureButton.disabled = false;
-        console.log("Botones de consultar eventos habilitados.");
+    
+        // Mostrar y habilitar los botones de consultar evento
+        eventButton.style.display = 'inline'; // Muestra el botón de consultar evento actual
+        eventFutureButton.style.display = 'inline'; // Muestra el botón de consultar evento futuro
+        eventButton.disabled = false; // Habilita el botón de consultar evento actual
+        eventFutureButton.disabled = false; // Habilita el botón de consultar evento futuro
+        console.log("Botones de consultar evento habilitados.");
+        
+        // Inicializa el cliente de la API de Google Calendar
         initClient();
     }
 

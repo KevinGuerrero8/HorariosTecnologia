@@ -21,6 +21,10 @@ body {
     align-items: center;
 }
 
+.domi img {
+    width: 20%;
+}
+
 h1{
     font-size: 40px;
     text-align: center;

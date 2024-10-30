@@ -112,10 +112,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then(function (response) {
             const event = response.result.items[0];
             if (event) {
-                console.log("Evento encontrado:", event);
-                const eventTitle = event.summary;
+               const eventTitle = event.summary;
+                // Redirige según el título del evento
                 if (eventTitle.includes("Kevin")) {
                     window.location.href = "kevin.html";
+                } else if (eventTitle.includes("Lizeth")) {
+                    window.location.href = "lizeth.html";
+                } else if (eventTitle.includes("Benyy")) {
+                    window.location.href = "benyy.html";
                 } else {
                     window.location.href = "Zzz.html";
                 }
@@ -143,13 +147,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then(function (response) {
             const event = response.result.items[0];
             if (event) {
-                console.log("Evento futuro encontrado:", event);
-                alert(`Evento: ${event.summary}\nFecha: ${event.start.dateTime}`);
-            } else {
-                alert("No hay eventos programados para esta fecha y hora.");
-            }
-        }).catch(function (error) {
-            console.error("Error al obtener el evento futuro:", error);
-        });
-    }
+                const eventTitle = event.summary;
+                 // Redirige según el título del evento
+                 if (eventTitle.includes("Kevin")) {
+                     window.location.href = "kevin.html";
+                 } else if (eventTitle.includes("Lizeth")) {
+                     window.location.href = "lizeth.html";
+                 } else if (eventTitle.includes("Benyy")) {
+                     window.location.href = "benyy.html";
+                 } else {
+                     window.location.href = "Zzz.html";
+                 }
+             } else {
+                 console.log("No hay eventos disponibles en este momento.");
+             }
+         }).catch(function (error) {
+             console.error("Error al obtener el evento:", error);
+         });
+     }
 });

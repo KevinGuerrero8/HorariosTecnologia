@@ -207,3 +207,60 @@ a{
     align-items: center;
     gap: 10px;
 }
+
+
+/* Media Query para pantallas pequeñas (celulares) */
+@media only screen and (max-width: 600px) {
+    body {
+        padding: 10px; /* Añade un poco de padding para que no esté pegado al borde */
+        height: auto; /* Permite que el contenido se ajuste a la altura */
+    }
+
+    h1 {
+        font-size: 24px; /* Reduce el tamaño de la fuente del título */
+        text-align: center; /* Centra el texto */
+    }
+
+    .botones {
+        flex-direction: column; /* Coloca los botones en una columna */
+        align-items: center; /* Centra los botones */
+        margin-top: 15px; /* Ajusta el margen superior */
+    }
+
+    button {
+        width: 100%; /* Hacer los botones ocupar el 100% del ancho */
+        padding: 12px; /* Aumenta el padding para mejor toque */
+        font-size: 18px; /* Ajusta el tamaño de la fuente de los botones */
+        margin-bottom: 10px; /* Espaciado entre botones */
+    }
+
+    #future-event-form {
+        max-width: 100%; /* Permite que el formulario ocupe todo el ancho disponible */
+        padding: 15px; /* Añade un poco de padding */
+    }
+
+    label {
+        font-size: 14px; /* Reduce el tamaño de la fuente de las etiquetas */
+    }
+
+    input[type="date"],
+    input[type="time"] {
+        font-size: 14px; /* Ajusta el tamaño de la fuente en los inputs */
+    }
+
+    .contenedor2 {
+        display: flex;
+        flex-direction: column; /* Cambia a columna para mejor ajuste en móviles */
+        align-items: center; /* Centra el contenido */
+        width: 100%; /* Asegúrate de que ocupe todo el ancho */
+    }
+
+    .seccion1, .seccion2 {
+        width: 100%; /* Asegúrate de que las secciones ocupen todo el ancho */
+        padding: 10px; /* Añade un poco de padding */
+    }
+
+    .seccion2 img {
+        width: 80%; /* Ajusta el tamaño de la imagen */
+    }
+}

@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const futureDateInput = document.getElementById('future-date');
     const futureTimeInput = document.getElementById('future-time');
     const confirmFutureEventButton = document.getElementById('confirm-future-event');
+    const Oauthorizebutton = document.getElementById('authorize-button');
 
     eventButton.style.display = 'none'; // Oculta el botón de consultar evento actual
     eventFutureButton.style.display = 'none'; // Oculta el botón de consultar evento futuro
@@ -46,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Mostrar y habilitar los botones de consultar evento
         eventButton.style.display = 'inline'; // Muestra el botón de consultar evento actual
         eventFutureButton.style.display = 'inline'; // Muestra el botón de consultar evento futuro
+        Oauthorizebutton.style.display = 'none';
         eventButton.disabled = false; // Habilita el botón de consultar evento actual
         eventFutureButton.disabled = false; // Habilita el botón de consultar evento futuro
         console.log("Botones de consultar evento habilitados.");

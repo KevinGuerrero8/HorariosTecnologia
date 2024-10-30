@@ -12,7 +12,7 @@ body {
     height: 100vh; 
     margin: 0; 
     font-family: "Montserrat", sans-serif;
-    background-image: url(/imag/fondo.jpeg);
+    background-image: url(/img/fondo.jpeg);
 }
 
 h1{

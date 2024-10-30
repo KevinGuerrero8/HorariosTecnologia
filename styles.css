@@ -228,7 +228,7 @@ a{
     }
 
     h1 {
-        font-size: 40px; /* Reduce el tamaño de la fuente del título */
+        font-size: 20px; /* Reduce el tamaño de la fuente del título */
         text-align: center; /* Centra el texto */
     }
 

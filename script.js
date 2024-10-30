@@ -7,6 +7,7 @@ const confirmFutureEventButton = document.getElementById('confirm-future-event')
 
 // Muestra el selector de fecha y hora al hacer clic en "Consultar Evento Futuro"
 eventFutureButton.addEventListener('click', () => {
+    console.log("dio clik en el futuro");
     futureEventForm.style.display = 'block';
 });
 

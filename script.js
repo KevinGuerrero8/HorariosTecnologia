@@ -82,9 +82,6 @@ function getCurrentEvent() {
         return;
     }
 
-    console.log("hora actuuual" + now);
-    
-
     gapi.client.calendar.events.list({
         'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
         'timeMin': now,
@@ -101,57 +98,42 @@ function getCurrentEvent() {
 
             // Verificar si el evento contiene la palabra "Kevin"
             if (eventTitle.includes("Kevin")) {
+                // Reemplazar el contenido del body con el HTML proporcionado
                 document.body.innerHTML = `
+                <!DOCTYPE html>
+                <html lang="es">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Consulta de Horario</title>
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+                    <link rel="stylesheet" href="styles.css">
+                </head>
+                <body>
                     <div class="contenedor">
                         <div class="seccion1">
-                            <h1>Horarios Tecnología</h1>
-                            <p id="fecha"></p>
-                            <p id="hora"></p>
+                            <img src="Avatar2.png" alt="Avatar Kevin">
+                            <h1>Kevin Guerrero</h1>
                         </div>
                         <div class="seccion2">
-                            <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
-                            <h1>Kevin Guerrero</h1>
-                            <p>Tecnologia2@domicity.com.co</p>
+                            <img src="Titleone.png" alt="Titulo">
+                            <div class="info">
+                                <img src="Icono_Mail.png" alt="Icono mail" class="icono">
+                                <h1>Tecnologia2@domicity.com.co</h1>
+                            </div>
                             <div class="info">
                                 <img src="Icono_Phone.png" alt="Icono phone" class="icono">
-                                <p>3103325067</p>
+                                <h1>3103325067</h1>
                             </div>
                         </div>
-                        <div class="calendario">
-                            <label for="calendario">Selecciona una fecha y hora:</label>
-                            <input type="datetime-local" id="calendario" name="calendario">
-                            <button id="ver-evento">Ver evento</button>
-                            <p id="evento-seleccionado"></p>
-                        </div>
                     </div>
+                </body>
+                </html>
                 `;
-            
-                // Actualiza la fecha y hora actual
-                const fechaActual = new Date();
-                const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-                const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
-                const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                document.getElementById('fecha').textContent = fechaFormateada;
-                document.getElementById('hora').textContent = horaFormateada;
-
-                // Captura el evento del calendario cuando se selecciona una fecha
-                document.getElementById('ver-evento').addEventListener('click', function () {
-                    const fechaHoraSeleccionada = document.getElementById('calendario').value; // Cambiado a 'calendario'
-                    console.log("Fecha y hora seleccionada:", fechaHoraSeleccionada); // Debug
-                
-                    if (!fechaHoraSeleccionada) {
-                        alert("Por favor selecciona una fecha y hora.");
-                        return;
-                    }
-                
-                    // Convertir la fecha seleccionada en formato ISO
-                    const fechaSeleccionada = new Date(fechaHoraSeleccionada).toISOString();
-                    console.log("Fecha seleccionada en formato ISO:", fechaSeleccionada); // Debug
-                
-                    // Llamada a la función que obtiene el evento para la fecha seleccionada
-                    getEventForSelectedDate(fechaSeleccionada);
-                });
             } else {
+                // Si no contiene "Kevin", simplemente actualiza el título
                 document.getElementById('event-title').innerText = eventTitle;
             }
         } else {
@@ -162,201 +144,4 @@ function getCurrentEvent() {
         console.error("Error al obtener el evento:", error);
     });
 }
-
-// Función para obtener eventos basados en la fecha seleccionada
-/*
-function getEventForSelectedDate(fechaSeleccionada) {
-    // Mostramos el estado de carga
-    const eventoSeleccionado = document.getElementById('evento-seleccionado');
-    if (eventoSeleccionado) {
-        eventoSeleccionado.textContent = 'Cargando eventos...';
-    }
-
-    // Verificamos que gapi.client esté disponible
-    if (!gapi.client || !gapi.client.calendar) {
-        console.error('API de Google Calendar no está inicializada');
-        if (eventoSeleccionado) {
-            eventoSeleccionado.textContent = 'Error: API no inicializada. Por favor, actualiza la página.';
-        }
-        return;
-    }
-
-    console.log('Fecha seleccionada:', fechaSeleccionada);
-    const timeMax = new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString();
-    console.log('Rango de búsqueda22:', { timeMin: fechaSeleccionada, timeMax });
-
-    if (!gapi.client || !gapi.client.calendar) {
-        console.error("API de Google Calendar no cargada. No se puede obtener el evento.2");
-        return;
-    }
-
-    // Realizamos la petición a la API
-    gapi.client.calendar.events.list({
-        'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
-        'timeMin': fechaSeleccionada,
-        'timeMax': timeMax,
-        'singleEvents': true,
-        'orderBy': 'startTime',
-        'maxResults': 1
-    }).then(function(response) {
-        console.log('Respuesta completa de la API:', response);
-        const events = response.result.items;
-        console.log('Eventos encontrados:', events);
-
-        if (events && events.length > 0) {
-            const event = events[0];
-            console.log('Evento a mostrar:', event);
-            mostrarEvento(event);
-        } else {
-            console.log('No se encontraron eventos');
-            if (eventoSeleccionado) {
-                eventoSeleccionado.textContent = 'No hay eventos programados para esta fecha y hora.';
-            }
-        }
-    }).catch(function(error) {
-        console.error('Error al obtener eventos:', error);
-        if (eventoSeleccionado) {
-            eventoSeleccionado.textContent = `Error: ${error.message || 'No se pudieron cargar los eventos'}`;
-        }
-    });
-}
-    */
-
-function getEventForSelectedDate(fechaSeleccionada) {
-    console.log('Fecha seleccionada para buscar eventos:', fechaSeleccionada);
-
-    const eventoSeleccionado = document.getElementById('evento-seleccionado');
-    if (eventoSeleccionado) {
-        eventoSeleccionado.textContent = 'Cargando eventos...';
-    }
-
-    if (!gapi.client || !gapi.client.calendar) {
-        console.error('API de Google Calendar no está inicializada');
-        if (eventoSeleccionado) {
-            eventoSeleccionado.textContent = 'Error: API no inicializada. Por favor, actualiza la página.';
-        }
-        return;
-    }
-
-    console.log('Fecha seleccionada:', fechaSeleccionada);
-    const timeMax = new Date(new Date(fechaSeleccionada).getTime() + 60 * 60 * 1000).toISOString();
-    console.log('Rango de búsqueda:', { timeMin: fechaSeleccionada, timeMax });
-
-    gapi.client.calendar.events.list({
-        'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
-        'timeMin': fechaSeleccionada,
-        'timeMax': timeMax,
-        'singleEvents': true,
-        'orderBy': 'startTime',
-        'maxResults': 1
-    }).then(function(response) {
-        console.log('Respuesta completa de la API:', response);
-        const events = response.result.items;
-        console.log('Eventos encontrados:', events);
-        
-        // Manejo de eventos encontrados...
-    }).catch(function(error) {
-        console.error('Error al obtener eventos:', error);
-        if (eventoSeleccionado) {
-            eventoSeleccionado.textContent = `Error: ${error.message || 'No se pudieron cargar los eventos'}`;
-        }
-    });
-}
-
-// Función separada para mostrar el evento
-function mostrarEvento(event) {
-    const eventTitle = event.summary;
-    console.log('Título del evento:', eventTitle);
-
-    if (eventTitle.includes("Kevin")) {
-        document.body.innerHTML = `
-            <div class="contenedor">
-                <div class="seccion1">
-                    <h1>Horarios Tecnología</h1>
-                    <p id="fecha"></p>
-                    <p id="hora"></p>
-                </div>
-                <div class="seccion2">
-                    <img src="Avatar2_FondoBlancor.png" alt="Avatar Kevin">
-                    <h1>Kevin Guerrero</h1>
-                    <p>Tecnologia2@domicity.com.co</p>
-                    <div class="info">
-                        <img src="Icono_Phone.png" alt="Icono phone" class="icono">
-                        <p>3103325067</p>
-                    </div>
-                </div>
-                <div class="calendario">
-                    <label for="calendario">Selecciona una fecha y hora:</label>
-                    <input type="datetime-local" id="calendario" name="calendario">
-                    <button id="ver-evento">Ver evento</button>
-                    <p id="evento-seleccionado"></p>
-                </div>
-            </div>
-        `;
-        actualizarFechaHora();
-        reiniciarEventListeners();
-    } else if (eventTitle.includes("Lizeth")) {
-        document.body.innerHTML = `
-            <div class="event-container">
-                <h1>Hola</h1>
-                <p>Este evento es para Lizeth.</p>
-                <button onclick="volverAInicio()">Volver</button>
-            </div>
-        `;
-    } else {
-        const eventoSeleccionado = document.getElementById('evento-seleccionado');
-        if (eventoSeleccionado) {
-            eventoSeleccionado.textContent = `Evento encontrado: ${eventTitle}`;
-        }
-    }
-}
-
-// Función para actualizar fecha y hora
-function actualizarFechaHora() {
-    const fechaActual = new Date();
-    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-    
-    const fechaElement = document.getElementById('fecha');
-    const horaElement = document.getElementById('hora');
-    
-    if (fechaElement) {
-        fechaElement.textContent = fechaActual.toLocaleDateString('es-ES', opciones);
-    }
-    
-    if (horaElement) {
-        horaElement.textContent = fechaActual.toLocaleTimeString('es-ES', { 
-            hour: '2-digit', 
-            minute: '2-digit', 
-            second: '2-digit' 
-        });
-    }
-}
-
-// Función para reiniciar los event listeners
-function reiniciarEventListeners() {
-    const verEventoBtn = document.getElementById('ver-evento');
-    const calendarioInput = document.getElementById('calendario');
-    
-    if (verEventoBtn) {
-        verEventoBtn.addEventListener('click', function() {
-            const fechaSeleccionada = calendarioInput.value;
-            if (!fechaSeleccionada) {
-                alert('Por favor, selecciona una fecha y hora');
-                return;
-            }
-            getEventForSelectedDate(new Date(fechaSeleccionada).toISOString());
-        });
-    }
-}
-
-// Función para volver al inicio
-function volverAInicio() {
-    location.reload();
-}
-
-// Inicialización de la página
-document.addEventListener('DOMContentLoaded', function() {
-    reiniciarEventListeners();
-    actualizarFechaHora();
-});
 

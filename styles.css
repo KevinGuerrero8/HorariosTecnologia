@@ -1,22 +1,74 @@
-.chewy-regular {
-    font-family: "Chewy", system-ui;
+.montserrat {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-}
+  }
 
 body {
-    font-family: "Chewy", system-ui;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #E4E2E3;
+    height: 100vh; 
+    margin: 0; 
+    font-family: "Montserrat", sans-serif;
+    background-image: url(/imag/fondo.jpeg);
 }
 
 h1{
-    color: #6A6767;
+    font-size: 40px;
 }
 
+.botones {
+    margin-top: 20px;
+    
+
+}
+
+button {
+    margin: 0px; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    color: white;  
+    transition: background-color 0.3s; 
+    font-size: 20px;
+    margin-right: 10px;
+
+}
+
+#authorize-button{
+    background-color: #28a745; 
+    cursor: pointer;
+}
+
+#authorize-button:hover {
+    background-color: #53ca6f; 
+}
+
+#event-button, #eventFuture-button{
+    background-color: #ae1515;  
+    cursor: pointer;
+} 
+
+#event-button:hover, #eventFuture-button:hover{
+    background-color: #e34f4f; 
+}
+
+p{
+    font-size: 24px;
+    margin: 5px;
+    color: #6A6767;
+
+}
+
+#fecha {
+    text-decoration: underline;
+}
+
+#hora {
+    margin: -10px;
+}
 
 .status {
     margin-top: 20px;
@@ -24,38 +76,82 @@ h1{
     font-weight: bold;
 }
 
-.contenedor {
+#check-event-button{
+    background-color: #ae1515; 
+    cursor: pointer;
+}
+
+#check-event-button:hover {
+    background-color: #e34f4f; 
+}
+
+.contenedor2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 100px;
+    gap: 10px;
+    width: 70%;
 }
 
 .seccion1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    justify-content: center;
     font-size: 50px;
-    
 }
 
-.seccion1 h1{
-    margin: 0;    
+.seccion2 {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    background-color: white;
+    border-radius: 35px;
+    padding: 10px;
 }
 
-.seccion1 img{
+.seccion2 img {
+    width: 50%;
+    height: auto;
+}
 
-    height: auto;  
+.Zzz img{
+    width: 100%;
+    height: auto;
 }
 
 
 .info {
-    display: flex; 
-    align-items: center; 
-    margin-top: 10px; 
-    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
 }
 
-.icono {
-    width: 90px;
-    height: auto;
-    margin-right: 20px; 
+.info img{
+    width: 8%;
 }
 
+#actualizar-button{
+    background-color: #28a745; 
+    cursor: pointer;
+    grid-column: 2; /* Mover a la segunda columna */
+    grid-row: 2;    /* Mover a la segunda fila */
+    width: 40%;
+    margin: 0 auto;
+
+
+}
+
+#actualizar-button:hover {
+    background-color: #53ca6f; 
+}
+
+
+.material-symbols-outlined {
+    font-size: 20px; /* Ajusta el tamaño del icono según sea necesario */
+    vertical-align: middle; /* Alineación vertical */
+
+}

@@ -130,11 +130,11 @@ function getCurrentEvent() {
                                 </div> -->
                             </div>
                             <div class="seccion2">
-                                <img src="/imag/Avatar_Kevin.png" alt="Avatar Kevin">
+                                <img src="/img/Avatar_Kevin.png" alt="Avatar Kevin">
                                 <h1>Kevin Guerrero</h1>
                                 <p>Tecnologia2@domicity.com.co</p>
                                 <div class="info">
-                                    <img src="imag/Icono_Phone.png" alt="Icono phone" class="icono">
+                                    <img src="img/Icono_Phone.png" alt="Icono phone" class="icono">
                                     <p>310 3325067</p>
                                 </div>
                             </div>

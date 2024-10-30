@@ -209,11 +209,7 @@ a{
     gap: 10px;
 }
 
-#confirm-future-event {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
 
 
 /* Media Query para pantallas pequeñas (celulares) */

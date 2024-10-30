@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Evento para consultar evento futuro
     eventFutureButton.addEventListener('click', () => {
         console.log("Botón de consultar evento futuro presionado.");
-        futureEventForm.style.display = 'flex';
+        futureEventForm.style.display = 'block';
     });
 
     confirmFutureEventButton.addEventListener('click', () => {

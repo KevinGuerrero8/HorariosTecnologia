@@ -194,8 +194,6 @@ p{
 
 
 a{
-    grid-column: 2; /* Mover a la segunda columna */
-    grid-row: 2;    /* Mover a la segunda fila */
     width: auto;
     margin: 0 auto;
 }
@@ -203,6 +201,8 @@ a{
 #actualizar-button{
     background-color: #28a745; 
     cursor: pointer;
+    grid-column: 2; /* Mover a la segunda columna */
+    grid-row: 2;    /* Mover a la segunda fila */
 }
 
 #actualizar-button:hover {

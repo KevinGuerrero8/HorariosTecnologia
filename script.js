@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
          });
      }*/
 
-     function getFutureEvent(date, time) {
+     function getFutureEvent(date) {
         const selectedDateTime = new Date(`${date}T${time}:00`).toISOString();
         const endDateTime = new Date(new Date(selectedDateTime).getTime() + (60 * 60 * 1000)).toISOString();
     

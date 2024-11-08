@@ -130,9 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else if (eventTitle.includes("Lizeth")) {
                     window.location.href = "lizeth.html";
                 } else if (eventTitle.includes("Benyy")) {
-                    console.log(response + "evn" + event);
-                    
-                    //window.location.href = "benyy.html";
+                    window.location.href = "benyy.html";
                 } else {
                     window.location.href = "Zzz.html";
                 }
@@ -210,7 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else if (eventTitle.includes("Lizeth")) {
                     window.location.href = "lizeth.html";
                 } else if (eventTitle.includes("Benyy")) {
-                    window.location.href = "benyy.html";
+                    console.log(response + "evn" + event);
+                    //window.location.href = "benyy.html";
                 } else {
                     window.location.href = "Zzz.html";
                 }

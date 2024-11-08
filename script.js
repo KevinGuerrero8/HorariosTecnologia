@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Función para consultar eventos futuros
+    /*// Función para consultar eventos futuros
     function getFutureEvent(date, time) {
         const selectedDateTime = new Date(`${date}T${time}:00`).toISOString();
         const endDateTime = new Date(new Date(selectedDateTime).getTime() + (60 * 60 * 1000)).toISOString();
@@ -154,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
             'timeMin': selectedDateTime,
             'timeMax': endDateTime,
+            //'maxResults': 5, 
             'singleEvents': true,
             'orderBy': 'startTime'
         }).then(function (response) {
@@ -177,5 +178,52 @@ document.addEventListener('DOMContentLoaded', function() {
          }).catch(function (error) {
              console.error("Error al obtener el evento:", error);
          });
-     }
-});
+     }*/
+
+     function getFutureEvent(date, time) {
+        const selectedDateTime = new Date(`${date}T${time}:00`).toISOString();
+        const endDateTime = new Date(new Date(selectedDateTime).getTime() + (60 * 60 * 1000)).toISOString();
+    
+        console.log("Obteniendo eventos entre:", selectedDateTime, "y", endDateTime);
+    
+        gapi.client.calendar.events.list({
+            'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+            'timeMin': selectedDateTime,
+            'timeMax': endDateTime,
+            'maxResults': 5, 
+            'singleEvents': true,
+            'orderBy': 'startTime'
+        }).then(function (response) {
+            const events = response.result.items; // Guarda todos los eventos
+            console.log("Eventos obtenidos:", events); // Muestra todos los eventos en consola
+            
+            const event = events[0];
+            if (event) {
+                const eventTitle = event.summary;
+                console.log("Primer evento encontrado:", eventTitle); // Guarda y muestra el primer evento en consola
+                
+                // Redirige según el título del evento
+                if (eventTitle.includes("Kevin")) {
+                    window.location.href = "kevin.html";
+                } else if (eventTitle.includes("Lizeth")) {
+                    window.location.href = "lizeth.html";
+                } else if (eventTitle.includes("Benyy")) {
+                    window.location.href = "benyy.html";
+                } else {
+                    window.location.href = "Zzz.html";
+                }
+            } else {
+                console.log("No hay eventos disponibles en este momento.");
+                window.location.href = "Zzz.html";
+            }
+        }).catch(function (error) {
+            console.error("Error al obtener el evento:", error);
+        });
+        }
+    }
+    
+
+);
+
+
+

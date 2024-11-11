@@ -245,7 +245,8 @@ document.addEventListener('DOMContentLoaded', function() {
             'timeMin': timeMin,
             'timeMax': timeMax,
             'singleEvents': true,
-            'orderBy': 'startTime'
+            'orderBy': 'startTime',
+            'maxResults': 10
         }).then(function (response) {
             const events = response.result.items;
     

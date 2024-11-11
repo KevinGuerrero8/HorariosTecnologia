@@ -46,10 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Mostrar y habilitar los botones de consultar evento
         eventButton.style.display = 'inline'; // Muestra el botón de consultar evento actual
-        eventFutureButton.style.display = 'inline'; // Muestra el botón de consultar evento futuro
+        //eventFutureButton.style.display = 'inline'; // Muestra el botón de consultar evento futuro
+        futureEventForm.style.display = 'flex';
         Oauthorizebutton.style.display = 'none';
         eventButton.disabled = false; // Habilita el botón de consultar evento actual
-        eventFutureButton.disabled = false; // Habilita el botón de consultar evento futuro
+        //eventFutureButton.disabled = false; // Habilita el botón de consultar evento futuro
         console.log("Botones de consultar evento habilitados.");
         
         // Inicializa el cliente de la API de Google Calendar

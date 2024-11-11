@@ -85,10 +85,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Evento para consultar evento futuro
-    eventFutureButton.addEventListener('click', () => {
-        console.log("Botón de consultar evento futuro presionado.");
-        futureEventForm.style.display = 'flex';
-    });
+    // eventFutureButton.addEventListener('click', () => {
+    //     console.log("Botón de consultar evento futuro presionado.");
+    //     futureEventForm.style.display = 'flex';
+    // });
 
     confirmFutureEventButton.addEventListener('click', () => {
         const selectedDate = futureDateInput.value;
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Función para consultar eventos futuros
-    /*
+    
     function getFutureEvent(date, time) {
         const selectedDateTime = new Date(`${date}T${time}:00`).toISOString();
         const endDateTime = new Date(new Date(selectedDateTime).getTime() + (60 * 60 * 1000)).toISOString();
@@ -181,8 +181,8 @@ document.addEventListener('DOMContentLoaded', function() {
              console.error("Error al obtener el evento:", error);
          });
      }
-    */
-
+    
+    /*
     function getFutureEvent(date) {
         // Establece el inicio y fin del día en UTC
         const timeMin = new Date(`${date}T00:00:00Z`).toISOString();
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error al obtener los eventos:", error);
         });
     }
-    
+    */
 
 
     }

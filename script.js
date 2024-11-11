@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const futureTimeInput = document.getElementById('future-time');
     const confirmFutureEventButton = document.getElementById('confirm-future-event');
     const Oauthorizebutton = document.getElementById('authorize-button');
-    //const today = new Date().toISOString().split('T')[0];
+    const today = new Date().toISOString().split('T')[0];
 
-    //document.getElementById('future-date').value = today;
+    document.getElementById('future-date').value = today;
 
     eventButton.style.display = 'none'; // Oculta el botón de consultar evento actual
     //eventFutureButton.style.display = 'none'; // Oculta el botón de consultar evento futuro
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert("Por favor selecciona una fecha y hora.");
         }
     });
-
+/*
     // Función para obtener el evento actual
     function getCurrentEvent() {
         const now = new Date().toISOString();
@@ -149,6 +149,46 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error al obtener el evento:", error);
         });
     }
+*/
+function getCurrentEvent() {
+    const now = new Date().toISOString(); // Asegura que la fecha sea en formato ISO.
+    console.log("Obteniendo eventos a partir de:", now);
+
+    if (!gapi.client || !gapi.client.calendar) {
+        console.error("API de Google Calendar no cargada.");
+        return;
+    }
+
+    gapi.client.calendar.events.list({
+        'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+        'timeMin': now,
+        'maxResults': 1,
+        'singleEvents': true,
+        'orderBy': 'startTime'
+    }).then(function (response) {
+        const event = response.result.items[0];
+        console.log("Respuesta completa de eventos actual:", response);
+        if (event) {
+            const eventTitle = event.summary;
+            // Redirige según el título del evento
+            if (eventTitle.includes("Kevin")) {
+                window.location.href = "kevin.html";
+            } else if (eventTitle.includes("Lizeth")) {
+                window.location.href = "lizeth.html";
+            } else if (eventTitle.includes("Benyy")) {
+                window.location.href = "benyy.html";
+            } else {
+                window.location.href = "Zzz.html";
+            }
+        } else {
+            console.log("No hay eventos disponibles en este momento.");
+            window.location.href = "Zzz.html";
+        }
+    }).catch(function (error) {
+        console.error("Error al obtener el evento:", error);
+    });
+}
+
 
     // Función para consultar eventos futuros
     /*

@@ -263,6 +263,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
             // Guarda el array de eventos en localStorage
             localStorage.setItem("eventDetails", JSON.stringify(eventDetails));
+            localStorage.setItem("selectedDate", date); // Guardar la fecha seleccionada
+
     
             // Redirecciona según la cantidad de eventos
             if (events.length === 1) {

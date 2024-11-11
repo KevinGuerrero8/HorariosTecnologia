@@ -5,19 +5,25 @@
     <title>Tres Eventos</title>
 </head>
 <body>
-    <h1>Detalles de los Tres Eventosddd</h1>
-    <div id="eventContainer"></div>
+    <h1 id="pageTitle"></h1>
+    <div id="contenedor3"></div>
 
     <script>
         // Recupera los detalles de los eventos desde localStorage
         const eventDetails = JSON.parse(localStorage.getItem("eventDetails"));
+        const selectedDate = localStorage.getItem("selectedDate");
+        const pageTitle = document.getElementById("pageTitle");
+
+
+        pageTitle.textContent = `Horarios Tecnologia ${selectedDate}`;
 
         if (eventDetails && eventDetails.length >= 3) {
-            const eventContainer = document.getElementById("eventContainer");
+            const contenedor3 = document.getElementById("contenedor3");
 
             // Crea un elemento para cada evento y muestra sus detalles
             eventDetails.forEach((event, index) => {
                 const eventDiv = document.createElement("div");
+                eventDiv.classList.add("evento");
 
                 // Dividir la descripción en dos partes si existe
                 let email = '';
@@ -29,6 +35,7 @@
                 }
 
                 eventDiv.innerHTML = `
+                    <img src="/imag/Avatar_Kevin.png" alt="kev">
                     <h2>Evento ${index + 1}</h2>
                     <p>Nombre: ${event.title}</p>
                     <p>Horario: desde las ${event.start} a las ${event.end}</p>

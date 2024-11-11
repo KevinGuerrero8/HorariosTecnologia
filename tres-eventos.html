@@ -31,7 +31,7 @@
                 const eventDiv = document.createElement("div");
                 eventDiv.classList.add("evento");
 
-                // Dividir la descripción en dos partes si existe
+                // Divide la descripción en email y teléfono si existe
                 let email = '';
                 let phone = '';
                 if (event.description) {
@@ -44,15 +44,26 @@
                 const start = event.start || "Hora no disponible";
                 const end = event.end || "Hora no disponible";
 
+                // Define la imagen en función del título del evento
+                let imageUrl = "/img/default_avatar.png"; // Imagen por defecto
+                if (event.title.includes("Kevin")) {
+                    imageUrl = "/img/Avatar_Kevin.png";
+                } else if (event.title.includes("Lizeth")) {
+                    imageUrl = "/img/Avatar_Lizeth.png";
+                } else if (event.title.includes("Benyy")) {
+                    imageUrl = "/img/Avatar_Benyy.png";
+                }
+
+                // Inserta el contenido HTML con la imagen dinámica
                 eventDiv.innerHTML = `
-                    <img src="/img/Avatar_Kevin.png" alt="kev">
+                    <img src="${imageUrl}" alt="${event.title}">
                     <h2>Evento ${index + 1}</h2>
                     <p>Nombre: ${event.title}</p>
                     <p>Horario: desde las ${start} a las ${end}</p>
                     <p>Email: ${email}</p>
                     <p>Celular: ${phone}</p>
                 `;
-                contenedor3.appendChild(eventDiv); // Corregido: usar contenedor3
+                contenedor3.appendChild(eventDiv);
             });
         } else {
             document.body.innerHTML = "<h1>No hay suficientes eventos disponibles.</h1>";

@@ -224,6 +224,30 @@ a{
 }
 
 
+.titulo-varios{
+    text-align: center;
+}
+
+.contenedor3{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.contenedor3 img{
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+.evento{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;   
+}
+
 
 
 /* Media Query para pantallas pequeñas (celulares) */

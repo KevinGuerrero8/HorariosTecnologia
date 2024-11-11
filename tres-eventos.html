@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Horarios Tecnología</title>
-        <link rel="icon" href="/img/logo_domicity.png" type="image/x-icon">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Tres Eventos</title>
+</head>
 <body>
-    <h1 class="titulo-varios">Horarios Tecnologia 10 de noviembre</h1>
-    <div id="contenedor3"></div>
+    <h1>Detalles de los Tres Eventos</h1>
+    <div id="eventContainer"></div>
 
     <script>
         // Recupera los detalles de los eventos desde localStorage
@@ -24,10 +18,22 @@
             // Crea un elemento para cada evento y muestra sus detalles
             eventDetails.forEach((event, index) => {
                 const eventDiv = document.createElement("div");
+
+                // Dividir la descripción en dos partes si existe
+                let email = '';
+                let phone = '';
+                if (event.description) {
+                    const parts = event.description.split(' - ');
+                    email = parts[0] ? parts[0].replace("Mail: ", "") : "";
+                    phone = parts[1] ? parts[1].replace("Cel: ", "") : "";
+                }
+
                 eventDiv.innerHTML = `
                     <h2>Evento ${index + 1}</h2>
                     <p>Nombre: ${event.title}</p>
                     <p>Horario: desde las ${event.start} a las ${event.end}</p>
+                    <p>Email: ${email}</p>
+                    <p>Celular: ${phone}</p>
                 `;
                 eventContainer.appendChild(eventDiv);
             });

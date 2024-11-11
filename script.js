@@ -81,6 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
     eventButton.addEventListener('click', () => {
         console.log("Botón de consultar evento presionado.");
         if (isAuthorized && gapiInitialized) {
+            console.log("llega");
+            
             getCurrentEvent();
         } else {
             console.log("Usuario no autorizado o API no inicializada.");
@@ -126,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'orderBy': 'startTime'
         }).then(function (response) {
             const event = response.result.items[0];
+            console.log("Respuesta completa de eventos actual:", response);
             if (event) {
                const eventTitle = event.summary;
                 // Redirige según el título del evento

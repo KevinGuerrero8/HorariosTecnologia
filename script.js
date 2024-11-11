@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const Oauthorizebutton = document.getElementById('authorize-button');
 
     eventButton.style.display = 'none'; // Oculta el botón de consultar evento actual
-    eventFutureButton.style.display = 'none'; // Oculta el botón de consultar evento futuro
+    //eventFutureButton.style.display = 'none'; // Oculta el botón de consultar evento futuro
 
 
     // Evento del botón de autorización

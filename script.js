@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (events.length === 1) {
                 window.location.href = "un-evento.html";
             } else if (events.length === 2) {
-                window.location.href = "dos-eventos.html";
+                window.location.href = "tres-eventos.html";
             } else if (events.length >= 3) {
                 window.location.href = "tres-eventos.html";
             }

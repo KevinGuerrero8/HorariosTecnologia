@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (events.length === 2) {
                 window.location.href = "dos-eventos.html";
             } else if (events.length >= 3) {
-                window.location.href = "tres-eventos.html";
+                window.location.href = "tres-eventoos.html";
             }
         }).catch(function (error) {
             console.error("Error al obtener los eventos:", error);

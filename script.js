@@ -92,14 +92,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     confirmFutureEventButton.addEventListener('click', () => {
         const selectedDate = futureDateInput.value;
-        const selectedTime = futureTimeInput.value;
+        //const selectedTime = futureTimeInput.value;
 
-        if (selectedDate && selectedTime) {
+        if (selectedDate) {
             console.log("Fecha seleccionada:", selectedDate);
-            console.log("Hora seleccionada:", selectedTime);
+            //console.log("Hora seleccionada:", selectedTime);
 
             futureEventForm.style.display = 'none';
-            getFutureEvent(selectedDate, selectedTime);
+            getFutureEvent(selectedDate); //selectedTime);
         } else {
             alert("Por favor selecciona una fecha y hora.");
         }
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Función para consultar eventos futuros
-    
+    /*
     function getFutureEvent(date, time) {
         const selectedDateTime = new Date(`${date}T${time}:00`).toISOString();
         const endDateTime = new Date(new Date(selectedDateTime).getTime() + (60 * 60 * 1000)).toISOString();
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
              console.error("Error al obtener el evento:", error);
          });
      }
-    
+    */
     /*
     function getFutureEvent(date) {
         // Establece el inicio y fin del día en UTC

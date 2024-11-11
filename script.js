@@ -234,60 +234,47 @@ document.addEventListener('DOMContentLoaded', function() {
     */
 
     function getFutureEvent(date) {
-        // Establece el inicio y fin del día en UTC
         const timeMin = new Date(`${date}T00:00:00Z`).toISOString();
         const timeMax = new Date(`${date}T23:59:59Z`).toISOString();
-    
-        console.log("Obteniendo eventos del día:", date);
     
         gapi.client.calendar.events.list({
             'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
             'timeMin': timeMin,
             'timeMax': timeMax,
             'singleEvents': true,
-            'orderBy': 'startTime',
-            'maxResults': 10
+            'orderBy': 'startTime'
         }).then(function (response) {
             const events = response.result.items;
     
-            // Muestra toda la respuesta de eventos en la consola
-            console.log("Respuesta completa de eventos:", response);
+            // Crea un array de detalles de eventos
+            const eventDetails = events.map((event) => {
+                const eventTitle = event.summary;
+                const startTime = new Date(event.start.dateTime || event.start.date);
+                const endTime = new Date(event.end.dateTime || event.end.date);
     
-            if (events && events.length > 0) {
-                // Ordena los eventos según la cantidad y genera el texto para cada evento
-                let eventDetails = "";
-                events.forEach((event, index) => {
-                    const eventTitle = event.summary;
-                    const startTime = new Date(event.start.dateTime || event.start.date);
-                    const endTime = new Date(event.end.dateTime || event.end.date);
+                return {
+                    title: eventTitle,
+                    start: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                    end: endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                };
+            });
     
-                    const startHour = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                    const endHour = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            // Guarda el array de eventos en localStorage
+            localStorage.setItem("eventDetails", JSON.stringify(eventDetails));
     
-                    eventDetails += `Evento ${index + 1}: ${eventTitle} - desde las ${startHour} a las ${endHour}\n`;
-                });
-    
-                // Guarda los detalles de eventos en localStorage para usarlos en la otra página
-                localStorage.setItem("eventDetails", eventDetails);
-    
-                // Redirecciona según la cantidad de eventos
-                if (events.length === 1) {
-                    window.location.href = "un-evento.html";
-                } else if (events.length === 2) {
-                    window.location.href = "dos-eventos.html";
-                } else if (events.length >= 3) {
-                    window.location.href = "tres-eventos.html";
-                }
-            } else {
-                console.log("No hay eventos disponibles para esta fecha.");
-                const h1Element = document.createElement('h1');
-                h1Element.textContent = "No hay eventos disponibles para esta fecha.";
-                document.body.appendChild(h1Element);
+            // Redirecciona según la cantidad de eventos
+            if (events.length === 1) {
+                window.location.href = "un-evento.html";
+            } else if (events.length === 2) {
+                window.location.href = "dos-eventos.html";
+            } else if (events.length >= 3) {
+                window.location.href = "tres-eventos.html";
             }
         }).catch(function (error) {
             console.error("Error al obtener los eventos:", error);
         });
     }
+    
     
     
 

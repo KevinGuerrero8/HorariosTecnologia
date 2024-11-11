@@ -5,16 +5,28 @@
     <title>Tres Eventos</title>
 </head>
 <body>
-    <h1>Detalles de los Eventos</h1>
-    <pre id="eventList"></pre>
+    <h1>Detalles de los Tres Eventos</h1>
+    <div id="eventContainer"></div>
 
     <script>
-        const eventDetails = localStorage.getItem("eventDetails");
-        
-        if (eventDetails) {
-            document.getElementById("eventList").textContent = eventDetails;
+        // Recupera los detalles de los eventos desde localStorage
+        const eventDetails = JSON.parse(localStorage.getItem("eventDetails"));
+
+        if (eventDetails && eventDetails.length >= 3) {
+            const eventContainer = document.getElementById("eventContainer");
+
+            // Crea un elemento para cada evento y muestra sus detalles
+            eventDetails.forEach((event, index) => {
+                const eventDiv = document.createElement("div");
+                eventDiv.innerHTML = `
+                    <h2>Evento ${index + 1}</h2>
+                    <p>Nombre: ${event.title}</p>
+                    <p>Horario: desde las ${event.start} a las ${event.end}</p>
+                `;
+                eventContainer.appendChild(eventDiv);
+            });
         } else {
-            document.getElementById("eventList").textContent = "No hay eventos disponibles.";
+            document.body.innerHTML = "<h1>No hay suficientes eventos disponibles.</h1>";
         }
     </script>
 </body>

@@ -144,7 +144,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /*// Función para consultar eventos futuros
+    // Función para consultar eventos futuros
+    /*
     function getFutureEvent(date, time) {
         const selectedDateTime = new Date(`${date}T${time}:00`).toISOString();
         const endDateTime = new Date(new Date(selectedDateTime).getTime() + (60 * 60 * 1000)).toISOString();
@@ -179,52 +180,54 @@ document.addEventListener('DOMContentLoaded', function() {
          }).catch(function (error) {
              console.error("Error al obtener el evento:", error);
          });
-     }*/
+     }
+    */
 
-     function getFutureEvent(date) {
-        const selectedDateTime = new Date(`${date}T${time}:00`).toISOString();
-        const endDateTime = new Date(new Date(selectedDateTime).getTime() + (60 * 60 * 1000)).toISOString();
+    function getFutureEvent(date) {
+        // Establece el inicio y fin del día en UTC
+        const timeMin = new Date(`${date}T00:00:00Z`).toISOString();
+        const timeMax = new Date(`${date}T23:59:59Z`).toISOString();
     
-        console.log("Obteniendo eventos entre:", selectedDateTime, "y", endDateTime);
+        console.log("Obteniendo eventos del día:", date);
     
         gapi.client.calendar.events.list({
             'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
-            'timeMin': selectedDateTime,
-            'timeMax': endDateTime,
-            'maxResults': 5, 
+            'timeMin': timeMin,
+            'timeMax': timeMax,
             'singleEvents': true,
             'orderBy': 'startTime'
         }).then(function (response) {
-            const events = response.result.items; // Guarda todos los eventos
-            console.log("Eventos obtenidos:", events); // Muestra todos los eventos en consola
-            
-            const event = events[0];
-            if (event) {
-                const eventTitle = event.summary;
-                console.log("Primer evento encontrado:", eventTitle); // Guarda y muestra el primer evento en consola
+            const events = response.result.items;
+            if (events && events.length > 0) {
+                // Construye un mensaje con los nombres y duración de cada evento
+                let eventDetails = "";
+                events.forEach(event => {
+                    const eventTitle = event.summary;
+                    const startTime = new Date(event.start.dateTime || event.start.date);
+                    const endTime = new Date(event.end.dateTime || event.end.date);
+                    const duration = (endTime - startTime) / (1000 * 60); // Duración en minutos
+    
+                    eventDetails += `${eventTitle} - Duración: ${duration} minutos\n`;
+                });
                 
-                // Redirige según el título del evento
-                if (eventTitle.includes("Kevin")) {
-                    window.location.href = "kevin.html";
-                } else if (eventTitle.includes("Lizeth")) {
-                    window.location.href = "lizeth.html";
-                } else if (eventTitle.includes("Benyy")) {
-                    console.log(response + "evn" + event);
-                    //window.location.href = "benyy.html";
-                } else {
-                    window.location.href = "Zzz.html";
-                }
+                // Crea el h1 con los detalles de los eventos
+                const h1Element = document.createElement('h1');
+                h1Element.textContent = eventDetails;
+                document.body.appendChild(h1Element);
             } else {
-                console.log("No hay eventos disponibles en este momento.");
-                window.location.href = "Zzz.html";
+                console.log("No hay eventos disponibles para esta fecha.");
+                const h1Element = document.createElement('h1');
+                h1Element.textContent = "No hay eventos disponibles para esta fecha.";
+                document.body.appendChild(h1Element);
             }
         }).catch(function (error) {
-            console.error("Error al obtener el evento:", error);
+            console.error("Error al obtener los eventos:", error);
         });
-        }
     }
     
 
+
+    }
 );
 
 

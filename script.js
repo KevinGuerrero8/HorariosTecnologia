@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const futureTimeInput = document.getElementById('future-time');
     const confirmFutureEventButton = document.getElementById('confirm-future-event');
     const Oauthorizebutton = document.getElementById('authorize-button');
+    const today = new Date().toISOString().split('T')[0];
+
+    document.getElementById('future-date').value = today;
 
     eventButton.style.display = 'none'; // Oculta el botón de consultar evento actual
     //eventFutureButton.style.display = 'none'; // Oculta el botón de consultar evento futuro
@@ -270,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (events.length === 1) {
                 window.location.href = "un-evento.html";
             } else if (events.length === 2) {
-                window.location.href = "tres-eventos.html";
+                window.location.href = "dos-eventos.html";
             } else if (events.length >= 3) {
                 window.location.href = "tres-eventos.html";
             }

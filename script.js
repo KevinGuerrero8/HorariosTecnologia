@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'orderBy': 'startTime'
         }).then(function (response) {
             const events = response.result.items;
-    
+            console.log("Respuesta completa de eventos:", response);
             // Crea un array de detalles de eventos
             const eventDetails = events.map((event) => {
                 const eventTitle = event.summary;
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (events.length === 2) {
                 window.location.href = "dos-eventos.html";
             } else if (events.length >= 3) {
-                window.location.href = "tres-eventoos.html";
+                window.location.href = "tres-eventos.html";
             }
         }).catch(function (error) {
             console.error("Error al obtener los eventos:", error);

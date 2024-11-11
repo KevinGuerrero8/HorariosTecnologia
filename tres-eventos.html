@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tres Eventos</title>
+</head>
+<body>
+    <h1>Detalles de los Eventos</h1>
+    <pre id="eventList"></pre>
+
+    <script>
+        const eventDetails = localStorage.getItem("eventDetails");
+        
+        if (eventDetails) {
+            document.getElementById("eventList").textContent = eventDetails;
+        } else {
+            document.getElementById("eventList").textContent = "No hay eventos disponibles.";
+        }
+    </script>
+</body>
+</html>

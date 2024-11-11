@@ -198,6 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'orderBy': 'startTime'
         }).then(function (response) {
             const events = response.result.items;
+            console.log("Respuesta completa de eventos:", response);
             if (events && events.length > 0) {
                 // Construye un mensaje con los nombres y duración de cada evento
                 let eventDetails = "";
@@ -211,6 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const endHour = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                     
                     eventDetails += `${eventTitle}: desde las ${startHour} a las ${endHour}\n`;
+                    
                 });
                 
                 // Crea el h1 con los detalles de los eventos

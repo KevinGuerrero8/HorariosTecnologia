@@ -249,11 +249,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Crea un array de detalles de eventos
             const eventDetails = events.map((event) => {
                 const eventTitle = event.summary;
+                const eventDescription = event.description;
                 const startTime = new Date(event.start.dateTime || event.start.date);
                 const endTime = new Date(event.end.dateTime || event.end.date);
     
                 return {
                     title: eventTitle,
+                    description: eventDescription,
                     start: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                     end: endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                 };

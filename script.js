@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
          });
      }
     */
-    /*
+    
     function getFutureEvent(date) {
         // Establece el inicio y fin del día en UTC
         const timeMin = new Date(`${date}T00:00:00Z`).toISOString();
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error al obtener los eventos:", error);
         });
     }
-    */
+    
 
 
     }

@@ -205,9 +205,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     const eventTitle = event.summary;
                     const startTime = new Date(event.start.dateTime || event.start.date);
                     const endTime = new Date(event.end.dateTime || event.end.date);
-                    const duration = (endTime - startTime) / (1000 * 60); // Duración en minutos
-    
-                    eventDetails += `${eventTitle} - Duración: ${duration} minutos\n`;
+                    
+                    // Formateamos las horas de inicio y fin
+                    const startHour = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    const endHour = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    
+                    eventDetails += `${eventTitle}: desde las ${startHour} a las ${endHour}\n`;
                 });
                 
                 // Crea el h1 con los detalles de los eventos

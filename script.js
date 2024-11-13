@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    /*
     // Función para obtener el evento actual
     function getCurrentEvent() {
         const now = new Date().toISOString();  // Convierte a formato ISO
@@ -151,6 +152,59 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error al obtener el evento:", error);
         });
     }
+    */
+
+
+
+    function getCurrentEvent() {
+        const now = new Date(); // Hora actual
+        const timeMin = new Date(now);
+        timeMin.setMinutes(now.getMinutes() - 1); // Un minuto antes de la hora actual
+        const timeMax = new Date(now);
+        timeMax.setMinutes(now.getMinutes() + 1); // Un minuto después de la hora actual
+    
+        console.log("Obteniendo eventos entre:", timeMin.toISOString(), "y", timeMax.toISOString());
+    
+        if (!gapi.client || !gapi.client.calendar) {
+            console.error("API de Google Calendar no cargada. No se puede obtener el evento.");
+            return;
+        }
+    
+        gapi.client.calendar.events.list({
+            'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+            'timeMin': timeMin.toISOString(),
+            'timeMax': timeMax.toISOString(),
+            'maxResults': 1,
+            'singleEvents': true,
+            'orderBy': 'startTime'
+        }).then(function (response) {
+            const event = response.result.items[0];
+            console.log("Respuesta completa de eventos actual:", response);
+    
+            if (event) {
+                const eventTitle = event.summary;
+                // Redirige según el título del evento
+                if (eventTitle.includes("Kevin")) {
+                    window.location.href = "kevin.html";
+                } else if (eventTitle.includes("Lizeth")) {
+                    window.location.href = "lizeth.html";
+                } else if (eventTitle.includes("Benyy")) {
+                    window.location.href = "benyy.html";
+                } else {
+                    window.location.href = "Zzz.html";
+                }
+            } else {
+                window.location.href = "Zzz.html";
+                console.log("No hay eventos disponibles en este momento.");
+            }
+        }).catch(function (error) {
+            console.error("Error al obtener el evento:", error);
+        });
+    }
+    
+
+
+
     // Función para obtener el evento futuro
     function getFutureEvent(date) {
         const timeMin = new Date(`${date}T00:00:00Z`).toISOString();

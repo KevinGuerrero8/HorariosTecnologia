@@ -229,24 +229,39 @@ a{
     text-align: center;
 }
 
-#contenedor3{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-}
-
-#contenedor3 img{
-    width: 80%;
-    display: block;
-    margin: 0 auto;
-}
-
-.evento{
-    display: flex;
-    flex-direction: column;
+.contenedor3 {
+    display: flex; 
     justify-content: center; 
-    align-items: center;
-    text-align: center;   
+    align-items: flex-start; 
+    width: 90%;
+    gap: 25px; 
+}
+  
+.evento {
+    width: 22rem; 
+    height: 31rem;
+    text-align: center; 
+    background-color: white;
+    border-radius: 25px;
+}
+  
+.evento img {
+    width: 80%;
+    height: auto;
+}
+  
+.evento h1{
+    color: white;
+    background-color: #595959;
+    margin: 0;
+    border-top-left-radius: 25px;  /* Esquina superior izquierda */
+    border-top-right-radius: 25px; /* Esquina superior derecha */
+    padding: 10px;
+}
+
+.evento p {
+    margin: 10px;
+    font-size: 20px;
 }
 
 

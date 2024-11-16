@@ -208,8 +208,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para obtener el evento futuro
     function getFutureEvent(date) {
-        const timeMin = new Date(`${date}T00:00:00Z`).toISOString();
-        const timeMax = new Date(`${date}T22:59:59Z`).toISOString();
+        const colombiaTimezoneOffset = -5 * 60; // UTC-5 en minutos
+        const timeMin = new Date(new Date(`${date}T00:00:00Z`).getTime() + colombiaTimezoneOffset * 60 * 1000).toISOString();
+        const timeMax = new Date(new Date(`${date}T22:59:59Z`).getTime() + colombiaTimezoneOffset * 60 * 1000).toISOString();
+        
     
         gapi.client.calendar.events.list({
             'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',

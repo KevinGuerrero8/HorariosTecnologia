@@ -229,7 +229,7 @@ a{
     text-align: center;
 }
 
-.contenedor3 {
+#contenedor3 {
     display: flex; 
     justify-content: center; 
     align-items: flex-start; 

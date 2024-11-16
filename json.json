@@ -1,22 +1,22 @@
 {
     "result": {
         "kind": "calendar#events",
-        "etag": "\"p324a7qk1vfgoi0o\"",
+        "etag": "\"p324fplmpvngoi0o\"",
         "summary": "Horarios Tecnologia",
         "description": "",
-        "updated": "2024-11-16T23:03:14.885Z",
+        "updated": "2024-11-16T23:15:15.989Z",
         "timeZone": "America/Bogota",
         "accessRole": "reader",
         "defaultReminders": [],
         "items": [
             {
                 "kind": "calendar#event",
-                "etag": "\"3463595237360000\"",
-                "id": "6vcht6c61mvus0qaun1ns0meq4_20241118T120000Z",
+                "etag": "\"3463597529706000\"",
+                "id": "08k105ivfckf08tjd4m49t1a3f",
                 "status": "confirmed",
-                "htmlLink": "https://www.google.com/calendar/event?eid=NnZjaHQ2YzYxbXZ1czBxYXVuMW5zMG1lcTRfMjAyNDExMThUMTIwMDAwWiBjX2EwN2VkYWVhNjdmMjIyZDBjMDhhODk4YzQ3Y2VjNzExNjAwYzYxMWZjZjUxOGJlN2ZiODEzYzZlNjEyZGJmOWFAZw",
-                "created": "2024-11-16T22:53:38.000Z",
-                "updated": "2024-11-16T22:53:38.680Z",
+                "htmlLink": "https://www.google.com/calendar/event?eid=MDhrMTA1aXZmY2tmMDh0amQ0bTQ5dDFhM2YgY19hMDdlZGFlYTY3ZjIyMmQwYzA4YTg5OGM0N2NlYzcxMTYwMGM2MTFmY2Y1MThiZTdmYjgxM2M2ZTYxMmRiZjlhQGc",
+                "created": "2024-11-16T23:12:12.000Z",
+                "updated": "2024-11-16T23:12:44.853Z",
                 "summary": "Lizeth",
                 "creator": {
                     "email": "tecnologia2@domicity.com.co"
@@ -34,23 +34,18 @@
                     "dateTime": "2024-11-18T14:00:00-05:00",
                     "timeZone": "America/Bogota"
                 },
-                "recurringEventId": "6vcht6c61mvus0qaun1ns0meq4",
-                "originalStartTime": {
-                    "dateTime": "2024-11-18T07:00:00-05:00",
-                    "timeZone": "America/Bogota"
-                },
-                "iCalUID": "6vcht6c61mvus0qaun1ns0meq4@google.com",
-                "sequence": 0,
+                "iCalUID": "08k105ivfckf08tjd4m49t1a3f@google.com",
+                "sequence": 2,
                 "eventType": "default"
             },
             {
                 "kind": "calendar#event",
-                "etag": "\"3463595271646000\"",
-                "id": "7fjr9ei2e6fjcr4j45c7g4rq5n",
+                "etag": "\"3463597574726000\"",
+                "id": "7m4jqs992huojvoum7bhdb3tue",
                 "status": "confirmed",
-                "htmlLink": "https://www.google.com/calendar/event?eid=N2ZqcjllaTJlNmZqY3I0ajQ1YzdnNHJxNW4gY19hMDdlZGFlYTY3ZjIyMmQwYzA4YTg5OGM0N2NlYzcxMTYwMGM2MTFmY2Y1MThiZTdmYjgxM2M2ZTYxMmRiZjlhQGc",
-                "created": "2024-11-16T22:53:55.000Z",
-                "updated": "2024-11-16T22:53:55.823Z",
+                "htmlLink": "https://www.google.com/calendar/event?eid=N200anFzOTkyaHVvanZvdW03YmhkYjN0dWUgY19hMDdlZGFlYTY3ZjIyMmQwYzA4YTg5OGM0N2NlYzcxMTYwMGM2MTFmY2Y1MThiZTdmYjgxM2M2ZTYxMmRiZjlhQGc",
+                "created": "2024-11-16T23:12:05.000Z",
+                "updated": "2024-11-16T23:13:07.363Z",
                 "summary": "Kevin",
                 "creator": {
                     "email": "tecnologia2@domicity.com.co"
@@ -68,20 +63,20 @@
                     "dateTime": "2024-11-18T19:30:00-05:00",
                     "timeZone": "America/Bogota"
                 },
-                "iCalUID": "7fjr9ei2e6fjcr4j45c7g4rq5n@google.com",
+                "iCalUID": "7m4jqs992huojvoum7bhdb3tue@google.com",
                 "sequence": 0,
                 "eventType": "default"
             }
         ]
     },
-    "body": "{\n \"kind\": \"calendar#events\",\n \"etag\": \"\\\"p324a7qk1vfgoi0o\\\"\",\n \"summary\": \"Horarios Tecnologia\",\n \"description\": \"\",\n \"updated\": \"2024-11-16T23:03:14.885Z\",\n \"timeZone\": \"America/Bogota\",\n \"accessRole\": \"reader\",\n \"defaultReminders\": [],\n \"items\": [\n  {\n   \"kind\": \"calendar#event\",\n   \"etag\": \"\\\"3463595237360000\\\"\",\n   \"id\": \"6vcht6c61mvus0qaun1ns0meq4_20241118T120000Z\",\n   \"status\": \"confirmed\",\n   \"htmlLink\": \"https://www.google.com/calendar/event?eid=NnZjaHQ2YzYxbXZ1czBxYXVuMW5zMG1lcTRfMjAyNDExMThUMTIwMDAwWiBjX2EwN2VkYWVhNjdmMjIyZDBjMDhhODk4YzQ3Y2VjNzExNjAwYzYxMWZjZjUxOGJlN2ZiODEzYzZlNjEyZGJmOWFAZw\",\n   \"created\": \"2024-11-16T22:53:38.000Z\",\n   \"updated\": \"2024-11-16T22:53:38.680Z\",\n   \"summary\": \"Lizeth\",\n   \"creator\": {\n    \"email\": \"tecnologia2@domicity.com.co\"\n   },\n   \"organizer\": {\n    \"email\": \"c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com\",\n    \"displayName\": \"Horarios Tecnologia\",\n    \"self\": true\n   },\n   \"start\": {\n    \"dateTime\": \"2024-11-18T07:00:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"end\": {\n    \"dateTime\": \"2024-11-18T14:00:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"recurringEventId\": \"6vcht6c61mvus0qaun1ns0meq4\",\n   \"originalStartTime\": {\n    \"dateTime\": \"2024-11-18T07:00:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"iCalUID\": \"6vcht6c61mvus0qaun1ns0meq4@google.com\",\n   \"sequence\": 0,\n   \"eventType\": \"default\"\n  },\n  {\n   \"kind\": \"calendar#event\",\n   \"etag\": \"\\\"3463595271646000\\\"\",\n   \"id\": \"7fjr9ei2e6fjcr4j45c7g4rq5n\",\n   \"status\": \"confirmed\",\n   \"htmlLink\": \"https://www.google.com/calendar/event?eid=N2ZqcjllaTJlNmZqY3I0ajQ1YzdnNHJxNW4gY19hMDdlZGFlYTY3ZjIyMmQwYzA4YTg5OGM0N2NlYzcxMTYwMGM2MTFmY2Y1MThiZTdmYjgxM2M2ZTYxMmRiZjlhQGc\",\n   \"created\": \"2024-11-16T22:53:55.000Z\",\n   \"updated\": \"2024-11-16T22:53:55.823Z\",\n   \"summary\": \"Kevin\",\n   \"creator\": {\n    \"email\": \"tecnologia2@domicity.com.co\"\n   },\n   \"organizer\": {\n    \"email\": \"c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com\",\n    \"displayName\": \"Horarios Tecnologia\",\n    \"self\": true\n   },\n   \"start\": {\n    \"dateTime\": \"2024-11-18T14:00:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"end\": {\n    \"dateTime\": \"2024-11-18T19:30:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"iCalUID\": \"7fjr9ei2e6fjcr4j45c7g4rq5n@google.com\",\n   \"sequence\": 0,\n   \"eventType\": \"default\"\n  }\n ]\n}\n",
+    "body": "{\n \"kind\": \"calendar#events\",\n \"etag\": \"\\\"p324fplmpvngoi0o\\\"\",\n \"summary\": \"Horarios Tecnologia\",\n \"description\": \"\",\n \"updated\": \"2024-11-16T23:15:15.989Z\",\n \"timeZone\": \"America/Bogota\",\n \"accessRole\": \"reader\",\n \"defaultReminders\": [],\n \"items\": [\n  {\n   \"kind\": \"calendar#event\",\n   \"etag\": \"\\\"3463597529706000\\\"\",\n   \"id\": \"08k105ivfckf08tjd4m49t1a3f\",\n   \"status\": \"confirmed\",\n   \"htmlLink\": \"https://www.google.com/calendar/event?eid=MDhrMTA1aXZmY2tmMDh0amQ0bTQ5dDFhM2YgY19hMDdlZGFlYTY3ZjIyMmQwYzA4YTg5OGM0N2NlYzcxMTYwMGM2MTFmY2Y1MThiZTdmYjgxM2M2ZTYxMmRiZjlhQGc\",\n   \"created\": \"2024-11-16T23:12:12.000Z\",\n   \"updated\": \"2024-11-16T23:12:44.853Z\",\n   \"summary\": \"Lizeth\",\n   \"creator\": {\n    \"email\": \"tecnologia2@domicity.com.co\"\n   },\n   \"organizer\": {\n    \"email\": \"c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com\",\n    \"displayName\": \"Horarios Tecnologia\",\n    \"self\": true\n   },\n   \"start\": {\n    \"dateTime\": \"2024-11-18T07:00:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"end\": {\n    \"dateTime\": \"2024-11-18T14:00:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"iCalUID\": \"08k105ivfckf08tjd4m49t1a3f@google.com\",\n   \"sequence\": 2,\n   \"eventType\": \"default\"\n  },\n  {\n   \"kind\": \"calendar#event\",\n   \"etag\": \"\\\"3463597574726000\\\"\",\n   \"id\": \"7m4jqs992huojvoum7bhdb3tue\",\n   \"status\": \"confirmed\",\n   \"htmlLink\": \"https://www.google.com/calendar/event?eid=N200anFzOTkyaHVvanZvdW03YmhkYjN0dWUgY19hMDdlZGFlYTY3ZjIyMmQwYzA4YTg5OGM0N2NlYzcxMTYwMGM2MTFmY2Y1MThiZTdmYjgxM2M2ZTYxMmRiZjlhQGc\",\n   \"created\": \"2024-11-16T23:12:05.000Z\",\n   \"updated\": \"2024-11-16T23:13:07.363Z\",\n   \"summary\": \"Kevin\",\n   \"creator\": {\n    \"email\": \"tecnologia2@domicity.com.co\"\n   },\n   \"organizer\": {\n    \"email\": \"c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com\",\n    \"displayName\": \"Horarios Tecnologia\",\n    \"self\": true\n   },\n   \"start\": {\n    \"dateTime\": \"2024-11-18T14:00:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"end\": {\n    \"dateTime\": \"2024-11-18T19:30:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"iCalUID\": \"7m4jqs992huojvoum7bhdb3tue@google.com\",\n   \"sequence\": 0,\n   \"eventType\": \"default\"\n  }\n ]\n}\n",
     "headers": {
         "cache-control": "private, max-age=0, must-revalidate, no-transform",
         "content-encoding": "gzip",
-        "content-length": "899",
+        "content-length": "765",
         "content-type": "application/json; charset=UTF-8",
-        "date": "Sat, 16 Nov 2024 23:09:47 GMT",
-        "expires": "Sat, 16 Nov 2024 23:09:47 GMT",
+        "date": "Sat, 16 Nov 2024 23:26:06 GMT",
+        "expires": "Sat, 16 Nov 2024 23:26:06 GMT",
         "server": "ESF",
         "vary": "Origin, X-Origin, Referer"
     },

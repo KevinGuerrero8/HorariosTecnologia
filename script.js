@@ -219,6 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then(function (response) {
             const events = response.result.items;
             console.log("Respuesta completa de eventos:", response);
+            console.log(timeMin + timeMax);
+            
             // Crea un array de detalles de eventos
             const eventDetails = events.map((event) => {
                 const eventTitle = event.summary;

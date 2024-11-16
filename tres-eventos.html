@@ -31,15 +31,6 @@
                 const eventDiv = document.createElement("div");
                 eventDiv.classList.add("evento");
 
-                // Divide la descripción en email y teléfono si existe
-                let email = '';
-                let phone = '';
-                if (event.description) {
-                    const parts = event.description.split(' - ');
-                    email = parts[0] ? parts[0].replace("Mail: ", "") : "";
-                    phone = parts[1] ? parts[1].replace("Cel: ", "") : "";
-                }
-
                 // Establece las horas con un valor por defecto si no están presentes
                 const start = event.start || "Hora no disponible";
                 const end = event.end || "Hora no disponible";
@@ -48,20 +39,25 @@
                 let imageUrl = "/img/default_avatar.png"; // Imagen por defecto
                 if (event.title.includes("Kevin")) {
                     imageUrl = "/img/Avatar_Kevin.png";
+                    mail = "Tecnologia2@domicity.com.co";
+                    celular = "310 3325067";
                 } else if (event.title.includes("Lizeth")) {
                     imageUrl = "/img/Avatar_Lizeth.png";
+                    mail = "Tecnologia@domicity.com.co";
+                    celular = "320 7693195";
                 } else if (event.title.includes("Benyy")) {
                     imageUrl = "/img/Avatar_Benyy.png";
+                    mail = "Benyy@domicity.com.co";
+                    celular = "320 4911339";
                 }
 
                 // Inserta el contenido HTML con la imagen dinámica
                 eventDiv.innerHTML = `
+                    <h1>Nombre: ${event.title}</h1>
                     <img src="${imageUrl}" alt="${event.title}">
-                    <h2>Evento ${index + 1}</h2>
-                    <p>Nombre: ${event.title}</p>
-                    <p>Horario: desde las ${start} a las ${end}</p>
-                    <p>Email: ${email}</p>
-                    <p>Celular: ${phone}</p>
+                    <p>Desde las ${start} a las ${end}</p>
+                    <p>${mail}</p>
+                    <p>${celular}</p>
                 `;
                 contenedor3.appendChild(eventDiv);
             });

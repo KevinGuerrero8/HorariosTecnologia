@@ -23,7 +23,7 @@
         // Asegura que la fecha seleccionada sea válida
         pageTitle.textContent = `Horarios Tecnología ${selectedDate || "sin fecha seleccionada"}`;
 
-        if (eventDetails && eventDetails.length >= 3) {
+        if (eventDetails && eventDetails.length >= 2) {
             const contenedor3 = document.getElementById("contenedor3");
 
             // Crea un elemento para cada evento y muestra sus detalles
@@ -62,7 +62,7 @@
                 contenedor3.appendChild(eventDiv);
             });
         } else {
-            document.body.innerHTML = "<h1>No hay suficientes eventos disponibles.</h1>";
+            document.body.innerHTML = "<h1>No hay suficientes eventos disponibles2.</h1>";
         }
     </script>
 </body>

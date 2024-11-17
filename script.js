@@ -212,8 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para obtener el evento futuro
     function getFutureEvent(date) {
-        const timeMin = new Date(`${date}T00:00:00-05:00`).toISOString();
-        const timeMax = new Date(`${date}T23:59:59-05:00`).toISOString();
+        const timeMin = new Date(`${date}T00:00:00`).toISOString();
+        const timeMax = new Date(`${date}T23:59:59`).toISOString();
     
         console.log("timeMin:", timeMin);
         console.log("timeMax:", timeMax);

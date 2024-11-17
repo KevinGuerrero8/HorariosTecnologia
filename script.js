@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let isAuthorized = false;
     let gapiInitialized = false;
 
+    const today = new Date()
+
     // Botones y elementos del DOM
     const authorizeButton = document.getElementById('authorize-button');
     const eventButton = document.getElementById('event-button');
@@ -15,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const futureTimeInput = document.getElementById('future-time');
     const confirmFutureEventButton = document.getElementById('confirm-future-event');
     const Oauthorizebutton = document.getElementById('authorize-button');
-    const today = new Date().toISOString().split('T')[0];
+    const todayFormatted = today.toISOString().split('T')[0];;
 
-    document.getElementById('future-date').value = today;
+    document.getElementById('future-date').value = todayFormatted;
 
     eventButton.style.display = 'none'; // Oculta el botón de consultar evento actual
     //eventFutureButton.style.display = 'none'; // Oculta el botón de consultar evento futuro

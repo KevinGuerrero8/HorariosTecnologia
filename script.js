@@ -1,18 +1,10 @@
 // Esperar hasta que el DOM esté cargado antes de ejecutar el código
 document.addEventListener('DOMContentLoaded', function() {
 
-
-    // Obtener la fecha actual
     const today = new Date();
-
-
-    // Formatear la fecha en formato YYYY-MM-DD
     const formattedDate = today.toISOString().split('T')[0];
-
-    // Establecer la fecha en el campo de entrada
     document.getElementById('future-date').value = formattedDate;
-
-    console.log("Horale" + today + formattedDate);
+    console.log("Horale" + "-" + today + "-" +formattedDate);
     
 
     // Declara tu Client ID de OAuth 2.0 obtenido en la consola de Google Cloud

@@ -206,6 +206,10 @@ a{
     grid-row: 2;    /* Mover a la segunda fila */
 }
 
+.material-symbols-outlined {
+    padding-bottom: 50px;
+}
+
 #actualizar-button:hover {
     background-color: #53ca6f; 
 }

@@ -114,9 +114,18 @@
                 const end = event.end || "Hora no disponible";
 
                 if (isEventoCurrent(start, end)) {
-                    eventDiv.classList.add("evento-actual");
-                    console.log(`Evento actual: ${event.title}`);
+                eventDiv.classList.add("evento-actual");
+                console.log(`Evento actual: ${event.title}`);
+
+                // Cambiar la imagen si es un evento de Kevin o Lizeth
+                if (event.title.includes("Kevin")) {
+                    config.imageUrl = "/img/Avatar_KevinZzz.png"; // Cambiar imagen específica para Kevin
+                } else if (event.title.includes("Lizeth")) {
+                    config.imageUrl = "/img/Avatar_LizethZzz.png"; // Cambiar imagen específica para Lizeth
+                } else if (event.title.includes("Benyy")) {
+                    config.imageUrl = "/img/Avatar_BenyyZzz.png"; // Cambiar imagen específica para Lizeth
                 }
+            }
 
                 eventDiv.innerHTML = `
                     <h1>${event.title}</h1>

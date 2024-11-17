@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const Oauthorizebutton = document.getElementById('authorize-button');
     const today = new Date().toISOString().split('T')[0];
 
-    document.getElementById('future-date').value = today;
+    //document.getElementById('future-date').value = today;
 
     eventButton.style.display = 'none'; // Oculta el botón de consultar evento actual
     //eventFutureButton.style.display = 'none'; // Oculta el botón de consultar evento futuro

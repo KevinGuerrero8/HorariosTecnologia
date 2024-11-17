@@ -1,10 +1,10 @@
 // Esperar hasta que el DOM esté cargado antes de ejecutar el código
 document.addEventListener('DOMContentLoaded', function() {
 
-    const today = new Date();
-    const formattedDate = today.toLocaleDateString('en-CA'); // El formato 'en-CA' da el formato YYYY-MM-DD
-    document.getElementById('future-date').value = formattedDate;
-    console.log("Horale" + "-" + today + "-" +formattedDate);
+    //const today = new Date();
+    //const formattedDate = today.toLocaleDateString('en-CA'); // El formato 'en-CA' da el formato YYYY-MM-DD
+    //document.getElementById('future-date').value = formattedDate;
+    //console.log("Horale" + "-" + today + "-" +formattedDate);
     
 
     // Declara tu Client ID de OAuth 2.0 obtenido en la consola de Google Cloud

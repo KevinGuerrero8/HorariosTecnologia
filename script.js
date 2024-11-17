@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     const today = new Date();
-    const formattedDate = today.toISOString().split('T')[0];
+    const formattedDate = today.toISOString().split('Z')[0];
     document.getElementById('future-date').value = formattedDate;
     console.log("Horale" + "-" + today + "-" +formattedDate);
     

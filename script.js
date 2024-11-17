@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error al obtener los eventos:", error);
         });
     }
-*/  
+ 
 
     function getFutureEvent(date) {
         // Crear fecha inicial (00:00:00) en zona horaria local
@@ -271,6 +271,68 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    */
+
+    function getFutureEvent(date) {
+        // Crear fecha inicial (00:00:00) del día seleccionado
+        const startDate = new Date(`${date}T00:00:00`);
+        // Crear fecha final (23:59:59) del día siguiente para asegurar capturar todos los eventos
+        const endDate = new Date(`${date}T23:59:59`);
+        
+        // Convertir a UTC sin ajuste de zona horaria
+        const timeMin = startDate.toISOString().split('T')[0] + 'T00:00:00.000Z';
+        const timeMax = endDate.toISOString().split('T')[0] + 'T23:59:59.999Z';
+    
+        console.log("timeMin:", timeMin);
+        console.log("timeMax:", timeMax);
+        
+        gapi.client.calendar.events.list({
+            'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+            'timeMin': timeMin,
+            'timeMax': timeMax,
+            'singleEvents': true,
+            'orderBy': 'startTime',
+            'timeZone': 'America/Bogota' // Especificamos la zona horaria de Colombia
+        }).then(function (response) {
+            const events = response.result.items;
+            console.log("Respuesta completa de eventos:", response);
+            
+            // Filtramos los eventos que realmente pertenecen al día seleccionado
+            const filteredEvents = events.filter(event => {
+                const eventStart = new Date(event.start.dateTime || event.start.date);
+                const eventDate = eventStart.toISOString().split('T')[0];
+                return eventDate === date;
+            });
+            
+            // Crea un array de detalles de eventos
+            const eventDetails = filteredEvents.map((event) => {
+                const eventTitle = event.summary;
+                const eventDescription = event.description;
+                const startTime = new Date(event.start.dateTime || event.start.date);
+                const endTime = new Date(event.end.dateTime || event.end.date);
+    
+                return {
+                    title: eventTitle,
+                    description: eventDescription,
+                    start: startTime.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit', hour12: true }),
+                    end: endTime.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit', hour12: true })
+                };
+            });
+    
+            // Guarda el array de eventos en localStorage
+            localStorage.setItem("eventDetails", JSON.stringify(eventDetails));
+            localStorage.setItem("selectedDate", date);
+    
+            // Redirecciona
+            if (filteredEvents.length > 0) {
+                window.location.href = "eventos.html";
+            } else {
+                window.location.href = "Zzz.html";
+            }
+        }).catch(function (error) {
+            console.error("Error al obtener los eventos:", error);
+        });
+    }
 });
 
 

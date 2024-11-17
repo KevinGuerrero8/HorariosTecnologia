@@ -274,9 +274,12 @@ a{
   
 .evento-actual {
     font-weight: bold;
+    border: 2px solid #007bff; /* Añadimos un borde para hacerlo más visible */
+    background-color: #f8f9fa; /* Un fondo sutilmente diferente */
 }
 .evento-actual h1 {
     font-weight: 900;
+    color: #007bff; /* Color azul para destacar más */
 }
 
 /* Media Query para pantallas pequeñas (celulares) */

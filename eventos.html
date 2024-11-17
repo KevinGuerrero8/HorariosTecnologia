@@ -42,18 +42,35 @@
             }
         };
 
+        // Función para convertir hora en formato "HH:mm" o "H:mm" a minutos desde medianoche
+        function convertirHoraAMinutos(hora) {
+            // Si la hora no está disponible, retornar null
+            if (!hora || hora === "Hora no disponible") return null;
+
+            // Eliminar cualquier texto adicional y obtener solo la hora
+            const horaLimpia = hora.replace(/[^0-9:]/g, '');
+            const [horas, minutos] = horaLimpia.split(':').map(Number);
+            return horas * 60 + minutos;
+        }
+
         // Función para verificar si un evento está ocurriendo actualmente
-        function isEventoCurrent(start, end) {
-            const now = new Date();
-            const currentTime = now.getHours() * 60 + now.getMinutes(); // Tiempo actual en minutos
+        function isEventoCurrent(horaInicio, horaFin) {
+            const ahora = new Date();
+            const minutosAhora = ahora.getHours() * 60 + ahora.getMinutes();
 
-            // Convertir las horas de inicio y fin a minutos
-            const [startHour, startMinute] = start.split(':').map(Number);
-            const [endHour, endMinute] = end.split(':').map(Number);
-            const startTime = startHour * 60 + startMinute;
-            const endTime = endHour * 60 + endMinute;
+            // Convertir horas de inicio y fin a minutos
+            const minutosInicio = convertirHoraAMinutos(horaInicio);
+            const minutosFin = convertirHoraAMinutos(horaFin);
 
-            return currentTime >= startTime && currentTime <= endTime;
+            // Si no podemos determinar las horas, retornamos false
+            if (minutosInicio === null || minutosFin === null) return false;
+
+            console.log(`Evento: ${horaInicio} - ${horaFin}`);
+            console.log(`Hora actual en minutos: ${minutosAhora}`);
+            console.log(`Inicio en minutos: ${minutosInicio}`);
+            console.log(`Fin en minutos: ${minutosFin}`);
+            
+            return minutosAhora >= minutosInicio && minutosAhora <= minutosFin;
         }
 
         // Recupera los detalles de los eventos desde localStorage
@@ -78,7 +95,6 @@
         pageTitle.textContent = `Horarios Tecnología: ${formatSelectedDate(selectedDate)}`;
 
         const contenedor3 = document.getElementById("contenedor3");
-        console.log(isEventoCurrent);
 
         if (eventDetails.length > 0) {
             // Crea un elemento para cada evento y muestra sus detalles
@@ -86,21 +102,18 @@
                 const eventDiv = document.createElement("div");
                 eventDiv.classList.add("evento");
 
-                // Verifica si el evento está ocurriendo actualmente
-                if (isEventoCurrent(event.start, event.end)) {
-                    eventDiv.classList.add("evento-actual");
-                    console.log("llegaxd");
-                    console.log("ols "+ isEventoCurrent);
-                    
-                    
-                }
-
                 // Encuentra la configuración del evento según el título o usa los valores predeterminados
                 const config = Object.entries(eventConfig).find(([key]) => event.title.includes(key))?.[1] || eventConfig.default;
 
                 // Establece las horas con valores predeterminados si no están presentes
                 const start = event.start || "Hora no disponible";
                 const end = event.end || "Hora no disponible";
+
+                // Verifica si el evento está ocurriendo actualmente
+                if (isEventoCurrent(start, end)) {
+                    eventDiv.classList.add("evento-actual");
+                    console.log(`Evento actual: ${event.title}`);
+                }
 
                 // Inserta el contenido HTML con los detalles dinámicos
                 eventDiv.innerHTML = `

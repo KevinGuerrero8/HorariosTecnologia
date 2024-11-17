@@ -249,9 +249,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
             // Redirecciona
             if (events.length > 0) {
-                window.location.href = `eventos.html?eventCount=${events.length}`;
+                window.location.href = "eventos.html";
             }
-            
+
         }).catch(function (error) {
             console.error("Error al obtener los eventos:", error);
         });

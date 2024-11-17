@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     const today = new Date();
-    const formattedDate = today.toISOString().split('Z')[0];
+    const formattedDate = today.toLocaleDateString('en-CA'); // El formato 'en-CA' da el formato YYYY-MM-DD
     document.getElementById('future-date').value = formattedDate;
     console.log("Horale" + "-" + today + "-" +formattedDate);
     

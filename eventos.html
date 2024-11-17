@@ -15,54 +15,66 @@
     <div id="contenedor3"></div>
 
     <script>
+        // Configuración para asociar los títulos de los eventos con sus detalles
+        const eventConfig = {
+            "Kevin": {
+                imageUrl: "/img/Avatar_Kevin.png",
+                mail: "Tecnologia2@domicity.com.co",
+                celular: "310 3325067"
+            },
+            "Lizeth": {
+                imageUrl: "/img/Avatar_Lizeth.png",
+                mail: "Tecnologia@domicity.com.co",
+                celular: "320 7693195"
+            },
+            "Benyy": {
+                imageUrl: "/img/Avatar_Benyy.png",
+                mail: "Benyy@domicity.com.co",
+                celular: "320 4911339"
+            },
+            "default": {
+                imageUrl: "/img/default_avatar.png",
+                mail: "Sin correo disponible",
+                celular: "Sin celular disponible"
+            }
+        };
+
         // Recupera los detalles de los eventos desde localStorage
-        const eventDetails = JSON.parse(localStorage.getItem("eventDetails"));
-        const selectedDate = localStorage.getItem("selectedDate");
+        const eventDetails = JSON.parse(localStorage.getItem("eventDetails")) || [];
+        const selectedDate = localStorage.getItem("selectedDate") || "sin fecha seleccionada";
         const pageTitle = document.getElementById("pageTitle");
 
-        // Asegura que la fecha seleccionada sea válida
-        pageTitle.textContent = `Horarios Tecnología ${selectedDate || "sin fecha seleccionada"}`;
+        // Establece el título de la página
+        pageTitle.textContent = `Horarios Tecnología ${selectedDate}`;
 
-        if (eventDetails && eventDetails.length >= 0) {
-            const contenedor3 = document.getElementById("contenedor3");
+        const contenedor3 = document.getElementById("contenedor3");
 
+        if (eventDetails.length > 0) {
             // Crea un elemento para cada evento y muestra sus detalles
-            eventDetails.forEach((event, index) => {
+            eventDetails.forEach(event => {
                 const eventDiv = document.createElement("div");
                 eventDiv.classList.add("evento");
 
-                // Establece las horas con un valor por defecto si no están presentes
+                // Encuentra la configuración del evento según el título o usa los valores predeterminados
+                const config = Object.entries(eventConfig).find(([key]) => event.title.includes(key))?.[1] || eventConfig.default;
+
+                // Establece las horas con valores predeterminados si no están presentes
                 const start = event.start || "Hora no disponible";
                 const end = event.end || "Hora no disponible";
 
-                // Define la imagen en función del título del evento
-                let imageUrl = "/img/default_avatar.png"; // Imagen por defecto
-                if (event.title.includes("Kevin")) {
-                    imageUrl = "/img/Avatar_Kevin.png";
-                    mail = "Tecnologia2@domicity.com.co";
-                    celular = "310 3325067";
-                } else if (event.title.includes("Lizeth")) {
-                    imageUrl = "/img/Avatar_Lizeth.png";
-                    mail = "Tecnologia@domicity.com.co";
-                    celular = "320 7693195";
-                } else if (event.title.includes("Benyy")) {
-                    imageUrl = "/img/Avatar_Benyy.png";
-                    mail = "Benyy@domicity.com.co";
-                    celular = "320 4911339";
-                }
-
-                // Inserta el contenido HTML con la imagen dinámica
+                // Inserta el contenido HTML con los detalles dinámicos
                 eventDiv.innerHTML = `
                     <h1>${event.title}</h1>
-                    <img src="${imageUrl}" alt="${event.title}">
+                    <img src="${config.imageUrl}" alt="${event.title}">
                     <p>Desde las ${start} a las ${end}</p>
-                    <p>${mail}</p>
-                    <p>${celular}</p>
+                    <p>${config.mail}</p>
+                    <p>${config.celular}</p>
                 `;
                 contenedor3.appendChild(eventDiv);
             });
         } else {
-            document.body.innerHTML = "<h1>No hay suficientes eventos disponibles.</h1>";
+            // Mensaje en caso de que no haya eventos disponibles
+            document.body.innerHTML = "<h1>No hay eventos disponibles para la fecha seleccionada.</h1>";
         }
     </script>
 </body>

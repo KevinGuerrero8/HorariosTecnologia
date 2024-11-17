@@ -44,8 +44,20 @@
         const selectedDate = localStorage.getItem("selectedDate") || "sin fecha seleccionada";
         const pageTitle = document.getElementById("pageTitle");
 
-        // Establece el título de la página
-        pageTitle.textContent = `Horarios Tecnología ${selectedDate}`;
+        // Formatea la fecha seleccionada
+        const formatSelectedDate = (dateString) => {
+            if (!dateString || dateString === "sin fecha seleccionada") {
+                return "sin fecha seleccionada";
+            }
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, "0");
+            const month = String(date.getMonth() + 1).padStart(2, "0");
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        };
+
+        // Establece el título de la página con la fecha formateada
+        pageTitle.textContent = `Horarios Tecnología: ${formatSelectedDate(selectedDate)}`;
 
         const contenedor3 = document.getElementById("contenedor3");
 

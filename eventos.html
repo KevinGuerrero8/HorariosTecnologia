@@ -42,6 +42,20 @@
             }
         };
 
+        // Función para verificar si un evento está ocurriendo actualmente
+        function isEventoCurrent(start, end) {
+            const now = new Date();
+            const currentTime = now.getHours() * 60 + now.getMinutes(); // Tiempo actual en minutos
+
+            // Convertir las horas de inicio y fin a minutos
+            const [startHour, startMinute] = start.split(':').map(Number);
+            const [endHour, endMinute] = end.split(':').map(Number);
+            const startTime = startHour * 60 + startMinute;
+            const endTime = endHour * 60 + endMinute;
+
+            return currentTime >= startTime && currentTime <= endTime;
+        }
+
         // Recupera los detalles de los eventos desde localStorage
         const eventDetails = JSON.parse(localStorage.getItem("eventDetails")) || [];
         const selectedDate = localStorage.getItem("selectedDate") || "sin fecha seleccionada";
@@ -52,8 +66,8 @@
             if (!dateString || dateString === "sin fecha seleccionada") {
                 return "sin fecha seleccionada";
             }
-            const date = new Date(dateString); // Convierte la fecha en UTC
-            const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000); // Ajusta al huso horario local
+            const date = new Date(dateString);
+            const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
             const day = String(localDate.getDate()).padStart(2, "0");
             const month = String(localDate.getMonth() + 1).padStart(2, "0");
             const year = localDate.getFullYear();
@@ -70,6 +84,11 @@
             eventDetails.forEach(event => {
                 const eventDiv = document.createElement("div");
                 eventDiv.classList.add("evento");
+
+                // Verifica si el evento está ocurriendo actualmente
+                if (isEventoCurrent(event.start, event.end)) {
+                    eventDiv.classList.add("evento-actual");
+                }
 
                 // Encuentra la configuración del evento según el título o usa los valores predeterminados
                 const config = Object.entries(eventConfig).find(([key]) => event.title.includes(key))?.[1] || eventConfig.default;

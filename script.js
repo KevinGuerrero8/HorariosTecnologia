@@ -212,20 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para obtener el evento futuro
     function getFutureEvent(date) {
-        //const timeMin = new Date(`${date}T00:00:00-05:00`).toISOString();
-        //const timeMax = new Date(`${date}T23:59:59-05:00`).toISOString();
-
-            // Crear objeto Date para el inicio del día (00:00:00)
-        const startDate = new Date(date);
-        startDate.setHours(0, 0, 0, 0);
-        
-        // Crear objeto Date para el final del día (23:59:59)
-        const endDate = new Date(date);
-        endDate.setHours(23, 59, 59, 999);
-
-        // Convertir a ISO String
-        const timeMin = startDate.toISOString();
-        const timeMax = endDate.toISOString();
+        const timeMin = new Date(`${date}T00:00:00-05:00`).toISOString();
+        const timeMax = new Date(`${date}T23:59:59-05:00`).toISOString();
     
         console.log("timeMin:", timeMin);
         console.log("timeMax:", timeMax);

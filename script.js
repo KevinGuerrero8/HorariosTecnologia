@@ -247,14 +247,11 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem("selectedDate", date); // Guardar la fecha seleccionada
 
     
-            // Redirecciona según la cantidad de eventos
-            if (events.length === 1) {
-                window.location.href = "un-evento.html";
-            } else if (events.length === 2) {
-                window.location.href = "dos-eventos.html";
-            } else if (events.length >= 3) {
-                window.location.href = "tres-eventos.html";
+            // Redirecciona
+            if (events.length > 0) {
+                window.location.href = `eventos.html?eventCount=${events.length}`;
             }
+            
         }).catch(function (error) {
             console.error("Error al obtener los eventos:", error);
         });

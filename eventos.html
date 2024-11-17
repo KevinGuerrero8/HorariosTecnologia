@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios Tecnología</title>
+    <link rel="icon" href="/img/logo_domicity.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="pageTitle"></h1>
+    <div id="contenedor3"></div>
+
+    <script>
+        
+        // Asegura que la fecha seleccionada sea válida
+        pageTitle.textContent = `Horarios Tecnología ${selectedDate || "sin fecha seleccionada"}`;
+
+        const eventConfig = {
+            "Kevin": {
+                imageUrl: "/img/Avatar_Kevin.png",
+                mail: "Tecnologia2@domicity.com.co",
+                celular: "310 3325067"
+            },
+            "Lizeth": {
+                imageUrl: "/img/Avatar_Lizeth.png",
+                mail: "Tecnologia@domicity.com.co",
+                celular: "320 7693195"
+            },
+            "Benyy": {
+                imageUrl: "/img/Avatar_Benyy.png",
+                mail: "Benyy@domicity.com.co",
+                celular: "320 4911339"
+            }
+        };
+
+        // Recupera los detalles de los eventos desde localStorage
+        const eventDetails = JSON.parse(localStorage.getItem("eventDetails"));
+        const selectedDate = localStorage.getItem("selectedDate");
+        const pageTitle = document.getElementById("pageTitle");
+
+        // Asegura que la fecha seleccionada sea válida
+        pageTitle.textContent = `Horarios Tecnología ${selectedDate || "sin fecha seleccionada"}`;
+
+        if (eventDetails && eventDetails.length > 0) {
+            const contenedor3 = document.getElementById("contenedor3");
+
+            // Crea un elemento para cada evento y muestra sus detalles
+            eventDetails.forEach(event => {
+                const eventDiv = document.createElement("div");
+                eventDiv.classList.add("evento");
+
+                // Extrae detalles del evento o usa valores por defecto
+                const config = Object.entries(eventConfig).find(([key]) => event.title.includes(key))?.[1] || {
+                    imageUrl: "/img/default_avatar.png",
+                    mail: "Sin correo disponible",
+                    celular: "Sin celular disponible"
+                };
+
+                const start = event.start || "Hora no disponible";
+                const end = event.end || "Hora no disponible";
+
+                // Inserta el contenido HTML con los detalles dinámicos
+                eventDiv.innerHTML = `
+                    <h1>${event.title}</h1>
+                    <img src="${config.imageUrl}" alt="${event.title}">
+                    <p>Desde las ${start} a las ${end}</p>
+                    <p>${config.mail}</p>
+                    <p>${config.celular}</p>
+                `;
+                contenedor3.appendChild(eventDiv);
+            });
+        } else {
+            document.body.innerHTML = "<h1>No hay eventos disponibles para la fecha seleccionada.</h1>";
+        }
+    </script>
+</body>
+</html>

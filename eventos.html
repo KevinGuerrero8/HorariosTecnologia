@@ -78,6 +78,7 @@
         pageTitle.textContent = `Horarios Tecnología: ${formatSelectedDate(selectedDate)}`;
 
         const contenedor3 = document.getElementById("contenedor3");
+        console.log(isEventoCurrent);
 
         if (eventDetails.length > 0) {
             // Crea un elemento para cada evento y muestra sus detalles
@@ -89,6 +90,8 @@
                 if (isEventoCurrent(event.start, event.end)) {
                     eventDiv.classList.add("evento-actual");
                     console.log("llegaxd");
+                    console.log("ols "+ isEventoCurrent);
+                    
                     
                 }
 

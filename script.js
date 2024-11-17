@@ -280,12 +280,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const timeMin = startDate.toISOString();
             const timeMax = new Date(endDate).toISOString();
-        
-            console.log("Fecha seleccionada:", date);
-            console.log("Hora inicial (Colombia):", new Date(timeMin).toLocaleString("es-CO", {timeZone: "America/Bogota"}));
-            console.log("Hora final (Colombia):", new Date(timeMax).toLocaleString("es-CO", {timeZone: "America/Bogota"}));
-            console.log("timeMin (UTC):", timeMin);
-            console.log("timeMax (UTC):", timeMax);
             
             gapi.client.calendar.events.list({
                 'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',

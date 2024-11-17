@@ -208,11 +208,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para obtener el evento futuro
     function getFutureEvent(date) {
-        const colombiaTimezoneOffset = -5 * 60; // UTC-5 en minutos
+        const timeMin = new Date(`${date}T00:00:00-05:00`).toISOString();
+        const timeMax = new Date(`${date}T23:59:59-05:00`).toISOString();
+    
+        console.log("timeMin:", timeMin);
+        console.log("timeMax:", timeMax);
 
-        // Ajuste de rangos para el 17 de noviembre en GMT-5
-        const timeMin = new Date(new Date('2024-11-17T00:00:00').getTime() + colombiaTimezoneOffset * 60 * 1000).toISOString();
-        const timeMax = new Date(new Date('2024-11-17T23:59:59').getTime() + colombiaTimezoneOffset * 60 * 1000).toISOString();
         
         gapi.client.calendar.events.list({
             'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',

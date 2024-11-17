@@ -252,6 +252,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Redirecciona
             if (events.length > 0) {
                 window.location.href = "eventos.html";
+            } else {
+                window.location.href = "Zzz.html";
             }
 
         }).catch(function (error) {

@@ -6,11 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let isAuthorized = false;
     let gapiInitialized = false;
 
-    const today = new Date();
-    const todayFormatted = today.toISOString().split('T')[0]; 
-
-    document.getElementById('future-date').value = todayFormatted;
-
     // Botones y elementos del DOM
     const authorizeButton = document.getElementById('authorize-button');
     const eventButton = document.getElementById('event-button');

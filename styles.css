@@ -230,6 +230,13 @@ a{
     gap: 10px;
 }
 
+a {
+    text-decoration: none;
+}
+
+a img {
+    display: block;
+}
 
 .titulo-varios{
     text-align: center;

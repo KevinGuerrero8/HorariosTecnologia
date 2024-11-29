@@ -245,15 +245,16 @@ a{
   
 .evento {
     width: 22rem; 
-    height: 33rem;
+    height: 27rem;
     text-align: center; 
     background-color: white;
     border-radius: 25px;
 }
   
 .evento img {
-    width: 80%;
+    width: 65%;
     height: auto;
+    margin-top: 20px;
 }
   
 .evento h1{
@@ -268,7 +269,7 @@ a{
 
 .evento p {
     margin: 10px;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 #regresar-button{

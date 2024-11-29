@@ -11,6 +11,7 @@ body {
     align-items: center;
     flex-direction: column;
     margin: 0; 
+    height: 100vh;
     font-family: "Montserrat", sans-serif;
     background-image: url(/img/fondo.jpeg);
 }

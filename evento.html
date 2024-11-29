@@ -68,8 +68,7 @@
 
         // Obtener el usuario de la URL (query string)
         const urlParams = new URLSearchParams(window.location.search);
-        const userParam = urlParams.get('user') || "default";
-        const user = users[userParam] || users.default;
+        const eventTitle = urlParams.get('title') || "default";
 
         // Actualizar contenido dinámico
         document.getElementById('title').textContent = `Horarios Tecnología - ${user.name}`;

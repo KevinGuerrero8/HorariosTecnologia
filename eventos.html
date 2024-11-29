@@ -112,22 +112,8 @@
 
                 const start = event.start || "Hora no disponible";
                 const end = event.end || "Hora no disponible";
-
-                if (isEventoCurrent(start, end)) {
-                eventDiv.classList.add("evento-actual");
-                console.log(`Evento actual: ${event.title}`);
-
-                // Cambiar la imagen si es un evento de Kevin o Lizeth
-                if (event.title.includes("Kevin")) {
-                    config.imageUrl = "/img/Avatar_Kevin.png"; // Cambiar imagen específica para Kevin
-                } else if (event.title.includes("Lizeth")) {
-                    config.imageUrl = "/img/Avatar_Lizeth.png"; // Cambiar imagen específica para Lizeth
-                } else if (event.title.includes("Benyy")) {
-                    config.imageUrl = "/img/Avatar_Benyy.png"; // Cambiar imagen específica para Lizeth
-                }
-            }
-
-                eventDiv.innerHTML = `
+                
+                    eventDiv.innerHTML = `
                     <h1>${event.title}</h1>
                     <img src="${config.imageUrl}" alt="${event.title}">
                     <p>Desde las ${start} a las ${end}</p>

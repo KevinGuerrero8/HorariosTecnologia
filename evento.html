@@ -29,7 +29,7 @@
                 <p id="phone"></p>
             </div>
         </div>
-        <button id="regresar-button" onclick="window.history.back()">
+        <button id="actualizar-button" onclick="window.history.back()">
             <span class="material-symbols-outlined">reply</span> Regresar
         </button>
     </div>
@@ -71,7 +71,7 @@
             const user = users[eventTitle] || users.default;
 
             // Actualizar contenido dinámico
-            document.getElementById('title').textContent = `Horarios Tecnología - ${user.name}`;
+            document.getElementById('title').innerHTML = `Horarios Tecnología <br> ${user.name}`;
             document.getElementById('avatar').src = user.avatar;
             document.getElementById('avatar').alt = `Avatar ${user.name}`;
             document.getElementById('name').textContent = user.name;

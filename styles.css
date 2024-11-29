@@ -230,12 +230,8 @@ a{
     gap: 10px;
 }
 
-a {
-    text-decoration: none;
-}
-
-a img {
-    display: block;
+#phone-icon {
+    cursor: pointer;
 }
 
 .titulo-varios{

@@ -364,4 +364,18 @@ a{
         font-size: 16px;
     }
 
+    #contenedor3 {
+        flex-direction: column; /* Cambiar a disposición vertical */
+        gap: 15px; /* Ajustar el espacio entre elementos */
+    }
+
+    .evento {
+        width: 100%; /* Ajustar el ancho para ocupar todo el contenedor */
+        height: auto; /* Permitir que la altura se ajuste automáticamente */
+    }
+
+    #regresar-button {
+        width: 80%; /* Ajustar el ancho del botón */
+    }
+
 }

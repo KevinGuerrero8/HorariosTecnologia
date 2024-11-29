@@ -57,6 +57,13 @@
                     phone: "320 4911339",
                     redirect: "https://www.google.com"
                 },
+                "Benyy Remoto": {
+                    name: "Benyy Castillo",
+                    avatar: "/img/Avatar_Benyy.png",
+                    email: "Benyy@domicity.com.co",
+                    phone: "320 4911339",
+                    redirect: "https://www.google.com"
+                },
                 default: {
                     name: "No tenemos atención",
                     avatar: "/img/Avatar_Zzz.png",
@@ -71,7 +78,7 @@
             const user = users[eventTitle] || users.default;
 
             // Actualizar contenido dinámico
-            document.getElementById('title').innerHTML = `Horarios Tecnología <br> ${user.name}`;
+            document.getElementById('title').innerHTML = `Horarios Tecnología`;
             document.getElementById('avatar').src = user.avatar;
             document.getElementById('avatar').alt = `Avatar ${user.name}`;
             document.getElementById('name').textContent = user.name;

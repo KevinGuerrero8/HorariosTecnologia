@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (event) {
                     const eventTitle = event.summary;
                     localStorage.setItem('eventTitle', eventTitle);
+                    window.location.href = "evento.html";
                 }/*
                 if (eventTitle.includes("Kevin")) {
                     window.location.href = "kevin.html";

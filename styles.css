@@ -29,7 +29,7 @@ body {
 h1{
     font-size: 40px;
     text-align: center;
-    color: #595959;
+    color: #343131;
 }
 
 .botones {
@@ -188,6 +188,7 @@ p{
     align-items: center;
     justify-content: center;
     gap: 4px;
+    margin-bottom: 10px;
 }
 
 .info img{
@@ -222,7 +223,7 @@ a{
 }
 
 #future-event-form {
-    margin-top: 20px;
+    margin-top: 45px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -272,10 +273,16 @@ a{
 
 #regresar-button{
     margin: 20px;
+    width: 20%;
+    margin-top: 30px;
 }
   
 .evento-actual h1 {
     background-color: #ae1515;
+}
+
+#pageTitle{
+    margin: 40px;
 }
 
 /* Media Query para pantallas pequeñas (celulares) */

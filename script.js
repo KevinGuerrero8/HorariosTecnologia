@@ -146,8 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Redirige según el título del evento
                 if (event) {
                     const eventTitle = event.summary;
-                    // Redirige siempre a evento.html con el título del evento como parámetro
-                    window.location.href = `evento.html?title=${encodeURIComponent(eventTitle)}`;
+                    localStorage.setItem('eventTitle', eventTitle);
                 }/*
                 if (eventTitle.includes("Kevin")) {
                     window.location.href = "kevin.html";

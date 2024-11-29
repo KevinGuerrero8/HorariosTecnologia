@@ -34,62 +34,62 @@
         </button>
     </div>
     <script>
-        // Configuración de usuarios
-        const users = {
-            Kevin: {
-                name: "Kevin Guerrero",
-                avatar: "/img/Avatar_Kevin.png",
-                email: "Tecnologia2@domicity.com.co",
-                phone: "310 3325067",
-                redirect: "https://www.google.com"
-            },
-            Lizeth: {
-                name: "Lizeth Martinez",
-                avatar: "/img/Avatar_Lizeth.png",
-                email: "Tecnologia@domicity.com.co",
-                phone: "320 7693195",
-                redirect: "https://www.google.com"
-            },
-            Benyy: {
-                name: "Benyy Castillo",
-                avatar: "/img/Avatar_Benyy.png",
-                email: "Benyy@domicity.com.co",
-                phone: "320 4911339",
-                redirect: "https://www.google.com"
-            },
-            default: {
-                name: "No tenemos atencion",
-                avatar: "/img/Avatar_Zzz.png",
-                email: "",
-                phone: "",
-                redirect: "#"
-            }
-        };
+// Configuración de usuarios
+            const users = {
+                Kevin: {
+                    name: "Kevin Guerrero",
+                    avatar: "/img/Avatar_Kevin.png",
+                    email: "Tecnologia2@domicity.com.co",
+                    phone: "310 3325067",
+                    redirect: "https://www.google.com"
+                },
+                Lizeth: {
+                    name: "Lizeth Martinez",
+                    avatar: "/img/Avatar_Lizeth.png",
+                    email: "Tecnologia@domicity.com.co",
+                    phone: "320 7693195",
+                    redirect: "https://www.google.com"
+                },
+                Benyy: {
+                    name: "Benyy Castillo",
+                    avatar: "/img/Avatar_Benyy.png",
+                    email: "Benyy@domicity.com.co",
+                    phone: "320 4911339",
+                    redirect: "https://www.google.com"
+                },
+                default: {
+                    name: "No tenemos atención",
+                    avatar: "/img/Avatar_Zzz.png",
+                    email: "",
+                    phone: "",
+                    redirect: "#"
+                }
+            };
 
-        // Obtener el usuario de la URL (query string)
-        const urlParams = new URLSearchParams(window.location.search);
-        const eventTitle = urlParams.get('title') || "default";
+            // Obtener el título del evento desde localStorage
+            const eventTitle = localStorage.getItem('eventTitle') || "default";
+            const user = users[eventTitle] || users.default;
 
-        // Actualizar contenido dinámico
-        document.getElementById('title').textContent = `Horarios Tecnología - ${user.name}`;
-        document.getElementById('avatar').src = user.avatar;
-        document.getElementById('avatar').alt = `Avatar ${user.name}`;
-        document.getElementById('name').textContent = user.name;
-        document.getElementById('email').textContent = user.email;
-        document.getElementById('phone').textContent = user.phone;
+            // Actualizar contenido dinámico
+            document.getElementById('title').textContent = `Horarios Tecnología - ${user.name}`;
+            document.getElementById('avatar').src = user.avatar;
+            document.getElementById('avatar').alt = `Avatar ${user.name}`;
+            document.getElementById('name').textContent = user.name;
+            document.getElementById('email').textContent = user.email;
+            document.getElementById('phone').textContent = user.phone;
 
-        // Redirigir al hacer clic en el ícono del teléfono
-        document.getElementById('phone-icon').addEventListener('click', function() {
-            window.location.href = user.redirect;
-        });
+            // Redirigir al hacer clic en el ícono del teléfono
+            document.getElementById('phone-icon').addEventListener('click', function() {
+                window.location.href = user.redirect;
+            });
 
-        // Mostrar fecha y hora actual
-        const fechaActual = new Date();
-        const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-        const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
-        const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        document.getElementById('fecha').textContent = fechaFormateada;
-        document.getElementById('hora').textContent = horaFormateada;
+            // Mostrar fecha y hora actual
+            const fechaActual = new Date();
+            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+            const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
+            const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('fecha').textContent = fechaFormateada;
+            document.getElementById('hora').textContent = horaFormateada;
     </script>
 </body>
 </html>

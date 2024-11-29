@@ -26,9 +26,7 @@
                 <h1>Kevin Guerrero</h1>
                 <p>Tecnología2@domicity.com.co</p>
                 <div class="info">
-                    <a href="https://www.google.com" target="_blank">
-                        <img src="img/Icono_Phone.png" alt="Icono phone" class="icono">
-                    </a>
+                    <img src="img/Icono_Phone.png" alt="Icono phone" class="icono" id="phone-icon">
                     <p>310 3325067</p>
                 </div>
             </div>
@@ -43,6 +41,11 @@
             const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             document.getElementById('fecha').textContent = fechaFormateada;
             document.getElementById('hora').textContent = horaFormateada;
+
+            document.getElementById('phone-icon').addEventListener('click', function() {
+                window.location.href = "https://www.google.com";
+            });
+            
         </script>
     </body>
 

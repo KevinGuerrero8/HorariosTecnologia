@@ -238,6 +238,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Guardar los eventos filtrados
                 localStorage.setItem("eventDetails", JSON.stringify(eventDetails));
                 localStorage.setItem("selectedDate", date);
+                console.log(filteredEvents);
+                
         
                 // Redireccionar basado en los eventos filtrados
                 if (filteredEvents.length > 0) {

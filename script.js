@@ -246,6 +246,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = "eventos.html";
                 } else {
                     window.location.href = "Zzz.html";
+                    console.log(event);
+                    
                 }
             }).catch(function (error) {
                 console.error("Error al obtener los eventos:", error);

@@ -10,8 +10,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh; 
     margin: 0; 
+    height: 100vh;
     font-family: "Montserrat", sans-serif;
     background-image: url(/img/fondo.jpeg);
 }
@@ -170,6 +170,7 @@ p{
     background-color: white;
     border-radius: 35px;
     padding: 10px;
+    margin-bottom: 10px;
 }
 
 .seccion2 img {
@@ -267,6 +268,7 @@ a{
     border-top-left-radius: 25px; 
     border-top-right-radius: 25px; 
     padding: 10px;
+    font-size: 35px;
 }
 
 

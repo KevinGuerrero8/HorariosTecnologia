@@ -248,23 +248,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Redireccionar basado en los eventos filtrados
                 if (filteredEvents.length > 0) {
                     window.location.href = "eventos.html";
-                } else if (currentHour >= 7 && currentHour < 22) { // Si la hora está entre las 7:00 AM y las 10:00 PM
-                    window.location.href = "kevin.html";
                 } else {
                     window.location.href = "Zzz.html";
                     console.log(event);
                 }
-
-        
-                // // Redireccionar basado en los eventos filtrados
-                // if (filteredEvents.length > 0) {
-                //     window.location.href = "eventos.html";
-                // } else if (eventDetails.eventTitle.includes("Kevin")) {
-                //     window.location.href = "kevin.html";
-                // } else {
-                //     window.location.href = "Zzz.html";
-                //     console.log(event);  
-                // }
             }).catch(function (error) {
                 console.error("Error al obtener los eventos:", error);
             });

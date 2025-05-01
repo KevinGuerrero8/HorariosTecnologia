@@ -184,6 +184,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 'orderBy': 'startTime'
             }).then(function (response) {
                 const events = response.result.items;
+
+                console.log("Eventos crudos:", events.map(e => ({
+                    summary: e.summary,
+                    start: e.start,
+                    end: e.end
+                })));
+                
                 
                 // Depurar cada evento encontrado
                 events.forEach(event => {
@@ -241,16 +248,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem("filteredEvents", filteredEvents);
                 
         
-                // Redireccionar basado en los eventos filtrados
-                if (filteredEvents.length > 0) {
-                    window.location.href = "eventos.html";
-                } else if (eventDetails.eventTitle.includes("Kevin")) {
-                    window.location.href = "kevin.html";
-                } else {
-                    window.location.href = "Zzz.html";
-                    console.log(event);
-                    
-                }
+                // // Redireccionar basado en los eventos filtrados
+                // if (filteredEvents.length > 0) {
+                //     window.location.href = "eventos.html";
+                // } else if (eventDetails.eventTitle.includes("Kevin")) {
+                //     window.location.href = "kevin.html";
+                // } else {
+                //     window.location.href = "Zzz.html";
+                //     console.log(event);  
+                // }
             }).catch(function (error) {
                 console.error("Error al obtener los eventos:", error);
             });

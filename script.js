@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let calendarId = ''; 
 
-
     const today = new Date();
     const formattedDate = today.toLocaleDateString('en-CA'); // El formato 'en-CA' da el formato YYYY-MM-DD
     document.getElementById('future-date').value = formattedDate;
@@ -87,6 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // No mostrar botones de evento hasta que se seleccione un departamento
         eventButton.style.display = 'none';
         futureEventForm.style.display = 'none';
+
+        // Inicializa el cliente de la API de Google Calendar
+        initClient();
     }
 
     // Inicializar el cliente de Google Calendar

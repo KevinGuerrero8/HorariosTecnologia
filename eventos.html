@@ -63,42 +63,42 @@
             },
             "Jonathan Presencial": {
                 name: "Jonathan - Presencial",
-                avatar: "/img/Avatar_Jonathan.png",
+                avatar: "/img/Avatar_Kevin.png",
                 email: "lidercampana3@domicity.com.co",
                 phone: "321 2366880",
                 redirect: "https://wa.me/+573212366880"
             },
             "Jonathan Remoto": {
                 name: "Jonathan - Remoto",
-                avatar: "/img/Avatar_Jonathan.png",
+                avatar: "/img/Avatar_Kevin.png",
                 email: "lidercampana3@domicity.com.co",
                 phone: "321 2366880",
                 redirect: "https://wa.me/+573212366880"
             },
             "Juan Presencial": {
                 name: "Juan - Presencial",
-                avatar: "/img/Avatar_Juan.png",
+                avatar: "/img/Avatar_Kevin.png",
                 email: "lidercampana2@domicity.com.co",
                 phone: "321 2366880",
                 redirect: "https://wa.me/+573212366880"
             },
             "Juan Remoto": {
                 name: "Juan - Remoto",
-                avatar: "/img/Avatar_Juan.png",
+                avatar: "/img/Avatar_Kevin.png",
                 email: "lidercampana2@domicity.com.co",
                 phone: "321 2366880",
                 redirect: "https://wa.me/+573212366880"
             },
             "Deiver Presencial": {
                 name: "Deiver - Presencial",
-                avatar: "/img/Avatar_Deiver.png",
+                avatar: "/img/Avatar_Kevin.png",
                 email: "lidercampana@domicity.com.co",
                 phone: "321 2366880",
                 redirect: "https://wa.me/+573212366880"
             },
             "Deiver Remoto": {
                 name: "Deiver - Remoto",
-                avatar: "/img/Avatar_Deiver.png",
+                avatar: "/img/Avatar_Kevin.png",
                 email: "lidercampana@domicity.com.co",
                 phone: "321 2366880",
                 redirect: "https://wa.me/+573212366880"
@@ -176,6 +176,9 @@
             eventDetails.forEach(event => {
                 const eventDiv = document.createElement("div");
                 eventDiv.classList.add("evento");
+
+                console.log(selectedDate, eventDetails);
+                
 
                 const config = Object.entries(eventConfig).find(([key]) => event.title.includes(key))?.[1] || eventConfig.default;
 

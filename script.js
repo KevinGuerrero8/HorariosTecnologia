@@ -188,6 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
         const timeMin = startDate.toISOString();
         const timeMax = new Date(endDate).toISOString();
+        console.log(calendarId);
+        
             
            gapi.client.calendar.events.list({
                 'calendarId': calendarId,

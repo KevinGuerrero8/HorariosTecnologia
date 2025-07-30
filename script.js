@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmFutureEventButton = document.getElementById('confirm-future-event');
     const Oauthorizebutton = document.getElementById('authorize-button');
     const departmentSelector = document.getElementById('department-selector');
+    const eventTecnologia = document.getElementById('departament-tecnologia');
+    const eventCallCenter = document.getElementById('departament-callcenter');
 
 
     
@@ -48,31 +50,15 @@ document.addEventListener('DOMContentLoaded', function() {
         tokenClient.requestAccessToken();
     });
 
-    // Manejo del resultado de la autenticación
-    function handleAuthResult(response) {
-        console.log("Resultado de la autenticación recibido.");
-        if (response.error) {
-            console.error('Error en la autenticación:', response);
-            return;
-        }
-        console.log("Autenticación exitosa.");
-        isAuthorized = true;
-    
-        // Mostrar y habilitar los botones de consultar evento
+    // Mostrar botones de consulta solo cuando se selecciona el departamento
+    function mostrarBotonesConsulta() {
         eventButton.style.display = 'inline';
-        departmentSelector.style.display = 'block'; 
-
-        //eventFutureButton.style.display = 'inline'; // Muestra el botón de consultar evento futuro
+        eventButton.disabled = false;
         futureEventForm.style.display = 'flex';
-        Oauthorizebutton.style.display = 'none';
-        eventButton.disabled = false; // Habilita el botón de consultar evento actual
-        //eventFutureButton.disabled = false; // Habilita el botón de consultar evento futuro
-        console.log("Botones de consultar evento habilitados.");
-        
-        // Inicializa el cliente de la API de Google Calendar
-        initClient();
+        departmentSelector.style.display = 'none'; // Oculta los botones de departamento
     }
 
+    // Escuchar selección del departamento
     eventTecnologia.addEventListener('click', () => {
         calendarId = 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com';
         mostrarBotonesConsulta();
@@ -83,12 +69,24 @@ document.addEventListener('DOMContentLoaded', function() {
         mostrarBotonesConsulta();
     });
 
+    // Manejo de respuesta de autenticación
+    function handleAuthResult(response) {
+        if (response.error) {
+            console.log('Error en la autorización', response.error);
+            return;
+        }
 
-    function mostrarBotonesConsulta() {
-        eventButton.style.display = 'inline';
-        eventButton.disabled = false;
-        futureEventForm.style.display = 'flex';
-        departmentSelector.style.display = 'none'; // Oculta los botones de selección
+        isAuthorized = true;
+
+        // Oculta botón de inicio de sesión
+        Oauthorizebutton.style.display = 'none';
+
+        // Muestra el selector de departamento
+        departmentSelector.style.display = 'block';
+
+        // No mostrar botones de evento hasta que se seleccione un departamento
+        eventButton.style.display = 'none';
+        futureEventForm.style.display = 'none';
     }
 
     // Inicializar el cliente de Google Calendar

@@ -159,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
         gapi.client.calendar.events.list({
             'calendarId': calendarId,
-            //'calendarId': 'c_5de49617d4b9df985084426fde2b7622b8e7daf4a1e0c6e9e0db3179b9f46ea4@group.calendar.google.com',
             'timeMin': timeMin.toISOString(),
             'timeMax': timeMax.toISOString(),
             'maxResults': 1,
@@ -177,17 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const eventTitle = event.summary;
                     localStorage.setItem('eventTitle', eventTitle);
                     window.location.href = "evento.html";
-                }/*
-                if (eventTitle.includes("Kevin")) {
-                    window.location.href = "kevin.html";
-                } else if (eventTitle.includes("Lizeth")) {
-                    window.location.href = "lizeth.html";
-                } else if (eventTitle.includes("Benyy")) {
-                    window.location.href = "benyy.html";
                 } else {
-                    window.location.href = "Zzz.html";
-                }
-            } */else {
                 window.location.href = "Zzz.html";
                 console.log("No hay eventos disponibles en este momento.");
             }

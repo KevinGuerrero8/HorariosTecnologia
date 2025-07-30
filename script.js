@@ -49,25 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
         tokenClient.requestAccessToken();
     });
 
-    // Mostrar botones de consulta solo cuando se selecciona el departamento
-    function mostrarBotonesConsulta() {
-        eventButton.style.display = 'inline';
-        eventButton.disabled = false;
-        futureEventForm.style.display = 'flex';
-        departmentSelector.style.display = 'none'; // Oculta los botones de departamento
-    }
-
-    // Escuchar selección del departamento
-    eventTecnologia.addEventListener('click', () => {
-        calendarId = 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com';
-        mostrarBotonesConsulta();
-    });
-
-    eventCallCenter.addEventListener('click', () => {
-        calendarId = 'c_a2f10afd1ec87fd3e5c489e3a8a18c548a151b14727e80e18a7ad04d086a6b7b@group.calendar.google.com';
-        mostrarBotonesConsulta();
-    });
-
     // Manejo de respuesta de autenticación
     function handleAuthResult(response) {
         if (response.error) {
@@ -107,6 +88,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+
+    // Mostrar botones de consulta solo cuando se selecciona el departamento
+    function mostrarBotonesConsulta() {
+        eventButton.style.display = 'inline';
+        eventButton.disabled = false;
+        futureEventForm.style.display = 'flex';
+        departmentSelector.style.display = 'none'; // Oculta los botones de departamento
+    }
+
+    // Escuchar selección del departamento
+    eventTecnologia.addEventListener('click', () => {
+        calendarId = 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com';
+        mostrarBotonesConsulta();
+    });
+
+    eventCallCenter.addEventListener('click', () => {
+        calendarId = 'c_a2f10afd1ec87fd3e5c489e3a8a18c548a151b14727e80e18a7ad04d086a6b7b@group.calendar.google.com';
+        mostrarBotonesConsulta();
+    });
+
 
     // Evento para consultar el evento actual
     eventButton.addEventListener('click', () => {

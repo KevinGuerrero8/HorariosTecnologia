@@ -1,6 +1,9 @@
 // Esperar hasta que el DOM esté cargado antes de ejecutar el código
 document.addEventListener('DOMContentLoaded', function() {
 
+    let calendarId = ''; 
+
+
     const today = new Date();
     const formattedDate = today.toLocaleDateString('en-CA'); // El formato 'en-CA' da el formato YYYY-MM-DD
     document.getElementById('future-date').value = formattedDate;
@@ -22,6 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const futureTimeInput = document.getElementById('future-time');
     const confirmFutureEventButton = document.getElementById('confirm-future-event');
     const Oauthorizebutton = document.getElementById('authorize-button');
+    const departmentSelector = document.getElementById('department-selector');
+
+
+    
 
     eventButton.style.display = 'none'; // Oculta el botón de consultar evento actual
     //eventFutureButton.style.display = 'none'; // Oculta el botón de consultar evento futuro
@@ -52,7 +59,28 @@ document.addEventListener('DOMContentLoaded', function() {
         isAuthorized = true;
     
         // Mostrar y habilitar los botones de consultar evento
-        eventButton.style.display = 'inline'; // Muestra el botón de consultar evento actual
+        eventButton.style.display = 'inline';
+        departmentSelector.style.display = 'block'; 
+
+        eventTecnologia.addEventListener('click', () => {
+            calendarId = 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com';
+            mostrarBotonesConsulta();
+        });
+
+        eventCallCenter.addEventListener('click', () => {
+            calendarId = 'c_5de49617d4b9df985084426fde2b7622b8e7daf4a1e0c6e9e0db3179b9f46ea4@group.calendar.google.com';
+            mostrarBotonesConsulta();
+        });
+
+
+        function mostrarBotonesConsulta() {
+            eventButton.style.display = 'inline';
+            eventButton.disabled = false;
+            futureEventForm.style.display = 'flex';
+            departmentSelector.style.display = 'none'; // Oculta los botones de selección
+        }
+        
+
         //eventFutureButton.style.display = 'inline'; // Muestra el botón de consultar evento futuro
         futureEventForm.style.display = 'flex';
         Oauthorizebutton.style.display = 'none';
@@ -129,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     
         gapi.client.calendar.events.list({
-            'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+            'calendarId': calendarId,
             //'calendarId': 'c_5de49617d4b9df985084426fde2b7622b8e7daf4a1e0c6e9e0db3179b9f46ea4@group.calendar.google.com',
             'timeMin': timeMin.toISOString(),
             'timeMax': timeMax.toISOString(),
@@ -177,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const timeMax = new Date(endDate).toISOString();
             
            gapi.client.calendar.events.list({
-                'calendarId': 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com',
+                'calendarId': calendarId,
                 'timeMin': timeMin,
                 'timeMax': timeMax,
                 'singleEvents': true,

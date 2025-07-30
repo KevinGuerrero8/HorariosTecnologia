@@ -62,25 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         eventButton.style.display = 'inline';
         departmentSelector.style.display = 'block'; 
 
-        eventTecnologia.addEventListener('click', () => {
-            calendarId = 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com';
-            mostrarBotonesConsulta();
-        });
-
-        eventCallCenter.addEventListener('click', () => {
-            calendarId = 'c_5de49617d4b9df985084426fde2b7622b8e7daf4a1e0c6e9e0db3179b9f46ea4@group.calendar.google.com';
-            mostrarBotonesConsulta();
-        });
-
-
-        function mostrarBotonesConsulta() {
-            eventButton.style.display = 'inline';
-            eventButton.disabled = false;
-            futureEventForm.style.display = 'flex';
-            departmentSelector.style.display = 'none'; // Oculta los botones de selección
-        }
-        
-
         //eventFutureButton.style.display = 'inline'; // Muestra el botón de consultar evento futuro
         futureEventForm.style.display = 'flex';
         Oauthorizebutton.style.display = 'none';
@@ -90,6 +71,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Inicializa el cliente de la API de Google Calendar
         initClient();
+    }
+
+    eventTecnologia.addEventListener('click', () => {
+        calendarId = 'c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com';
+        mostrarBotonesConsulta();
+    });
+
+    eventCallCenter.addEventListener('click', () => {
+        calendarId = 'c_a2f10afd1ec87fd3e5c489e3a8a18c548a151b14727e80e18a7ad04d086a6b7b@group.calendar.google.com';
+        mostrarBotonesConsulta();
+    });
+
+
+    function mostrarBotonesConsulta() {
+        eventButton.style.display = 'inline';
+        eventButton.disabled = false;
+        futureEventForm.style.display = 'flex';
+        departmentSelector.style.display = 'none'; // Oculta los botones de selección
     }
 
     // Inicializar el cliente de Google Calendar

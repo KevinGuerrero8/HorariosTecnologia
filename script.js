@@ -122,11 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Evento para consultar evento futuro
-    // eventFutureButton.addEventListener('click', () => {
-    //     console.log("Botón de consultar evento futuro presionado.");
-    //     futureEventForm.style.display = 'flex';
-    // });
 
     confirmFutureEventButton.addEventListener('click', () => {
         const selectedDate = futureDateInput.value;

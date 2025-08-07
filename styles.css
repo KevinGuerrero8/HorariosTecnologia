@@ -431,4 +431,47 @@ a{
         width: 80%;
     }
 
+        /* Tablets y pantallas medianas */
+    @media (max-width: 992px) {
+        #department-selector > div:not(:first-child) {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .teamTecnologia, .teamCallCenter {
+            width: 200px;
+        }
+
+        .teamTecnologia img, .teamCallCenter img {
+            max-width: 70%;
+        }
+    }
+
+    /* Celulares */
+    @media (max-width: 600px) {
+        #department-selector > div:not(:first-child) {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .teamTecnologia, .teamCallCenter {
+            width: 90%;
+            max-width: 300px;
+            padding: 15px;
+        }
+
+        .teamTecnologia img, .teamCallCenter img {
+            max-width: 60%;
+        }
+
+        .teamTecnologia button, .teamCallCenter button {
+            width: 100%;
+            font-size: 14px;
+            padding: 10px;
+        }
+    }
+
+
 }

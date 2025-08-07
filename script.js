@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         Oauthorizebutton.style.display = 'none';
 
         // Muestra el selector de departamento
-        departmentSelector.style.display = 'block';
+        departmentSelector.style.display = 'flex';
 
         // No mostrar botones de evento hasta que se seleccione un departamento
         eventButton.style.display = 'none';

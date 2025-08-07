@@ -294,16 +294,10 @@ a{
 
 #department-selector {
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 20px;
 }
 
-
-#department-selector > div:not(:first-child) {
-    display: flex;
-    gap: 30px;
-}
 
 
 .teamTecnologia, .teamCallCenter {
@@ -335,6 +329,8 @@ a{
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    position: absolute;
+    bottom: 195px;
 }
 
 

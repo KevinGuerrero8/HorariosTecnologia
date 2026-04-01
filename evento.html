@@ -5,253 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horarios Domicity</title>
     <link rel="icon" href="/assets/img/logo_domicity.png" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
-    <div class="bg-orbs">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
+    <div class="sidebar-strip"></div>
 
-    <main class="main-container">
+    <div class="main-container">
 
-        <header class="site-header site-header--small">
-            <div class="logo-wrap">
-                <img src="/assets/img/logo_domicity.png" alt="Domicity" class="logo logo--small">
-            </div>
-            <div class="header-text">
-                <h1 class="site-title site-title--small">Horarios <em>Domicity</em></h1>
-                <p class="live-badge"><span class="live-dot"></span> En vivo</p>
-            </div>
-        </header>
+        <div class="logo-lockup">
+            <img src="/assets/img/logo_domicity.png" alt="Domicity" class="logo logo--sm">
+            <span class="logo-label">Domicity · Horarios</span>
+        </div>
 
         <div class="datetime-bar">
             <span id="fecha"></span>
-            <span class="sep">·</span>
+            <span class="sep">|</span>
             <span id="hora"></span>
+            <span class="sep">|</span>
+            <span class="live-pill"><span class="live-dot"></span>En vivo</span>
         </div>
 
         <div class="card profile-card" id="profile-card">
             <!-- filled by JS -->
         </div>
 
-        <button class="btn btn-ghost back-btn" onclick="window.history.back()">
-            ← Regresar
-        </button>
+        <button class="btn btn-ghost back-btn" onclick="window.history.back()">← Regresar</button>
 
-    </main>
+    </div>
 
     <script>
         const users = {
-            // TECNOLOGÍA
-            "Kevin Presencial": {
-                name: "Kevin Guerrero",
-                mode: "Presencial",
-                avatar: "/assets/img/Avatar_Kevin.png",
-                email: "Tecnologia2@domicity.com.co",
-                phone: "310 3325067",
-                redirect: "https://wa.me/+573103325067",
-                dept: "Tecnología",
-                status: "ocupado"
-            },
-            "Kevin Remoto": {
-                name: "Kevin Guerrero",
-                mode: "Remoto",
-                avatar: "/assets/img/Avatar_Kevin.png",
-                email: "Tecnologia2@domicity.com.co",
-                phone: "310 3325067",
-                redirect: "https://wa.me/+573103325067",
-                dept: "Tecnología",
-                status: "ocupado"
-            },
-            "Kevin Disponible": {
-                name: "Kevin Guerrero",
-                mode: "Disponible",
-                avatar: "/assets/img/Avatar_Kevin.png",
-                email: "Tecnologia2@domicity.com.co",
-                phone: "310 3325067",
-                redirect: "https://wa.me/+573103325067",
-                dept: "Tecnología",
-                status: "disponible"
-            },
-            "Benyy Presencial": {
-                name: "Benyy Castillo",
-                mode: "Presencial",
-                avatar: "/assets/img/Avatar_Benyy.png",
-                email: "Benyy@domicity.com.co",
-                phone: "320 4911339",
-                redirect: "https://wa.me/+573204911339",
-                dept: "Tecnología",
-                status: "ocupado"
-            },
-            "Benyy Remoto": {
-                name: "Benyy Castillo",
-                mode: "Remoto",
-                avatar: "/assets/img/Avatar_Benyy.png",
-                email: "Benyy@domicity.com.co",
-                phone: "320 4911339",
-                redirect: "https://wa.me/+573204911339",
-                dept: "Tecnología",
-                status: "ocupado"
-            },
-            "Benyy Disponible": {
-                name: "Benyy Castillo",
-                mode: "Disponible",
-                avatar: "/assets/img/Avatar_Benyy.png",
-                email: "Benyy@domicity.com.co",
-                phone: "320 4911339",
-                redirect: "https://wa.me/+573204911339",
-                dept: "Tecnología",
-                status: "disponible"
-            },
-            "Jhonatan Presencial": {
-                name: "Jhonatan",
-                mode: "Presencial",
-                avatar: "/assets/img/Avatar_Jhonatan.png",
-                email: "lidercampana3@domicity.com.co",
-                phone: "321 2366880",
-                redirect: "https://wa.me/+573212366880",
-                dept: "Tecnología",
-                status: "ocupado"
-            },
-            "Jhonatan Remoto": {
-                name: "Jhonatan",
-                mode: "Remoto",
-                avatar: "/assets/img/Avatar_Jhonatan.png",
-                email: "lidercampana3@domicity.com.co",
-                phone: "321 2366880",
-                redirect: "https://wa.me/+573212366880",
-                dept: "Tecnología",
-                status: "ocupado"
-            },
-            "Juan Presencial": {
-                name: "Juan",
-                mode: "Presencial",
-                avatar: "/assets/img/Avatar_Juan.png",
-                email: "lidercampana2@domicity.com.co",
-                phone: "321 2366880",
-                redirect: "https://wa.me/+573212366880",
-                dept: "Tecnología",
-                status: "ocupado"
-            },
-            "Juan Remoto": {
-                name: "Juan",
-                mode: "Remoto",
-                avatar: "/assets/img/Avatar_Juan.png",
-                email: "lidercampana2@domicity.com.co",
-                phone: "321 2366880",
-                redirect: "https://wa.me/+573212366880",
-                dept: "Tecnología",
-                status: "ocupado"
-            },
-            "Deiver Presencial": {
-                name: "Deiver",
-                mode: "Presencial",
-                avatar: "/assets/img/Avatar_Deiver.png",
-                email: "lidercampana@domicity.com.co",
-                phone: "321 2366880",
-                redirect: "https://wa.me/+573212366880",
-                dept: "Tecnología",
-                status: "ocupado"
-            },
-            "Deiver Remoto": {
-                name: "Deiver",
-                mode: "Remoto",
-                avatar: "/assets/img/Avatar_Deiver.png",
-                email: "lidercampana@domicity.com.co",
-                phone: "321 2366880",
-                redirect: "https://wa.me/+573212366880",
-                dept: "Tecnología",
-                status: "ocupado"
-            },
-            // CALL CENTER
-            "Lizeth Presencial": {
-                name: "Lizeth Martínez",
-                mode: "Presencial",
-                avatar: "/assets/img/Avatar_Lizeth.png",
-                email: "Tecnologia@domicity.com.co",
-                phone: "320 7693195",
-                redirect: "https://wa.me/+573207693195",
-                dept: "Call Center",
-                status: "ocupado"
-            },
-            "Lizeth Remoto": {
-                name: "Lizeth Martínez",
-                mode: "Remoto",
-                avatar: "/assets/img/Avatar_Lizeth.png",
-                email: "Tecnologia@domicity.com.co",
-                phone: "320 7693195",
-                redirect: "https://wa.me/+573207693195",
-                dept: "Call Center",
-                status: "ocupado"
-            },
-            default: {
-                name: "Sin atención",
-                mode: "",
-                avatar: "/assets/img/Avatar_Zzz.png",
-                email: "",
-                phone: "",
-                redirect: "#",
-                dept: "",
-                status: "sin-atencion"
-            }
+            "Kevin Presencial":  { name:"Kevin Guerrero",  mode:"Presencial", avatar:"/assets/img/Avatar_Kevin.png",   email:"Tecnologia2@domicity.com.co", phone:"310 3325067", redirect:"https://wa.me/+573103325067", dept:"Tecnología", status:"ocupado" },
+            "Kevin Remoto":      { name:"Kevin Guerrero",  mode:"Remoto",     avatar:"/assets/img/Avatar_Kevin.png",   email:"Tecnologia2@domicity.com.co", phone:"310 3325067", redirect:"https://wa.me/+573103325067", dept:"Tecnología", status:"ocupado" },
+            "Kevin Disponible":  { name:"Kevin Guerrero",  mode:"Disponible", avatar:"/assets/img/Avatar_Kevin.png",   email:"Tecnologia2@domicity.com.co", phone:"310 3325067", redirect:"https://wa.me/+573103325067", dept:"Tecnología", status:"disponible" },
+            "Benyy Presencial":  { name:"Benyy Castillo",  mode:"Presencial", avatar:"/assets/img/Avatar_Benyy.png",   email:"Benyy@domicity.com.co",       phone:"320 4911339", redirect:"https://wa.me/+573204911339", dept:"Tecnología", status:"ocupado" },
+            "Benyy Remoto":      { name:"Benyy Castillo",  mode:"Remoto",     avatar:"/assets/img/Avatar_Benyy.png",   email:"Benyy@domicity.com.co",       phone:"320 4911339", redirect:"https://wa.me/+573204911339", dept:"Tecnología", status:"ocupado" },
+            "Benyy Disponible":  { name:"Benyy Castillo",  mode:"Disponible", avatar:"/assets/img/Avatar_Benyy.png",   email:"Benyy@domicity.com.co",       phone:"320 4911339", redirect:"https://wa.me/+573204911339", dept:"Tecnología", status:"disponible" },
+            "Jhonatan Presencial":{ name:"Jhonatan",       mode:"Presencial", avatar:"/assets/img/Avatar_Jhonatan.png",email:"lidercampana3@domicity.com.co",phone:"321 2366880", redirect:"https://wa.me/+573212366880", dept:"Tecnología", status:"ocupado" },
+            "Jhonatan Remoto":   { name:"Jhonatan",        mode:"Remoto",     avatar:"/assets/img/Avatar_Jhonatan.png",email:"lidercampana3@domicity.com.co",phone:"321 2366880", redirect:"https://wa.me/+573212366880", dept:"Tecnología", status:"ocupado" },
+            "Juan Presencial":   { name:"Juan",            mode:"Presencial", avatar:"/assets/img/Avatar_Juan.png",    email:"lidercampana2@domicity.com.co",phone:"321 2366880", redirect:"https://wa.me/+573212366880", dept:"Tecnología", status:"ocupado" },
+            "Juan Remoto":       { name:"Juan",            mode:"Remoto",     avatar:"/assets/img/Avatar_Juan.png",    email:"lidercampana2@domicity.com.co",phone:"321 2366880", redirect:"https://wa.me/+573212366880", dept:"Tecnología", status:"ocupado" },
+            "Deiver Presencial": { name:"Deiver",          mode:"Presencial", avatar:"/assets/img/Avatar_Deiver.png",  email:"lidercampana@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", dept:"Tecnología", status:"ocupado" },
+            "Deiver Remoto":     { name:"Deiver",          mode:"Remoto",     avatar:"/assets/img/Avatar_Deiver.png",  email:"lidercampana@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", dept:"Tecnología", status:"ocupado" },
+            "Lizeth Presencial": { name:"Lizeth Martínez", mode:"Presencial", avatar:"/assets/img/Avatar_Lizeth.png",  email:"Tecnologia@domicity.com.co",  phone:"320 7693195", redirect:"https://wa.me/+573207693195", dept:"Call Center", status:"ocupado" },
+            "Lizeth Remoto":     { name:"Lizeth Martínez", mode:"Remoto",     avatar:"/assets/img/Avatar_Lizeth.png",  email:"Tecnologia@domicity.com.co",  phone:"320 7693195", redirect:"https://wa.me/+573207693195", dept:"Call Center", status:"ocupado" },
+            default: { name:"Sin atención", mode:"", avatar:"/assets/img/Avatar_Zzz.png", email:"", phone:"", redirect:"#", dept:"", status:"sin-atencion" }
         };
 
         const eventTitle = localStorage.getItem('eventTitle') || "default";
         const user = users[eventTitle] || users.default;
+        const isAvail = user.status === "disponible";
+        const isOff   = user.status === "sin-atencion";
 
-        const isAvailable = user.status === "disponible";
-        const isNoService = user.status === "sin-atencion";
-
-        const statusLabel = isAvailable ? "Disponible" : isNoService ? "Sin atención" : "En turno";
-        const statusClass = isAvailable ? "badge--available" : isNoService ? "badge--offline" : "badge--active";
-        const modeTag = user.mode ? `<span class="mode-tag">${user.mode}</span>` : "";
-        const contactHTML = user.phone ? `
-            <div class="contact-row" id="phone-row">
-                <img src="assets/img/Icono_Wa.webp" alt="WhatsApp" class="wa-icon">
-                <span>${user.phone}</span>
-            </div>
-        ` : "";
-        const emailHTML = user.email ? `<p class="profile-email">${user.email}</p>` : "";
-        const deptHTML = user.dept ? `<p class="profile-dept">${user.dept}</p>` : "";
+        const statusLabel = isAvail ? "Disponible" : isOff ? "Sin atención" : "En turno";
+        const statusClass = isAvail ? "badge--available" : isOff ? "badge--offline" : "badge--active";
 
         document.getElementById('profile-card').innerHTML = `
             <div class="profile-avatar-wrap">
                 <img src="${user.avatar}" alt="${user.name}" class="profile-avatar">
-                <span class="status-badge ${statusClass}">${statusLabel}</span>
+                <span class="status-badge ${statusClass}" style="margin-top:10px;display:inline-flex;">${statusLabel}</span>
             </div>
             <div class="profile-info">
                 <div class="profile-name-row">
                     <h2 class="profile-name">${user.name}</h2>
-                    ${modeTag}
+                    ${user.mode ? `<span class="mode-tag">${user.mode}</span>` : ""}
                 </div>
-                ${deptHTML}
-                ${emailHTML}
-                ${contactHTML}
+                ${user.dept ? `<p class="profile-dept">${user.dept}</p>` : ""}
+                ${user.email ? `<p class="profile-email">${user.email}</p>` : ""}
+                ${user.phone ? `<div class="contact-row" id="phone-row">
+                    <img src="assets/img/Icono_Wa.webp" alt="WhatsApp" class="wa-icon">
+                    <span>${user.phone}</span>
+                </div>` : ""}
             </div>
         `;
 
         if (user.phone) {
-            document.getElementById('phone-row').addEventListener('click', () => {
-                window.location.href = user.redirect;
-            });
-            document.getElementById('phone-row').style.cursor = 'pointer';
+            document.getElementById('phone-row').addEventListener('click', () => window.location.href = user.redirect);
         }
 
         const fechaActual = new Date();
-        const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('fecha').textContent = fechaActual.toLocaleDateString('es-ES', opciones);
-
-        function updateHora() {
-            document.getElementById('hora').textContent = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        }
-        updateHora();
-        setInterval(updateHora, 1000);
+        document.getElementById('fecha').textContent = fechaActual.toLocaleDateString('es-ES', { year:'numeric', month:'long', day:'numeric' });
+        function tick() { document.getElementById('hora').textContent = new Date().toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit', second:'2-digit' }); }
+        tick(); setInterval(tick, 1000);
     </script>
 </body>
 </html>

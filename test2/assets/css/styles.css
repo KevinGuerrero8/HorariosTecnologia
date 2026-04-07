@@ -262,7 +262,7 @@ body {
     box-shadow: var(--sh-md);
 }
 
-.dept-img { width: 64px; height: auto; border-radius: var(--r-sm); }
+.dept-img { width: 150px; height: auto; border-radius: var(--r-sm); }
 
 .dept-btn small {
     font-size: .78rem;

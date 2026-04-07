@@ -108,6 +108,12 @@ body {
     gap: var(--s3);
 }
 
+.logo-lockup-eventos {
+    display: flex;
+    align-items: center;
+    gap: var(--s3);
+}
+
 .logo      { width: 46px; height: auto; }
 .logo--sm  { width: 34px; }
 
@@ -130,9 +136,8 @@ body {
 }
 
 .page-title em {
-    font-style: italic;
-    font-weight: 300;
-    color: var(--red);
+    font-style: var(--font-display);
+    color: var(--ink);
 }
 
 .page-subtitle {
@@ -156,7 +161,18 @@ body {
     font-weight: 400;
 }
 
+.datetime-bar-eventos {
+    display: flex;
+    align-items: center;
+
+    gap: var(--s3);
+    font-size: .84rem;
+    color: var(--ink-3);
+    font-weight: 400;
+}
+
 .datetime-bar .sep { color: var(--paper-3); }
+.datetime-bar-eventos .sep { color: var(--paper-3); }
 
 .live-pill {
     display: inline-flex;
@@ -494,7 +510,7 @@ body {
 .event-card-img {
     position: relative;
     height: 220px;
-    background: linear-gradient(135deg, var(--red-soft) 0%, var(--yellow-soft) 100%);
+    background: var(--redD);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -656,6 +672,7 @@ button, .btn {
 .btn-ghost:hover { background: var(--paper-2); color: var(--ink); }
 
 .back-btn { font-size: .87rem; }
+.back-btn-eventos { align-self: flex-start; font-size: .87rem; }
 
 /* ─── INPUTS ──────────────────────────────────────────────── */
 input[type="date"] {

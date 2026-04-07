@@ -89,8 +89,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--s8);
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
     padding: 52px 28px 40px calc(5px + 28px);
     animation: fadeUp .5s ease both;
 }

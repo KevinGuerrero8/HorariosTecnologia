@@ -656,9 +656,9 @@ button, .btn {
     box-shadow: 0 6px 20px rgba(255,193,7,.4);
 }
 
-.btn-danger { background: var(--amber); color: #fff; }
+.btn-danger { background: var(--yellow); color: #fff; }
 .btn-danger:hover {
-    background: var(--amber-soft);
+    background: var(--yellow-dark);
     transform: translateY(-1px);
     box-shadow: 0 6px 20px rgba(30,58,95,.3);
 }

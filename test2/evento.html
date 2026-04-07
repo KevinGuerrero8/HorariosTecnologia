@@ -75,7 +75,9 @@
         } else if (isOff) {
             statusLabel = "Sin atención";
         } else {
-            statusLabel = user.mode ? `${user.mode}` : "En turno";
+            statusLabel = user.mode 
+                ? `En turno · ${user.mode}` 
+                : "En turno";
         }
 
 

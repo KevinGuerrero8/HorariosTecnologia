@@ -66,7 +66,19 @@
         const isAvail = user.status === "disponible";
         const isOff   = user.status === "sin-atencion";
 
-        const statusLabel = isAvail ? "Disponible" : isOff ? "Sin atención" : "En turno";
+        // const statusLabel = isAvail ? "Disponible" : isOff ? "Sin atención" : "En turno";
+
+        let statusLabel = "";
+
+        if (isAvail) {
+            statusLabel = "Disponible";
+        } else if (isOff) {
+            statusLabel = "Sin atención";
+        } else {
+            statusLabel = user.mode ? `${user.mode}` : "En turno";
+        }
+
+
         const statusClass = isAvail ? "badge--available" : isOff ? "badge--offline" : "badge--active";
 
         document.getElementById('profile-card').innerHTML = `
@@ -78,8 +90,7 @@
                     <span class="status-badge ${statusClass}">${statusLabel}</span>
                 </div>
                 <div class="profile-name-row">
-                    <h2 class="profile-name">${user.name}</h2>
-                    ${user.mode ? `<span class="mode-tag">${user.mode}</span>` : ""}
+                    <h2 class="profile-name">${user.name}</h2> 
                 </div>
                 ${user.dept  ? `<p class="profile-dept">${user.dept}</p>`   : ""}
                 ${user.email ? `<p class="profile-email">${user.email}</p>` : ""}

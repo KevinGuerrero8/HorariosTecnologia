@@ -13,13 +13,11 @@
 
     <div class="main-container">
 
-        <!-- Logo -->
         <div class="logo-lockup">
             <img src="/assets/img/logo_domicity.png" alt="Domicity" class="logo">
             <span class="logo-label">Domicity</span>
         </div>
 
-        <!-- Headline -->
         <div>
             <h1 class="page-title">Horarios <em>Domicity</em></h1>
             <p class="page-subtitle">Consulta quién está disponible y cuándo</p>
@@ -27,9 +25,9 @@
 
         <div class="divider"></div>
 
-        <!-- AUTH -->
+        <!-- STEP 1: AUTH -->
         <div class="card card--accent" id="auth-section">
-            <p class="card-eyebrow">Acceso</p>
+            <p class="card-eyebrow">Paso 1 — Acceso</p>
             <h2>Inicia sesión con Google</h2>
             <p>Usa tu cuenta corporativa para consultar los horarios del equipo.</p>
             <button id="authorize-button" class="btn btn-primary btn-large">
@@ -38,16 +36,16 @@
             </button>
         </div>
 
-        <!-- DEPARTMENT -->
+        <!-- STEP 2: DEPARTMENT -->
         <div class="card" id="department-selector" style="display:none;">
-            <p class="card-eyebrow">Área</p>
+            <p class="card-eyebrow">Paso 2 — Área</p>
             <h2>¿Qué departamento buscas?</h2>
-            <p>Selecciona el área para ver sus horarios.</p>
+            <p>Selecciona el área para ver los horarios correspondientes.</p>
             <div class="dept-grid">
                 <button class="dept-btn" id="departament-tecnologia">
                     <img src="assets/img/team_Tecnologia.png" alt="Tecnología" class="dept-img">
                     <span>Tecnología</span>
-                    <small>Soporte & Sistemas</small>
+                    <small>Soporte &amp; Sistemas</small>
                 </button>
                 <button class="dept-btn" id="departament-callcenter">
                     <img src="assets/img/team_CallCenter.png" alt="Call Center" class="dept-img">
@@ -57,7 +55,7 @@
             </div>
         </div>
 
-        <!-- QUERY -->
+        <!-- STEP 3: QUERY -->
         <div id="query-section" style="display:none;">
             <div class="query-cards">
                 <div class="card">
@@ -67,14 +65,19 @@
                     <button id="event-button" class="btn btn-danger">Ver ahora</button>
                 </div>
                 <div class="card">
-                    <p class="card-eyebrow">Consulta de fecha</p>
+                    <p class="card-eyebrow">Planifica</p>
                     <h3>Fecha específica</h3>
-                    <p>Revisa los horarios programados para cualquier día.</p>
+                    <p>Consulta los horarios de cualquier día.</p>
                     <div class="date-input-wrap">
                         <input type="date" id="future-date">
                         <button id="confirm-future-event" class="btn btn-primary">Consultar</button>
                     </div>
                 </div>
+            </div>
+
+            <!-- Back to dept selector -->
+            <div style="margin-top: 16px;">
+                <button class="btn btn-ghost" id="back-to-dept">← Cambiar área</button>
             </div>
         </div>
 

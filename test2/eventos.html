@@ -20,7 +20,7 @@
 
         <div>
             <h1 class="page-title">Horarios del <em id="fecha-titulo">día</em></h1>
-            <div class="datetime-bar" style="margin-top:8px;">
+            <div class="datetime-bar" style="margin-top:10px;">
                 <span id="fecha"></span>
                 <span class="sep">|</span>
                 <span id="hora"></span>
@@ -33,30 +33,36 @@
             <!-- filled by JS -->
         </div>
 
-        <button class="btn btn-ghost back-btn" onclick="window.history.back()">← Regresar</button>
+        <!-- Back to query options, not to login -->
+        <button class="btn btn-ghost back-btn" onclick="goBack()">← Consultar otra fecha</button>
 
     </div>
 
     <script>
+        function goBack() {
+            sessionStorage.setItem('restoreStep', 'query');
+            window.location.href = 'index.html';
+        }
+
         const eventConfig = {
-            "Kevin Presencial":   { avatar:"/assets/img/Avatar_Kevin.png",    email:"Tecnologia2@domicity.com.co",  phone:"310 3325067", redirect:"https://wa.me/+573103325067", status:"ocupado" },
-            "Kevin Remoto":       { avatar:"/assets/img/Avatar_Kevin.png",    email:"Tecnologia2@domicity.com.co",  phone:"310 3325067", redirect:"https://wa.me/+573103325067", status:"ocupado" },
-            "Kevin Disponible":   { avatar:"/assets/img/Avatar_Kevin.png",    email:"Tecnologia2@domicity.com.co",  phone:"310 3325067", redirect:"https://wa.me/+573103325067", status:"disponible" },
-            "Benyy Presencial":   { avatar:"/assets/img/Avatar_Benyy.png",    email:"Benyy@domicity.com.co",        phone:"320 4911339", redirect:"https://wa.me/+573204911339", status:"ocupado" },
-            "Benyy Remoto":       { avatar:"/assets/img/Avatar_Benyy.png",    email:"Benyy@domicity.com.co",        phone:"320 4911339", redirect:"https://wa.me/+573204911339", status:"ocupado" },
-            "Benyy Disponible":   { avatar:"/assets/img/Avatar_Benyy.png",    email:"Benyy@domicity.com.co",        phone:"320 4911339", redirect:"https://wa.me/+573204911339", status:"disponible" },
-            "Lizeth Presencial":  { avatar:"/assets/img/Avatar_Lizeth.png",   email:"Tecnologia@domicity.com.co",   phone:"320 7693195", redirect:"https://wa.me/+573207693195", status:"ocupado" },
-            "Lizeth Remoto":      { avatar:"/assets/img/Avatar_Lizeth.png",   email:"Tecnologia@domicity.com.co",   phone:"320 7693195", redirect:"https://wa.me/+573207693195", status:"ocupado" },
-            "Jhonatan Presencial":{ avatar:"/assets/img/Avatar_Jhonatan.png", email:"lidercampana3@domicity.com.co",phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado" },
-            "Jhonatan Remoto":    { avatar:"/assets/img/Avatar_Jhonatan.png", email:"lidercampana3@domicity.com.co",phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado" },
-            "Juan Presencial":    { avatar:"/assets/img/Avatar_Juan.png",     email:"lidercampana2@domicity.com.co",phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado" },
-            "Juan Remoto":        { avatar:"/assets/img/Avatar_Juan.png",     email:"lidercampana2@domicity.com.co",phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado" },
-            "Deiver Presencial":  { avatar:"/assets/img/Avatar_Deiver.png",   email:"lidercampana@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado" },
-            "Deiver Remoto":      { avatar:"/assets/img/Avatar_Deiver.png",   email:"lidercampana@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado" },
+            "Kevin Presencial":   { avatar:"/assets/img/Avatar_Kevin.png",    email:"Tecnologia2@domicity.com.co",   phone:"310 3325067", redirect:"https://wa.me/+573103325067", status:"ocupado"    },
+            "Kevin Remoto":       { avatar:"/assets/img/Avatar_Kevin.png",    email:"Tecnologia2@domicity.com.co",   phone:"310 3325067", redirect:"https://wa.me/+573103325067", status:"ocupado"    },
+            "Kevin Disponible":   { avatar:"/assets/img/Avatar_Kevin.png",    email:"Tecnologia2@domicity.com.co",   phone:"310 3325067", redirect:"https://wa.me/+573103325067", status:"disponible" },
+            "Benyy Presencial":   { avatar:"/assets/img/Avatar_Benyy.png",    email:"Benyy@domicity.com.co",         phone:"320 4911339", redirect:"https://wa.me/+573204911339", status:"ocupado"    },
+            "Benyy Remoto":       { avatar:"/assets/img/Avatar_Benyy.png",    email:"Benyy@domicity.com.co",         phone:"320 4911339", redirect:"https://wa.me/+573204911339", status:"ocupado"    },
+            "Benyy Disponible":   { avatar:"/assets/img/Avatar_Benyy.png",    email:"Benyy@domicity.com.co",         phone:"320 4911339", redirect:"https://wa.me/+573204911339", status:"disponible" },
+            "Lizeth Presencial":  { avatar:"/assets/img/Avatar_Lizeth.png",   email:"Tecnologia@domicity.com.co",    phone:"320 7693195", redirect:"https://wa.me/+573207693195", status:"ocupado"    },
+            "Lizeth Remoto":      { avatar:"/assets/img/Avatar_Lizeth.png",   email:"Tecnologia@domicity.com.co",    phone:"320 7693195", redirect:"https://wa.me/+573207693195", status:"ocupado"    },
+            "Jhonatan Presencial":{ avatar:"/assets/img/Avatar_Jhonatan.png", email:"lidercampana3@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Jhonatan Remoto":    { avatar:"/assets/img/Avatar_Jhonatan.png", email:"lidercampana3@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Juan Presencial":    { avatar:"/assets/img/Avatar_Juan.png",     email:"lidercampana2@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Juan Remoto":        { avatar:"/assets/img/Avatar_Juan.png",     email:"lidercampana2@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Deiver Presencial":  { avatar:"/assets/img/Avatar_Deiver.png",   email:"lidercampana@domicity.com.co",  phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Deiver Remoto":      { avatar:"/assets/img/Avatar_Deiver.png",   email:"lidercampana@domicity.com.co",  phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
             default: { avatar:"/assets/img/Avatar_Zzz.png", email:"", phone:"", redirect:"#", status:"sin-atencion" }
         };
 
-        function convertirHoraAMinutos(hora) {
+        function convertirMinutos(hora) {
             if (!hora) return null;
             const m = hora.match(/(\d{1,2}):(\d{2})\s*(a\.\s*m\.|p\.\s*m\.)/i);
             if (!m) return null;
@@ -71,14 +77,13 @@
         function isNow(start, end) {
             const now = new Date();
             const cur = now.getHours() * 60 + now.getMinutes();
-            const s = convertirHoraAMinutos(start);
-            const e = convertirHoraAMinutos(end);
-            if (s === null || e === null) return false;
-            return cur >= s && cur <= e;
+            const s = convertirMinutos(start);
+            const e = convertirMinutos(end);
+            return s !== null && e !== null && cur >= s && cur <= e;
         }
 
-        const eventDetails = JSON.parse(localStorage.getItem("eventDetails")) || [];
-        const selectedDate = localStorage.getItem("selectedDate") || "";
+        const eventDetails  = JSON.parse(localStorage.getItem("eventDetails")) || [];
+        const selectedDate  = localStorage.getItem("selectedDate") || "";
 
         const formatDate = (d) => {
             if (!d) return "";
@@ -109,9 +114,9 @@
                 card.style.animationDelay = `${i * 80}ms`;
 
                 card.innerHTML = `
-                    <div class="event-card-header">
-                        <img src="${cfg.avatar}" alt="${event.title}" class="event-avatar">
+                    <div class="event-card-img">
                         <span class="status-badge ${statusClass}">${statusLabel}</span>
+                        <img src="${cfg.avatar}" alt="${event.title}" class="event-avatar">
                     </div>
                     <div class="event-card-body">
                         <p class="event-title">${event.title}</p>

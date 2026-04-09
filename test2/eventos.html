@@ -103,7 +103,7 @@
 
         if (eventDetails.length > 0) {
             eventDetails.forEach((event, i) => {
-                const key = Object.keys(eventConfig).find(k => normalize(event.title).includes(normalize(k))
+                const key = Object.keys(eventConfig).find(k => k !== 'default' && normalizedTitle.includes(normalize(k)));
                 const cfg = key ? eventConfig[key] : eventConfig.default;
                 const current = isNow(event.start, event.end);
                 const isAvail = cfg.status === "disponible";

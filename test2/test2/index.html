@@ -3,15 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horarios Tecnología</title>
-    <link rel="icon" href="/img/logo_domicity.png" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Horarios Domicity</title>
+    <link rel="icon" href="/assets/img/logo_domicity.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-<<<<<<< HEAD
 
     <div class="sidebar-strip"></div>
 
@@ -24,21 +20,10 @@
 
         <div>
             <h1 class="page-title">Horarios <em>Domicity</em></h1>
-=======
-    <div class="contenedor">
-        <div class="domi">
-            <img src="/img/logo_domicity.png" alt="">
         </div>
 
-        <div class="titulo">    
-            <h1>Inicia sesión para consultar <br>el evento que estés buscando</h1>
->>>>>>> a900006508048f1d52de67d72d2e247744109216
-        </div>
-        <div class="botones">
-            <button id="authorize-button">Iniciar sesión</button>
+        <div class="divider"></div>
 
-
-<<<<<<< HEAD
         <!-- STEP 1: AUTH -->
         <div class="card card--accent" id="auth-section">
             <h2>Inicia sesión con Google</h2>
@@ -82,20 +67,6 @@
                         <input type="date" id="future-date">
                         <button id="confirm-future-event" class="btn btn-primary">Consultar</button>
                     </div>
-=======
-        <div id="department-selector" style="display: none;">
-            <h3>Selecciona el departamento:</h3>
-            
-            <div class="departments-row">
-                <div class="teamTecnologia">
-                    <img src="img/team_Tecnologia.png" alt="Tecnología">
-                    <button id="departament-tecnologia">Tecnología</button>
-                </div>
-
-                <div class="teamCallCenter">
-                    <img src="img/team_CallCenter.png" alt="Call Center">
-                    <button id="departament-callcenter">Call Center</button>
->>>>>>> a900006508048f1d52de67d72d2e247744109216
                 </div>
             </div>
 
@@ -105,25 +76,10 @@
             </div>
         </div>
 
-
-            <button id="event-button" disabled>Consultar Evento Actual</button> <!-- Deshabilitado hasta que se autorice -->
-            <!-- <button id="eventFuture-button" disabled>Consultar Evento Futuro</button> Deshabilitado hasta que se autorice -->
     </div>
 
-
-
-    <div id="future-event-form" style="display: none;">
-        <label for="future-date">Consulta un evento de una fecha especifica:</label>
-        <input type="date" id="future-date">
-        <!-- <label for="future-time">Selecciona la hora:</label> -->
-        <!-- <input type="time" id="future-time"> -->
-        <button id="confirm-future-event">Consultar Fecha</button>
-    </div>
-
-    <!-- Cargar API de Google -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/api.js"></script>
-    <!-- Cargar tu script -->
-    <script src="script.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

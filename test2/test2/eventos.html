@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios Domicity</title>
+    <link rel="icon" href="/assets/img/logo_domicity.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <div class="sidebar-strip"></div>
+
+    <div class="main-container main-container--wide">
+
+        <div class="logo-lockup-eventos">
+            <img src="/assets/img/logo_domicity.png" alt="Domicity" class="logo logo--sm">
+            <span class="logo-label">Domicity · Horarios</span>
+        </div>
+
+        <div>
+            <h1 class="page-title">Horarios del <em id="fecha-titulo">día</em></h1>
+            <div class="datetime-bar-eventos" style="margin-top:10px;">
+                <span id="fecha"></span>
+                <span class="sep">|</span>
+                <span id="hora"></span>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div id="events-grid" class="events-grid">
+            <!-- filled by JS -->
+        </div>
+
+        <!-- Back to query options, not to login -->
+        <button class="btn btn-ghost back-btn-eventos" onclick="goBack()">← Consultar otra fecha</button>
+
+    </div>
+
+    <script>
+        function goBack() {
+            sessionStorage.setItem('restoreStep', 'query');
+            window.location.href = 'index.html';
+        }
+
+        const eventConfig = {
+            "Kevin Presencial":   { avatar:"/assets/img/Avatar_Kevin.png",    email:"Tecnologia2@domicity.com.co",   phone:"310 3325067", redirect:"https://wa.me/+573103325067", status:"ocupado"    },
+            "Kevin Remoto":       { avatar:"/assets/img/Avatar_Kevin.png",    email:"Tecnologia2@domicity.com.co",   phone:"310 3325067", redirect:"https://wa.me/+573103325067", status:"ocupado"    },
+            "Kevin Disponible":   { avatar:"/assets/img/Avatar_Kevin.png",    email:"Tecnologia2@domicity.com.co",   phone:"310 3325067", redirect:"https://wa.me/+573103325067", status:"disponible" },
+            "Benyy Presencial":   { avatar:"/assets/img/Avatar_Benyy.png",    email:"Benyy@domicity.com.co",         phone:"320 4911339", redirect:"https://wa.me/+573204911339", status:"ocupado"    },
+            "Benyy Remoto":       { avatar:"/assets/img/Avatar_Benyy.png",    email:"Benyy@domicity.com.co",         phone:"320 4911339", redirect:"https://wa.me/+573204911339", status:"ocupado"    },
+            "Benyy Disponible":   { avatar:"/assets/img/Avatar_Benyy.png",    email:"Benyy@domicity.com.co",         phone:"320 4911339", redirect:"https://wa.me/+573204911339", status:"disponible" },
+            "Lizeth Presencial":  { avatar:"/assets/img/Avatar_Lizeth.png",   email:"Tecnologia@domicity.com.co",    phone:"320 7693195", redirect:"https://wa.me/+573207693195", status:"ocupado"    },
+            "Lizeth Remoto":      { avatar:"/assets/img/Avatar_Lizeth.png",   email:"Tecnologia@domicity.com.co",    phone:"320 7693195", redirect:"https://wa.me/+573207693195", status:"ocupado"    },
+            "Jhonatan Presencial":{ avatar:"/assets/img/Avatar_Jhonatan.png", email:"lidercampana3@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Jhonatan Remoto":    { avatar:"/assets/img/Avatar_Jhonatan.png", email:"lidercampana3@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Juan Presencial":    { avatar:"/assets/img/Avatar_Juan.png",     email:"lidercampana2@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Juan Remoto":        { avatar:"/assets/img/Avatar_Juan.png",     email:"lidercampana2@domicity.com.co", phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Deiver Presencial":  { avatar:"/assets/img/Avatar_Deiver.png",   email:"lidercampana@domicity.com.co",  phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Deiver Remoto":      { avatar:"/assets/img/Avatar_Deiver.png",   email:"lidercampana@domicity.com.co",  phone:"321 2366880", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Martha Presencial":  { avatar:"/assets/img/Avatar_Deiver.png",   email:"trainera@domicity.com.co",      phone:"316 3906199", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            "Martha Remoto":      { avatar:"/assets/img/Avatar_Deiver.png",   email:"traineraa@domicity.com.co",     phone:"316 3906199", redirect:"https://wa.me/+573212366880", status:"ocupado"    },
+            default: { avatar:"/assets/img/Avatar_Zzz.png", email:"", phone:"", redirect:"#", status:"sin-atencion" }
+        };
+
+        function convertirMinutos(hora) {
+            if (!hora) return null;
+            const m = hora.match(/(\d{1,2}):(\d{2})\s*(a\.\s*m\.|p\.\s*m\.)/i);
+            if (!m) return null;
+            let h = parseInt(m[1]);
+            const min = parseInt(m[2]);
+            const per = m[3].toLowerCase();
+            if (per.includes('p') && h !== 12) h += 12;
+            else if (per.includes('a') && h === 12) h = 0;
+            return h * 60 + min;
+        }
+
+        function isNow(start, end) {
+            const now = new Date();
+            const cur = now.getHours() * 60 + now.getMinutes();
+            const s = convertirMinutos(start);
+            const e = convertirMinutos(end);
+            return s !== null && e !== null && cur >= s && cur <= e;
+        }
+
+        const eventDetails  = JSON.parse(localStorage.getItem("eventDetails")) || [];
+        const selectedDate  = localStorage.getItem("selectedDate") || "";
+
+        const formatDate = (d) => {
+            if (!d) return "";
+            const dt = new Date(d);
+            const ld = new Date(dt.getTime() + dt.getTimezoneOffset() * 60000);
+            return `${String(ld.getDate()).padStart(2,"0")}/${String(ld.getMonth()+1).padStart(2,"0")}/${ld.getFullYear()}`;
+        };
+
+        document.getElementById('fecha-titulo').textContent = formatDate(selectedDate);
+        document.getElementById('fecha').textContent = new Date().toLocaleDateString('es-ES', { year:'numeric', month:'long', day:'numeric' });
+        function tick() { document.getElementById('hora').textContent = new Date().toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit', second:'2-digit' }); }
+        tick(); setInterval(tick, 1000);
+
+        const grid = document.getElementById('events-grid');
+
+        if (eventDetails.length > 0) {
+            eventDetails.forEach((event, i) => {
+                const key = Object.keys(eventConfig).find(k => event.title.includes(k));
+                const cfg = key ? eventConfig[key] : eventConfig.default;
+                const current = isNow(event.start, event.end);
+                const isAvail = cfg.status === "disponible";
+
+                const statusLabel = isAvail ? "Disponible" : current ? "Activo ahora" : "En turno";
+                const statusClass = isAvail ? "badge--available" : current ? "badge--active" : "badge--scheduled";
+
+                const card = document.createElement('div');
+                card.className = 'card event-card' + (current ? ' event-card--current' : '');
+                card.style.animationDelay = `${i * 80}ms`;
+
+                card.innerHTML = `
+                    <div class="event-card-img">
+                        <span class="status-badge ${statusClass}">${statusLabel}</span>
+                        <img src="${cfg.avatar}" alt="${event.title}" class="event-avatar">
+                    </div>
+                    <div class="event-card-body">
+                        <p class="event-title">${event.title}</p>
+                        <p class="event-time">⏰ ${event.start || "—"} → ${event.end || "—"}</p>
+                        ${cfg.email ? `<p class="event-email">✉️ ${cfg.email}</p>` : ""}
+                        ${cfg.phone ? `<div class="event-contact" onclick="window.location.href='${cfg.redirect}'">
+                            <img src="assets/img/Icono_Wa.webp" alt="WhatsApp" class="wa-icon">
+                            <span>${cfg.phone}</span>
+                        </div>` : ""}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        } else {
+            grid.innerHTML = `
+                <div class="card empty-card">
+                    <img src="/assets/img/Avatar_Zzz.png" alt="Sin eventos" class="empty-avatar">
+                    <h2>Sin horarios disponibles</h2>
+                    <p>No hay eventos programados para esta fecha.</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

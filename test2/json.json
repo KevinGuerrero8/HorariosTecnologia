@@ -1,0 +1,85 @@
+{
+    "result": {
+        "kind": "calendar#events",
+        "etag": "\"p324fplmpvngoi0o\"",
+        "summary": "Horarios Tecnologia",
+        "description": "",
+        "updated": "2024-11-16T23:15:15.989Z",
+        "timeZone": "America/Bogota",
+        "accessRole": "reader",
+        "defaultReminders": [],
+        "items": [
+            {
+                "kind": "calendar#event",
+                "etag": "\"3463597529706000\"",
+                "id": "08k105ivfckf08tjd4m49t1a3f",
+                "status": "confirmed",
+                "htmlLink": "https://www.google.com/calendar/event?eid=MDhrMTA1aXZmY2tmMDh0amQ0bTQ5dDFhM2YgY19hMDdlZGFlYTY3ZjIyMmQwYzA4YTg5OGM0N2NlYzcxMTYwMGM2MTFmY2Y1MThiZTdmYjgxM2M2ZTYxMmRiZjlhQGc",
+                "created": "2024-11-16T23:12:12.000Z",
+                "updated": "2024-11-16T23:12:44.853Z",
+                "summary": "Lizeth",
+                "creator": {
+                    "email": "tecnologia2@domicity.com.co"
+                },
+                "organizer": {
+                    "email": "c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com",
+                    "displayName": "Horarios Tecnologia",
+                    "self": true
+                },
+                "start": {
+                    "dateTime": "2024-11-18T07:00:00-05:00",
+                    "timeZone": "America/Bogota"
+                },
+                "end": {
+                    "dateTime": "2024-11-18T14:00:00-05:00",
+                    "timeZone": "America/Bogota"
+                },
+                "iCalUID": "08k105ivfckf08tjd4m49t1a3f@google.com",
+                "sequence": 2,
+                "eventType": "default"
+            },
+            {
+                "kind": "calendar#event",
+                "etag": "\"3463597574726000\"",
+                "id": "7m4jqs992huojvoum7bhdb3tue",
+                "status": "confirmed",
+                "htmlLink": "https://www.google.com/calendar/event?eid=N200anFzOTkyaHVvanZvdW03YmhkYjN0dWUgY19hMDdlZGFlYTY3ZjIyMmQwYzA4YTg5OGM0N2NlYzcxMTYwMGM2MTFmY2Y1MThiZTdmYjgxM2M2ZTYxMmRiZjlhQGc",
+                "created": "2024-11-16T23:12:05.000Z",
+                "updated": "2024-11-16T23:13:07.363Z",
+                "summary": "Kevin",
+                "creator": {
+                    "email": "tecnologia2@domicity.com.co"
+                },
+                "organizer": {
+                    "email": "c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com",
+                    "displayName": "Horarios Tecnologia",
+                    "self": true
+                },
+                "start": {
+                    "dateTime": "2024-11-18T14:00:00-05:00",
+                    "timeZone": "America/Bogota"
+                },
+                "end": {
+                    "dateTime": "2024-11-18T19:30:00-05:00",
+                    "timeZone": "America/Bogota"
+                },
+                "iCalUID": "7m4jqs992huojvoum7bhdb3tue@google.com",
+                "sequence": 0,
+                "eventType": "default"
+            }
+        ]
+    },
+    "body": "{\n \"kind\": \"calendar#events\",\n \"etag\": \"\\\"p324fplmpvngoi0o\\\"\",\n \"summary\": \"Horarios Tecnologia\",\n \"description\": \"\",\n \"updated\": \"2024-11-16T23:15:15.989Z\",\n \"timeZone\": \"America/Bogota\",\n \"accessRole\": \"reader\",\n \"defaultReminders\": [],\n \"items\": [\n  {\n   \"kind\": \"calendar#event\",\n   \"etag\": \"\\\"3463597529706000\\\"\",\n   \"id\": \"08k105ivfckf08tjd4m49t1a3f\",\n   \"status\": \"confirmed\",\n   \"htmlLink\": \"https://www.google.com/calendar/event?eid=MDhrMTA1aXZmY2tmMDh0amQ0bTQ5dDFhM2YgY19hMDdlZGFlYTY3ZjIyMmQwYzA4YTg5OGM0N2NlYzcxMTYwMGM2MTFmY2Y1MThiZTdmYjgxM2M2ZTYxMmRiZjlhQGc\",\n   \"created\": \"2024-11-16T23:12:12.000Z\",\n   \"updated\": \"2024-11-16T23:12:44.853Z\",\n   \"summary\": \"Lizeth\",\n   \"creator\": {\n    \"email\": \"tecnologia2@domicity.com.co\"\n   },\n   \"organizer\": {\n    \"email\": \"c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com\",\n    \"displayName\": \"Horarios Tecnologia\",\n    \"self\": true\n   },\n   \"start\": {\n    \"dateTime\": \"2024-11-18T07:00:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"end\": {\n    \"dateTime\": \"2024-11-18T14:00:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"iCalUID\": \"08k105ivfckf08tjd4m49t1a3f@google.com\",\n   \"sequence\": 2,\n   \"eventType\": \"default\"\n  },\n  {\n   \"kind\": \"calendar#event\",\n   \"etag\": \"\\\"3463597574726000\\\"\",\n   \"id\": \"7m4jqs992huojvoum7bhdb3tue\",\n   \"status\": \"confirmed\",\n   \"htmlLink\": \"https://www.google.com/calendar/event?eid=N200anFzOTkyaHVvanZvdW03YmhkYjN0dWUgY19hMDdlZGFlYTY3ZjIyMmQwYzA4YTg5OGM0N2NlYzcxMTYwMGM2MTFmY2Y1MThiZTdmYjgxM2M2ZTYxMmRiZjlhQGc\",\n   \"created\": \"2024-11-16T23:12:05.000Z\",\n   \"updated\": \"2024-11-16T23:13:07.363Z\",\n   \"summary\": \"Kevin\",\n   \"creator\": {\n    \"email\": \"tecnologia2@domicity.com.co\"\n   },\n   \"organizer\": {\n    \"email\": \"c_a07edaea67f222d0c08a898c47cec711600c611fcf518be7fb813c6e612dbf9a@group.calendar.google.com\",\n    \"displayName\": \"Horarios Tecnologia\",\n    \"self\": true\n   },\n   \"start\": {\n    \"dateTime\": \"2024-11-18T14:00:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"end\": {\n    \"dateTime\": \"2024-11-18T19:30:00-05:00\",\n    \"timeZone\": \"America/Bogota\"\n   },\n   \"iCalUID\": \"7m4jqs992huojvoum7bhdb3tue@google.com\",\n   \"sequence\": 0,\n   \"eventType\": \"default\"\n  }\n ]\n}\n",
+    "headers": {
+        "cache-control": "private, max-age=0, must-revalidate, no-transform",
+        "content-encoding": "gzip",
+        "content-length": "765",
+        "content-type": "application/json; charset=UTF-8",
+        "date": "Sat, 16 Nov 2024 23:26:06 GMT",
+        "expires": "Sat, 16 Nov 2024 23:26:06 GMT",
+        "server": "ESF",
+        "vary": "Origin, X-Origin, Referer"
+    },
+    "status": 200,
+    "statusText": null
+}

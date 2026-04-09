@@ -133,6 +133,7 @@ body {
     line-height: 1.08;
     letter-spacing: -.035em;
     color: var(--ink);
+    text-align: center;
 }
 
 .page-title em {
@@ -236,6 +237,7 @@ body {
     letter-spacing: -.025em;
     color: var(--ink);
     margin-bottom: var(--s3);
+    text-align: center;
 }
 
 .card > p {
@@ -243,6 +245,7 @@ body {
     color: var(--ink-3);
     line-height: 1.55;
     margin-bottom: var(--s8);
+    text-align: center;
 }
 
 /* ─── AUTH CARD ───────────────────────────────────────────── */

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios Tecnología</title>
+    <link rel="icon" href="/img/logo_domicity.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=reply" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="contenedor2">
+        <div class="seccion1">
+            <div class="titulo">
+                <h1 id="title">Horarios Tecnología</h1>
+                <p id="fecha"></p>
+                <p id="hora"></p>
+            </div>
+        </div>
+        <div class="seccion2">
+            <img id="avatar" src="" alt="Avatar">
+            <h1 id="name"></h1>
+            <p id="email"></p>
+            <div class="info">
+                <img src="img/Icono_Wa.webp" alt="Icono phone" class="icono" id="phone-icon">
+                <p id="phone"></p>
+            </div>
+        </div>
+        <button id="actualizar-button" onclick="window.history.back()">
+            <span class="material-symbols-outlined">reply</span> Regresar
+        </button>
+    </div>
+    <script>
+// Configuración de usuarios
+        const users = {
+            "Kevin Presencial": {
+                name: "Kevin - Presencial",
+                avatar: "/img/Avatar_Kevin.png",
+                email: "Tecnologia2@domicity.com.co",
+                phone: "310 3325067",
+                redirect: "https://wa.me/+573103325067"
+            },
+            "Kevin Remoto": {
+                name: "Kevin - Remoto",
+                avatar: "/img/Avatar_Kevin.png",
+                email: "Tecnologia2@domicity.com.co",
+                phone: "310 3325067",
+                redirect: "https://wa.me/+573103325067"
+            },
+            "Lizeth Presencial": {
+                name: "Lizeth - Presencial",
+                avatar: "/img/Avatar_Lizeth.png",
+                email: "Tecnologia@domicity.com.co",
+                phone: "320 7693195",
+                redirect: "https://wa.me/+573207693195"
+            },
+            "Lizeth Remoto": {
+                name: "Lizeth - Presencial",
+                avatar: "/img/Avatar_Lizeth.png",
+                email: "Tecnologia@domicity.com.co",
+                phone: "320 7693195",
+                redirect: "https://wa.me/+573207693195"
+            },
+            "Benyy Presencial": {
+                name: "Benyy Castillo",
+                avatar: "/img/Avatar_Benyy.png",
+                email: "Benyy@domicity.com.co",
+                phone: "320 4911339",
+                redirect: "https://wa.me/+573204911339"
+            },
+            "Benyy Remoto": {
+                name: "Benyy - Remoto",
+                avatar: "/img/Avatar_Benyy.png",
+                email: "Benyy@domicity.com.co",
+                phone: "320 4911339",
+                redirect: "https://wa.me/+573204911339"
+            },
+            "Jhonatan Presencial": {
+                name: "Jhonatan - Presencial",
+                avatar: "/img/Avatar_Jhonatan.png",
+                email: "lidercampana3@domicity.com.co",
+                phone: "321 2366880",
+                redirect: "https://wa.me/+573212366880"
+            },
+            "Jhonatan Remoto": {
+                name: "Jhonatan - Remoto",
+                avatar: "/img/Avatar_Jhonatan.png",
+                email: "lidercampana3@domicity.com.co",
+                phone: "321 2366880",
+                redirect: "https://wa.me/+573212366880"
+            },
+            "Juan Presencial": {
+                name: "Juan - Presencial",
+                avatar: "/img/Avatar_Juan.png",
+                email: "lidercampana2@domicity.com.co",
+                phone: "321 2366880",
+                redirect: "https://wa.me/+573212366880"
+            },
+            "Juan Remoto": {
+                name: "Juan - Remoto",
+                avatar: "/img/Avatar_Juan.png",
+                email: "lidercampana2@domicity.com.co",
+                phone: "321 2366880",
+                redirect: "https://wa.me/+573212366880"
+            },
+            "Deiver Presencial": {
+                name: "Deiver - Presencial",
+                avatar: "/img/Avatar_Deiver.png",
+                email: "lidercampana@domicity.com.co",
+                phone: "321 2366880",
+                redirect: "https://wa.me/+573212366880"
+            },
+            "Deiver Remoto": {
+                name: "Deiver - Remoto",
+                avatar: "/img/Avatar_Deiver.png",
+                email: "lidercampana@domicity.com.co",
+                phone: "321 2366880",
+                redirect: "https://wa.me/+573212366880"
+            },
+            default: {
+                name: "No tenemos atención",
+                avatar: "/img/Avatar_Zzz.png",
+                email: "",
+                phone: "",
+                redirect: "#"
+            }
+        };
+
+            // Obtener el título del evento desde localStorage
+            const eventTitle = localStorage.getItem('eventTitle') || "default";
+            const user = users[eventTitle] || users.default;
+
+            // Actualizar contenido dinámico
+            document.getElementById('title').innerHTML = `Horarios Tecnología`;
+            document.getElementById('avatar').src = user.avatar;
+            document.getElementById('avatar').alt = `Avatar ${user.name}`;
+            document.getElementById('name').textContent = user.name;
+            document.getElementById('email').textContent = user.email;
+            document.getElementById('phone').textContent = user.phone;
+
+            // Redirigir al hacer clic en el ícono del teléfono
+            document.getElementById('phone-icon').addEventListener('click', function() {
+                window.location.href = user.redirect;
+            });
+
+            // Mostrar fecha y hora actual
+            const fechaActual = new Date();
+            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+            const fechaFormateada = fechaActual.toLocaleDateString('es-ES', opciones);
+            const horaFormateada = fechaActual.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('fecha').textContent = fechaFormateada;
+            document.getElementById('hora').textContent = horaFormateada;
+    </script>
+</body>
+</html>

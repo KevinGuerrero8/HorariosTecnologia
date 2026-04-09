@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios Tecnología</title>
+    <link rel="icon" href="/img/logo_domicity.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=reply" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="pageTitle"></h1>
+    <div id="contenedor3"></div>
+    <button id="regresar-button" onclick="window.history.back()">
+        <span class="material-symbols-outlined">reply</span> Regresar
+    </button>
+    <script>
+
+        const eventConfig = {
+            "Kevin Presencial": {
+                imageUrl: "/img/Avatar_Kevin.png",
+                mail: "Tecnologia2@domicity.com.co",
+                celular: "310 3325067"
+            },
+            "Kevin Remoto": {
+                imageUrl: "/img/Avatar_Kevin.png",
+                mail: "Tecnologia2@domicity.com.co",
+                celular: "310 3325067"
+            },
+            "Lizeth Presencial": {
+                imageUrl: "/img/Avatar_Lizeth.png",
+                mail: "Tecnologia@domicity.com.co",
+                celular: "320 7693195"
+            },
+            "Lizeth Remoto": {
+                imageUrl: "/img/Avatar_Lizeth.png",
+                mail: "Tecnologia@domicity.com.co",
+                celular: "320 7693195"
+            },
+            "Benyy Presencial": {
+                imageUrl: "/img/Avatar_Benyy.png",
+                mail: "Benyy@domicity.com.co",
+                celular: "320 4911339"
+            },
+            "Benyy Remoto": {
+                imageUrl: "/img/Avatar_Benyy.png",
+                mail: "Benyy@domicity.com.co",
+                celular: "320 4911339"
+            },
+            "Jhonatan Presencial": {
+                imageUrl: "/img/Avatar_Jhonatan.png",
+                mail: "lidercampana3@domicity.com.co",
+                celular: "321 2366880"
+            },
+            "Jhonatan Remoto": {
+                imageUrl: "/img/Avatar_Jhonatan.png",
+                mail: "lidercampana3@domicity.com.co",
+                celular: "321 2366880"
+            },
+            "Juan Presencial": {
+                imageUrl: "/img/Avatar_Juan.png",
+                mail: "lidercampana2@domicity.com.co",
+                celular: "321 2366880"
+            },
+            "Juan Remoto": {
+                imageUrl: "/img/Avatar_Juan.png",
+                mail: "lidercampana2@domicity.com.co",
+                celular: "321 2366880"
+            },
+            "Deiver Presencial": {
+                imageUrl: "/img/Avatar_Deiver.png",
+                mail: "lidercampana@domicity.com.co",
+                celular: "321 2366880"
+            },
+            "Deiver Remoto": {
+                imageUrl: "/img/Avatar_Deiver.png",
+                mail: "lidercampana@domicity.com.co",
+                celular: "321 2366880"
+            },
+            "default": {
+                imageUrl: "/img/default_avatar.png",
+                mail: "Sin correo disponiblee",
+                celular: "Sin celular disponible"
+            }
+        };
+
+
+        // Nueva función para convertir hora en formato "HH:mm a. m./p. m." a minutos
+        function convertirHoraAMinutos(hora) {
+            if (!hora || hora === "Hora no disponible") return null;
+
+            // Extraer la hora y el período (AM/PM)
+            const match = hora.match(/(\d{1,2}):(\d{2})\s*(a\.\s*m\.|p\.\s*m\.)/i);
+            if (!match) return null;
+
+            let horas = parseInt(match[1]);
+            const minutos = parseInt(match[2]);
+            const periodo = match[3].toLowerCase();
+
+            // Ajustar las horas según el período
+            if (periodo.includes('p') && horas !== 12) {
+                horas += 12;
+            } else if (periodo.includes('a') && horas === 12) {
+                horas = 0;
+            }
+
+            return horas * 60 + minutos;
+        }
+
+        function isEventoCurrent(horaInicio, horaFin) {
+            const ahora = new Date();
+            const minutosAhora = ahora.getHours() * 60 + ahora.getMinutes();
+
+            const minutosInicio = convertirHoraAMinutos(horaInicio);
+            const minutosFin = convertirHoraAMinutos(horaFin);
+
+            if (minutosInicio === null || minutosFin === null) return false;
+
+            console.log(`Evento: ${horaInicio} - ${horaFin}`);
+            console.log(`Hora actual en minutos: ${minutosAhora}`);
+            console.log(`Inicio en minutos: ${minutosInicio}`);
+            console.log(`Fin en minutos: ${minutosFin}`);
+            
+            return minutosAhora >= minutosInicio && minutosAhora <= minutosFin;
+        }
+
+        
+        const eventDetails = JSON.parse(localStorage.getItem("eventDetails")) || [];
+        const selectedDate = localStorage.getItem("selectedDate") || "sin fecha seleccionada";
+        const pageTitle = document.getElementById("pageTitle");
+
+        const formatSelectedDate = (dateString) => {
+            if (!dateString || dateString === "sin fecha seleccionada") {
+                return "sin fecha seleccionada";
+            }
+            const date = new Date(dateString);
+            const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+            const day = String(localDate.getDate()).padStart(2, "0");
+            const month = String(localDate.getMonth() + 1).padStart(2, "0");
+            const year = localDate.getFullYear();
+            return `${day}/${month}/${year}`;
+        };
+
+        pageTitle.textContent = `Horarios Tecnología: ${formatSelectedDate(selectedDate)}`;
+
+        const contenedor3 = document.getElementById("contenedor3");
+
+        if (eventDetails.length > 0) {
+            eventDetails.forEach(event => {
+                const eventDiv = document.createElement("div");
+                eventDiv.classList.add("evento");
+
+                console.log(selectedDate, eventDetails);
+                
+
+                const config = Object.entries(eventConfig).find(([key]) => event.title.includes(key))?.[1] || eventConfig.default;
+
+                const start = event.start || "Hora no disponible";
+                const end = event.end || "Hora no disponible";
+
+                    eventDiv.innerHTML = `
+                    <h1>${event.title}</h1>
+                    <img src="${config.imageUrl}" alt="${event.title}">
+                    <p>Desde las ${start} a las ${end}</p>
+                    <p>${config.mail}</p>
+                    <p>${config.celular}</p>
+                `;
+                contenedor3.appendChild(eventDiv);
+            });
+        } else {
+            document.body.innerHTML = "<h1>No hay eventos disponibles para la fecha seleccionada.</h1>";
+        }
+    </script>
+</body>
+</html>

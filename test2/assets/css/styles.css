@@ -366,11 +366,12 @@ body {
     z-index: 2;
     width: 200px;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 50%;
     border: 5px solid rgba(0,0,0,.09);
     box-shadow: 0 12px 40px rgba(0,0,0,.14);
     display: block;
+    background-color: var(--white);
 }
 
 /* Info section */
